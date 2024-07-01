@@ -35,7 +35,7 @@ dependencies = [
   "betterproto == 2.0.0b6",
   "frequenz-channels >= 1.0.0-rc1, < 2.0.0",
   "frequenz-client-base[grpclib] >= 0.4.0, < 0.5",
-  "frequenz-microgrid-betterproto >= 0.15.3.1, < 0.16",
+  "frequenz-microgrid-betterproto >= 0.17.0.2, < 0.18",
   "timezonefinder >= 6.2.0, < 7",
   "typing-extensions >= 4.5.0, < 5",
 ]
