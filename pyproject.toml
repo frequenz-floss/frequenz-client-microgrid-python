@@ -66,7 +66,7 @@ dev-mkdocs = [
   "frequenz-repo-config[lib] == 0.9.2",
 ]
 dev-mypy = [
-  "mypy == 1.10.0",
+  "mypy == 1.10.1",
   "types-Markdown == 3.6.0.20240316",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-client-microgrid[dev-mkdocs,dev-noxfile,dev-pytest]",
