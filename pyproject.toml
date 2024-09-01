@@ -36,7 +36,7 @@ classifiers = [
 ]
 requires-python = ">= 3.11, < 4"
 dependencies = [
-  "frequenz-api-microgrid >= 0.15.3, < 0.16.0",
+  "frequenz-api-microgrid >= 0.15.3, < 0.18.0",
   "frequenz-channels >= 1.0.0-rc1, < 2.0.0",
   "frequenz-client-base >= 0.6.0, < 0.7",
   "grpcio >= 1.54.2, < 2",
@@ -66,9 +66,9 @@ dev-mkdocs = [
   "mkdocs-gen-files == 0.5.0",
   "mkdocs-literate-nav == 0.6.1",
   "mkdocs-macros-plugin == 1.0.5",
-  "mkdocs-material == 9.5.33",
+  "mkdocs-material == 9.5.34",
   "mkdocstrings[python] == 0.25.2",
-  "mkdocstrings-python == 1.10.8",
+  "mkdocstrings-python == 1.10.9",
   "frequenz-repo-config[lib] == 0.10.0",
 ]
 dev-mypy = [
@@ -79,7 +79,7 @@ dev-mypy = [
 ]
 dev-noxfile = ["nox == 2024.4.15", "frequenz-repo-config[lib] == 0.10.0"]
 dev-pylint = [
-  "pylint == 3.2.6",
+  "pylint == 3.2.7",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-client-microgrid[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
