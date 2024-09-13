@@ -5896,7 +5896,7 @@
 
     <div class="doc doc-contents first">
 
-      <p>Client to connect to the Microgrid API.</p>
+        <p>Client to connect to the Microgrid API.</p>
 <p>This package provides a low-level interface for interacting with the microgrid API.</p>
 
 
@@ -5926,7 +5926,7 @@
               Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#Exception">Exception</a></code></p>
 
 
-      <p>There was an error in an API client.</p>
+        <p>There was an error in an API client.</p>
 <p>To simplify retrying, errors are classified as
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.ApiClientError.is_retryable">retryable</a>, or not.
 Retryable errors might succeed if retried, while permanent errors won't. When
@@ -6170,7 +6170,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -6193,7 +6193,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -6216,7 +6216,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -6239,7 +6239,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -6265,7 +6265,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -6426,7 +6426,7 @@ uncertain, errors are assumed to be retryable.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -6651,7 +6651,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Component states of a battery.</p>
+        <p>Component states of a battery.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -6790,7 +6790,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is consuming electrical energy.</p>
+        <p>The battery is consuming electrical energy.</p>
     </div>
 
 </div>
@@ -6814,7 +6814,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is generating electrical energy.</p>
+        <p>The battery is generating electrical energy.</p>
     </div>
 
 </div>
@@ -6838,7 +6838,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is in a faulty state.</p>
+        <p>The battery is in a faulty state.</p>
     </div>
 
 </div>
@@ -6862,7 +6862,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is idle.</p>
+        <p>The battery is idle.</p>
     </div>
 
 </div>
@@ -6886,7 +6886,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is online, but currently unavailable.</p>
+        <p>The battery is online, but currently unavailable.</p>
 <p>Possibly due to a pre-scheduled maintenance, or waiting for a resource to be loaded.</p>
     </div>
 
@@ -6911,7 +6911,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is switched off.</p>
+        <p>The battery is switched off.</p>
     </div>
 
 </div>
@@ -6935,7 +6935,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is switching off and needs some time to fully shut down.</p>
+        <p>The battery is switching off and needs some time to fully shut down.</p>
     </div>
 
 </div>
@@ -6959,7 +6959,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery is starting up and needs some time to become fully operational.</p>
+        <p>The battery is starting up and needs some time to become fully operational.</p>
     </div>
 
 </div>
@@ -6983,7 +6983,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>A state is provided by the component, but it is not one of the above states.</p>
+        <p>A state is provided by the component, but it is not one of the above states.</p>
     </div>
 
 </div>
@@ -7007,7 +7007,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified component state.</p>
+        <p>Unspecified component state.</p>
     </div>
 
 </div>
@@ -7031,7 +7031,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf state value to this enum.</p>
+        <p>Convert a protobuf state value to this enum.</p>
 
 
 <table>
@@ -7146,7 +7146,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.ComponentData" href="#frequenz.client.microgrid.ComponentData">ComponentData</a></code></p>
 
 
-      <p>A wrapper class for holding battery data.</p>
+        <p>A wrapper class for holding battery data.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -7394,7 +7394,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The capacity of the battery in Wh (Watt-hour).</p>
+        <p>The capacity of the battery in Wh (Watt-hour).</p>
     </div>
 
 </div>
@@ -7417,7 +7417,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The ID identifying this component in the microgrid.</p>
+        <p>The ID identifying this component in the microgrid.</p>
     </div>
 
 </div>
@@ -7440,7 +7440,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>State of the battery.</p>
+        <p>State of the battery.</p>
     </div>
 
 </div>
@@ -7463,7 +7463,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>List of errors in protobuf struct.</p>
+        <p>List of errors in protobuf struct.</p>
     </div>
 
 </div>
@@ -7486,7 +7486,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower exclusion bound for battery power in watts.</p>
+        <p>Lower exclusion bound for battery power in watts.</p>
 <p>This is the lower limit of the range within which power requests are not allowed for
 the battery.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -7514,7 +7514,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper exclusion bound for battery power in watts.</p>
+        <p>Upper exclusion bound for battery power in watts.</p>
 <p>This is the upper limit of the range within which power requests are not allowed for
 the battery.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -7542,7 +7542,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower inclusion bound for battery power in watts.</p>
+        <p>Lower inclusion bound for battery power in watts.</p>
 <p>This is the lower limit of the range within which power requests are allowed for the
 battery.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -7570,7 +7570,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper inclusion bound for battery power in watts.</p>
+        <p>Upper inclusion bound for battery power in watts.</p>
 <p>This is the upper limit of the range within which power requests are allowed for the
 battery.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -7599,7 +7599,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Raw component data as decoded from the wire.</p>
+        <p>Raw component data as decoded from the wire.</p>
     </div>
 
 </div>
@@ -7622,7 +7622,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>State of the battery relay.</p>
+        <p>State of the battery relay.</p>
     </div>
 
 </div>
@@ -7645,7 +7645,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Battery's overall SoC in percent (%).</p>
+        <p>Battery's overall SoC in percent (%).</p>
     </div>
 
 </div>
@@ -7668,7 +7668,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The SoC below which discharge commands will be blocked by the system,
+        <p>The SoC below which discharge commands will be blocked by the system,
 in percent (%).</p>
     </div>
 
@@ -7692,7 +7692,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The SoC above which charge commands will be blocked by the system,
+        <p>The SoC above which charge commands will be blocked by the system,
 in percent (%).</p>
     </div>
 
@@ -7716,7 +7716,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The (average) temperature reported by the battery, in Celsius (°C).</p>
+        <p>The (average) temperature reported by the battery, in Celsius (°C).</p>
     </div>
 
 </div>
@@ -7739,7 +7739,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The timestamp of when the data was measured.</p>
+        <p>The timestamp of when the data was measured.</p>
     </div>
 
 </div>
@@ -7763,7 +7763,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create BatteryData from a protobuf message.</p>
+        <p>Create BatteryData from a protobuf message.</p>
 
 
 <table>
@@ -7910,7 +7910,7 @@ in percent (%).</p>
     <div class="doc doc-contents ">
 
 
-      <p>A battery error.</p>
+        <p>A battery error.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -8001,7 +8001,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error code.</p>
+        <p>The error code.</p>
     </div>
 
 </div>
@@ -8025,7 +8025,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error level.</p>
+        <p>The error level.</p>
     </div>
 
 </div>
@@ -8049,7 +8049,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error message.</p>
+        <p>The error message.</p>
     </div>
 
 </div>
@@ -8073,7 +8073,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance using a protobuf message to get the values.</p>
+        <p>Create a new instance using a protobuf message to get the values.</p>
 
 
 <table>
@@ -8186,7 +8186,7 @@ in percent (%).</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Battery error code.</p>
+        <p>Battery error code.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -8403,7 +8403,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>One or more battery blocks have failed.</p>
+        <p>One or more battery blocks have failed.</p>
     </div>
 
 </div>
@@ -8427,7 +8427,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery requires a calibration to reset its measurements.</p>
+        <p>The battery requires a calibration to reset its measurements.</p>
     </div>
 
 </div>
@@ -8451,7 +8451,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery controller has failed.</p>
+        <p>The battery controller has failed.</p>
     </div>
 
 </div>
@@ -8475,7 +8475,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Charge current has exceeded component bounds.</p>
+        <p>Charge current has exceeded component bounds.</p>
     </div>
 
 </div>
@@ -8499,7 +8499,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Discharge current has exceeded component bounds.</p>
+        <p>Discharge current has exceeded component bounds.</p>
     </div>
 
 </div>
@@ -8525,7 +8525,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The eternal power switch has failed.</p>
+        <p>The eternal power switch has failed.</p>
     </div>
 
 </div>
@@ -8549,7 +8549,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery's fuse has failed.</p>
+        <p>The battery's fuse has failed.</p>
     </div>
 
 </div>
@@ -8573,7 +8573,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Charge current is too high.</p>
+        <p>Charge current is too high.</p>
     </div>
 
 </div>
@@ -8597,7 +8597,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Discharge current is too high.</p>
+        <p>Discharge current is too high.</p>
     </div>
 
 </div>
@@ -8621,7 +8621,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Humidity is too high.</p>
+        <p>Humidity is too high.</p>
     </div>
 
 </div>
@@ -8645,7 +8645,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Temperature is too high.</p>
+        <p>Temperature is too high.</p>
     </div>
 
 </div>
@@ -8669,7 +8669,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Voltage is too high.</p>
+        <p>Voltage is too high.</p>
     </div>
 
 </div>
@@ -8693,7 +8693,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The State of health is low.</p>
+        <p>The State of health is low.</p>
     </div>
 
 </div>
@@ -8717,7 +8717,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Temperature is too low.</p>
+        <p>Temperature is too low.</p>
     </div>
 
 </div>
@@ -8741,7 +8741,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Voltage is too low.</p>
+        <p>Voltage is too low.</p>
     </div>
 
 </div>
@@ -8765,7 +8765,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The precharge operation has failed.</p>
+        <p>The precharge operation has failed.</p>
     </div>
 
 </div>
@@ -8791,7 +8791,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery's DC relays have reached the cycles limit in its lifetime specifications.</p>
+        <p>The battery's DC relays have reached the cycles limit in its lifetime specifications.</p>
     </div>
 
 </div>
@@ -8815,7 +8815,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery's DC relays have failed.</p>
+        <p>The battery's DC relays have failed.</p>
     </div>
 
 </div>
@@ -8839,7 +8839,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The battery blocks are not balanced with respect to each other.</p>
+        <p>The battery blocks are not balanced with respect to each other.</p>
     </div>
 
 </div>
@@ -8865,7 +8865,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>System plausibility checks have failed.</p>
+        <p>System plausibility checks have failed.</p>
     </div>
 
 </div>
@@ -8891,7 +8891,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>System shut down due to extremely low voltage.</p>
+        <p>System shut down due to extremely low voltage.</p>
     </div>
 
 </div>
@@ -8915,7 +8915,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified battery error code.</p>
+        <p>Unspecified battery error code.</p>
     </div>
 
 </div>
@@ -8939,7 +8939,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf error code value to this enum.</p>
+        <p>Convert a protobuf error code value to this enum.</p>
 
 
 <table>
@@ -9050,7 +9050,7 @@ in percent (%).</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Relay states of a battery.</p>
+        <p>Relay states of a battery.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -9155,7 +9155,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The relays are closed, and the DC power line to the inverter is connected.</p>
+        <p>The relays are closed, and the DC power line to the inverter is connected.</p>
     </div>
 
 </div>
@@ -9179,7 +9179,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The relays are in an error state.</p>
+        <p>The relays are in an error state.</p>
     </div>
 
 </div>
@@ -9203,7 +9203,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The relays are locked, and should be available to accept commands shortly.</p>
+        <p>The relays are locked, and should be available to accept commands shortly.</p>
     </div>
 
 </div>
@@ -9227,7 +9227,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The relays are open, and the DC power line to the inverter is disconnected.</p>
+        <p>The relays are open, and the DC power line to the inverter is disconnected.</p>
     </div>
 
 </div>
@@ -9251,7 +9251,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The relays are closing, and the DC power line to the inverter is being connected.</p>
+        <p>The relays are closing, and the DC power line to the inverter is being connected.</p>
     </div>
 
 </div>
@@ -9275,7 +9275,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified relay state.</p>
+        <p>Unspecified relay state.</p>
     </div>
 
 </div>
@@ -9299,7 +9299,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf state value to this enum.</p>
+        <p>Convert a protobuf state value to this enum.</p>
 
 
 <table>
@@ -9410,7 +9410,7 @@ in percent (%).</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.ApiClientError" href="#frequenz.client.microgrid.ApiClientError">ApiClientError</a></code></p>
 
 
-      <p>The client is not connected to the server.</p>
+        <p>The client is not connected to the server.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -9476,7 +9476,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -9499,7 +9499,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -9522,7 +9522,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -9545,7 +9545,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -9565,7 +9565,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -9662,7 +9662,7 @@ in percent (%).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -9889,7 +9889,7 @@ is not recognized, or an appropriate subclass if it is.</p>
     <div class="doc doc-contents ">
 
 
-      <p>Metadata for a single microgrid component.</p>
+        <p>Metadata for a single microgrid component.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -9991,7 +9991,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The category of this component.</p>
+        <p>The category of this component.</p>
     </div>
 
 </div>
@@ -10014,7 +10014,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The ID of this component.</p>
+        <p>The ID of this component.</p>
     </div>
 
 </div>
@@ -10038,7 +10038,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The metadata of this component.</p>
+        <p>The metadata of this component.</p>
     </div>
 
 </div>
@@ -10062,7 +10062,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The type of this component.</p>
+        <p>The type of this component.</p>
     </div>
 
 </div>
@@ -10082,7 +10082,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Compute a hash of this instance, obtained by hashing the <code>component_id</code> field.</p>
+        <p>Compute a hash of this instance, obtained by hashing the <code>component_id</code> field.</p>
 
 
 <table>
@@ -10142,7 +10142,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Check if this instance contains valid data.</p>
+        <p>Check if this instance contains valid data.</p>
 
 
 <table>
@@ -10220,7 +10220,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Possible types of microgrid component.</p>
+        <p>Possible types of microgrid component.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -10301,7 +10301,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Battery component.</p>
+        <p>Battery component.</p>
     </div>
 
 </div>
@@ -10325,7 +10325,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>CHP component.</p>
+        <p>CHP component.</p>
     </div>
 
 </div>
@@ -10349,7 +10349,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>EV charger component.</p>
+        <p>EV charger component.</p>
     </div>
 
 </div>
@@ -10373,7 +10373,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Grid component.</p>
+        <p>Grid component.</p>
     </div>
 
 </div>
@@ -10397,7 +10397,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Inverter component.</p>
+        <p>Inverter component.</p>
     </div>
 
 </div>
@@ -10421,7 +10421,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Meter component.</p>
+        <p>Meter component.</p>
     </div>
 
 </div>
@@ -10445,7 +10445,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified component category.</p>
+        <p>Unspecified component category.</p>
     </div>
 
 </div>
@@ -10480,7 +10480,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="abc.ABC" href="https://docs.python.org/3/library/abc.html#abc.ABC">ABC</a></code></p>
 
 
-      <p>A private base class for strongly typed component data classes.</p>
+        <p>A private base class for strongly typed component data classes.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -10596,7 +10596,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The ID identifying this component in the microgrid.</p>
+        <p>The ID identifying this component in the microgrid.</p>
     </div>
 
 </div>
@@ -10620,7 +10620,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Raw component data as decoded from the wire.</p>
+        <p>Raw component data as decoded from the wire.</p>
     </div>
 
 </div>
@@ -10643,7 +10643,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The timestamp of when the data was measured.</p>
+        <p>The timestamp of when the data was measured.</p>
     </div>
 
 </div>
@@ -10668,7 +10668,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create ComponentData from a protobuf message.</p>
+        <p>Create ComponentData from a protobuf message.</p>
 
 
 <table>
@@ -10775,7 +10775,7 @@ is not recognized, or an appropriate subclass if it is.</p>
     <div class="doc doc-contents ">
 
 
-      <p>Base class for component metadata classes.</p>
+        <p>Base class for component metadata classes.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -10822,7 +10822,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The fuse at the grid connection point.</p>
+        <p>The fuse at the grid connection point.</p>
     </div>
 
 </div>
@@ -10853,7 +10853,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>An enum representing the various metrics available in the microgrid.</p>
+        <p>An enum representing the various metrics available in the microgrid.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -11024,7 +11024,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power.</p>
+        <p>Active power.</p>
     </div>
 
 </div>
@@ -11050,7 +11050,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power exclusion lower bound.</p>
+        <p>Active power exclusion lower bound.</p>
     </div>
 
 </div>
@@ -11076,7 +11076,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power exclusion upper bound.</p>
+        <p>Active power exclusion upper bound.</p>
     </div>
 
 </div>
@@ -11102,7 +11102,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power inclusion lower bound.</p>
+        <p>Active power inclusion lower bound.</p>
     </div>
 
 </div>
@@ -11128,7 +11128,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power inclusion upper bound.</p>
+        <p>Active power inclusion upper bound.</p>
     </div>
 
 </div>
@@ -11152,7 +11152,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power in phase 1.</p>
+        <p>Active power in phase 1.</p>
     </div>
 
 </div>
@@ -11176,7 +11176,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power in phase 2.</p>
+        <p>Active power in phase 2.</p>
     </div>
 
 </div>
@@ -11200,7 +11200,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Active power in phase 3.</p>
+        <p>Active power in phase 3.</p>
     </div>
 
 </div>
@@ -11224,7 +11224,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Capacity.</p>
+        <p>Capacity.</p>
     </div>
 
 </div>
@@ -11248,7 +11248,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Current in phase 1.</p>
+        <p>Current in phase 1.</p>
     </div>
 
 </div>
@@ -11272,7 +11272,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Current in phase 2.</p>
+        <p>Current in phase 2.</p>
     </div>
 
 </div>
@@ -11296,7 +11296,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Current in phase 3.</p>
+        <p>Current in phase 3.</p>
     </div>
 
 </div>
@@ -11320,7 +11320,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Power exclusion lower bound.</p>
+        <p>Power exclusion lower bound.</p>
     </div>
 
 </div>
@@ -11344,7 +11344,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Power exclusion upper bound.</p>
+        <p>Power exclusion upper bound.</p>
     </div>
 
 </div>
@@ -11368,7 +11368,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Power inclusion lower bound.</p>
+        <p>Power inclusion lower bound.</p>
     </div>
 
 </div>
@@ -11392,7 +11392,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Power inclusion upper bound.</p>
+        <p>Power inclusion upper bound.</p>
     </div>
 
 </div>
@@ -11416,7 +11416,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Reactive power.</p>
+        <p>Reactive power.</p>
     </div>
 
 </div>
@@ -11440,7 +11440,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Reactive power in phase 1.</p>
+        <p>Reactive power in phase 1.</p>
     </div>
 
 </div>
@@ -11464,7 +11464,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Reactive power in phase 2.</p>
+        <p>Reactive power in phase 2.</p>
     </div>
 
 </div>
@@ -11488,7 +11488,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Reactive power in phase 3.</p>
+        <p>Reactive power in phase 3.</p>
     </div>
 
 </div>
@@ -11512,7 +11512,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>State of charge.</p>
+        <p>State of charge.</p>
     </div>
 
 </div>
@@ -11536,7 +11536,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower bound of state of charge.</p>
+        <p>Lower bound of state of charge.</p>
     </div>
 
 </div>
@@ -11560,7 +11560,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper bound of state of charge.</p>
+        <p>Upper bound of state of charge.</p>
     </div>
 
 </div>
@@ -11584,7 +11584,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Temperature.</p>
+        <p>Temperature.</p>
     </div>
 
 </div>
@@ -11608,7 +11608,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Voltage in phase 1.</p>
+        <p>Voltage in phase 1.</p>
     </div>
 
 </div>
@@ -11632,7 +11632,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Voltage in phase 2.</p>
+        <p>Voltage in phase 2.</p>
     </div>
 
 </div>
@@ -11656,7 +11656,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Voltage in phase 3.</p>
+        <p>Voltage in phase 3.</p>
     </div>
 
 </div>
@@ -11687,7 +11687,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>A base class from which individual component types are derived.</p>
+        <p>A base class from which individual component types are derived.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -11719,7 +11719,7 @@ is not recognized, or an appropriate subclass if it is.</p>
     <div class="doc doc-contents ">
 
 
-      <p>Metadata for a connection between microgrid components.</p>
+        <p>Metadata for a connection between microgrid components.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_connection.py</code></summary>
@@ -11789,7 +11789,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component ID that represents the end component of the connection.</p>
+        <p>The component ID that represents the end component of the connection.</p>
     </div>
 
 </div>
@@ -11812,7 +11812,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component ID that represents the start component of the connection.</p>
+        <p>The component ID that represents the start component of the connection.</p>
     </div>
 
 </div>
@@ -11832,7 +11832,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Check if this instance contains valid data.</p>
+        <p>Check if this instance contains valid data.</p>
 
 
 <table>
@@ -11906,7 +11906,7 @@ otherwise.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>Unrecoverable data loss or corruption.</p>
+        <p>Unrecoverable data loss or corruption.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -11980,7 +11980,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -12003,7 +12003,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -12026,7 +12026,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -12049,7 +12049,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -12072,7 +12072,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -12097,7 +12097,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -12216,7 +12216,7 @@ otherwise.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -12441,7 +12441,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Cable states of an EV Charger.</p>
+        <p>Cable states of an EV Charger.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -12556,7 +12556,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The cable is plugged into the charging station and locked.</p>
+        <p>The cable is plugged into the charging station and locked.</p>
     </div>
 
 </div>
@@ -12582,7 +12582,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The cable is plugged into the charging station.</p>
+        <p>The cable is plugged into the charging station.</p>
     </div>
 
 </div>
@@ -12606,7 +12606,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The cable is plugged into the EV and locked.</p>
+        <p>The cable is plugged into the EV and locked.</p>
     </div>
 
 </div>
@@ -12630,7 +12630,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The cable is plugged into the EV.</p>
+        <p>The cable is plugged into the EV.</p>
     </div>
 
 </div>
@@ -12654,7 +12654,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The cable is unplugged.</p>
+        <p>The cable is unplugged.</p>
     </div>
 
 </div>
@@ -12678,7 +12678,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified cable state.</p>
+        <p>Unspecified cable state.</p>
     </div>
 
 </div>
@@ -12702,7 +12702,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf state value to this enum.</p>
+        <p>Convert a protobuf state value to this enum.</p>
 
 
 <table>
@@ -12813,7 +12813,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Component State of an EV Charger.</p>
+        <p>Component State of an EV Charger.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -12948,7 +12948,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component rejected authorization.</p>
+        <p>The component rejected authorization.</p>
     </div>
 
 </div>
@@ -12972,7 +12972,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is charging.</p>
+        <p>The component is charging.</p>
     </div>
 
 </div>
@@ -12996,7 +12996,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is discharging.</p>
+        <p>The component is discharging.</p>
     </div>
 
 </div>
@@ -13020,7 +13020,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is in error state.</p>
+        <p>The component is in error state.</p>
     </div>
 
 </div>
@@ -13044,7 +13044,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is interrupted.</p>
+        <p>The component is interrupted.</p>
     </div>
 
 </div>
@@ -13068,7 +13068,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is not ready.</p>
+        <p>The component is not ready.</p>
     </div>
 
 </div>
@@ -13092,7 +13092,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is ready.</p>
+        <p>The component is ready.</p>
     </div>
 
 </div>
@@ -13116,7 +13116,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The component is starting.</p>
+        <p>The component is starting.</p>
     </div>
 
 </div>
@@ -13140,7 +13140,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>A state is provided by the component, but it is not one of the above states.</p>
+        <p>A state is provided by the component, but it is not one of the above states.</p>
     </div>
 
 </div>
@@ -13164,7 +13164,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified component state.</p>
+        <p>Unspecified component state.</p>
     </div>
 
 </div>
@@ -13188,7 +13188,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf state value to this enum.</p>
+        <p>Convert a protobuf state value to this enum.</p>
 
 
 <table>
@@ -13303,7 +13303,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.ComponentData" href="#frequenz.client.microgrid.ComponentData">ComponentData</a></code></p>
 
 
-      <p>A wrapper class for holding ev_charger data.</p>
+        <p>A wrapper class for holding ev_charger data.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -13673,7 +13673,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The total active 3-phase AC power, in Watts (W).</p>
+        <p>The total active 3-phase AC power, in Watts (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -13701,7 +13701,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower exclusion bound for EV charger power in watts.</p>
+        <p>Lower exclusion bound for EV charger power in watts.</p>
 <p>This is the lower limit of the range within which power requests are not allowed for
 the EV charger.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -13729,7 +13729,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper exclusion bound for EV charger power in watts.</p>
+        <p>Upper exclusion bound for EV charger power in watts.</p>
 <p>This is the upper limit of the range within which power requests are not allowed for
 the EV charger.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -13757,7 +13757,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower inclusion bound for EV charger power in watts.</p>
+        <p>Lower inclusion bound for EV charger power in watts.</p>
 <p>This is the lower limit of the range within which power requests are allowed for the
 EV charger.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -13785,7 +13785,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper inclusion bound for EV charger power in watts.</p>
+        <p>Upper inclusion bound for EV charger power in watts.</p>
 <p>This is the upper limit of the range within which power requests are allowed for the
 EV charger.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -13813,7 +13813,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
+        <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -13841,7 +13841,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The state of the ev charger's cable.</p>
+        <p>The state of the ev charger's cable.</p>
     </div>
 
 </div>
@@ -13864,7 +13864,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The ID identifying this component in the microgrid.</p>
+        <p>The ID identifying this component in the microgrid.</p>
     </div>
 
 </div>
@@ -13887,7 +13887,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The state of the ev charger.</p>
+        <p>The state of the ev charger.</p>
     </div>
 
 </div>
@@ -13910,7 +13910,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>AC current in Amperes (A) for phase/line 1,2 and 3 respectively.</p>
+        <p>AC current in Amperes (A) for phase/line 1,2 and 3 respectively.</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -13938,7 +13938,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>AC frequency, in Hertz (Hz).</p>
+        <p>AC frequency, in Hertz (Hz).</p>
     </div>
 
 </div>
@@ -13962,7 +13962,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Raw component data as decoded from the wire.</p>
+        <p>Raw component data as decoded from the wire.</p>
     </div>
 
 </div>
@@ -13985,7 +13985,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
 <li>Negative power means inductive (current lagging w.r.t. voltage).</li>
@@ -14012,7 +14012,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
 <p>The provided values are for phase 1, 2, and 3 respectively.</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
@@ -14040,7 +14040,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The timestamp of when the data was measured.</p>
+        <p>The timestamp of when the data was measured.</p>
     </div>
 
 </div>
@@ -14063,7 +14063,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The AC voltage in Volts (V) between the line and the neutral
+        <p>The AC voltage in Volts (V) between the line and the neutral
 wire for phase/line 1,2 and 3 respectively.</p>
     </div>
 
@@ -14088,7 +14088,7 @@ wire for phase/line 1,2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create EVChargerData from a protobuf message.</p>
+        <p>Create EVChargerData from a protobuf message.</p>
 
 
 <table>
@@ -14256,7 +14256,7 @@ wire for phase/line 1,2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Check whether an EV is connected to the charger.</p>
+        <p>Check whether an EV is connected to the charger.</p>
 
 
 <table>
@@ -14342,7 +14342,7 @@ the charger.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The entity that we attempted to create already exists.</p>
+        <p>The entity that we attempted to create already exists.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -14416,7 +14416,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -14439,7 +14439,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -14462,7 +14462,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -14485,7 +14485,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -14508,7 +14508,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -14533,7 +14533,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -14652,7 +14652,7 @@ the charger.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -14877,7 +14877,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The requested entity was not found.</p>
+        <p>The requested entity was not found.</p>
 <p>Note that this error differs from
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.PermissionDenied">PermissionDenied</a>. This error is
 used when the requested entity is not found, regardless of the user's permissions.</p>
@@ -14964,7 +14964,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -14987,7 +14987,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -15010,7 +15010,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -15033,7 +15033,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -15056,7 +15056,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -15081,7 +15081,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -15200,7 +15200,7 @@ used when the requested entity is not found, regardless of the user's permission
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -15425,7 +15425,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Error level.</p>
+        <p>Error level.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -15512,7 +15512,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>A severe error that causes the component to fail. Immediate action must be taken.</p>
+        <p>A severe error that causes the component to fail. Immediate action must be taken.</p>
     </div>
 
 </div>
@@ -15536,7 +15536,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified component error.</p>
+        <p>Unspecified component error.</p>
     </div>
 
 </div>
@@ -15560,7 +15560,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Action must be taken to prevent a severe error from occurring in the future.</p>
+        <p>Action must be taken to prevent a severe error from occurring in the future.</p>
     </div>
 
 </div>
@@ -15584,7 +15584,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf error level value to this enum.</p>
+        <p>Convert a protobuf error level value to this enum.</p>
 
 
 <table>
@@ -15697,7 +15697,7 @@ is not recognized, or an appropriate subclass if it is.</p>
     <div class="doc doc-contents ">
 
 
-      <p>Fuse data class.</p>
+        <p>Fuse data class.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -15743,7 +15743,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Rated current of the fuse.</p>
+        <p>Rated current of the fuse.</p>
     </div>
 
 </div>
@@ -15778,7 +15778,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component.ComponentMetadata" href="#frequenz.client.microgrid.ComponentMetadata">ComponentMetadata</a></code></p>
 
 
-      <p>Metadata for a grid connection point.</p>
+        <p>Metadata for a grid connection point.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -15819,7 +15819,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The fuse at the grid connection point.</p>
+        <p>The fuse at the grid connection point.</p>
     </div>
 
 </div>
@@ -15850,7 +15850,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.ApiClientError" href="#frequenz.client.microgrid.ApiClientError">ApiClientError</a></code></p>
 
 
-      <p>The gRPC server returned an error with a status code.</p>
+        <p>The gRPC server returned an error with a status code.</p>
 <p>These errors are specific to gRPC. If you want to use the client in
 a protocol-independent way, you should avoid catching this exception. Catching
 subclasses that don't have <em>grpc</em> in their name should be protocol-independent.</p>
@@ -16098,7 +16098,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -16121,7 +16121,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -16144,7 +16144,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -16167,7 +16167,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -16190,7 +16190,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -16217,7 +16217,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -16398,7 +16398,7 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -16623,7 +16623,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>Some invariants expected by the underlying system have been broken.</p>
+        <p>Some invariants expected by the underlying system have been broken.</p>
 <p>This error code is reserved for serious errors.</p>
 
               <details class="quote">
@@ -16706,7 +16706,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -16729,7 +16729,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -16752,7 +16752,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -16775,7 +16775,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -16798,7 +16798,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -16823,7 +16823,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -16944,7 +16944,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -17169,7 +17169,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code>, <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code></p>
 
 
-      <p>The client specified an invalid argument.</p>
+        <p>The client specified an invalid argument.</p>
 <p>Note that this error differs from
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.OperationPreconditionFailed">OperationPreconditionFailed</a>.
 This error indicates arguments that are problematic regardless of the state of the
@@ -17259,7 +17259,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -17282,7 +17282,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -17305,7 +17305,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -17328,7 +17328,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -17351,7 +17351,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -17376,7 +17376,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -17495,7 +17495,7 @@ system (e.g., a malformed file name).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -17720,7 +17720,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Component states of an inverter.</p>
+        <p>Component states of an inverter.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -17873,7 +17873,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The inverter is consuming electrical energy to charge batteries.</p>
+        <p>The inverter is consuming electrical energy to charge batteries.</p>
 <p>Applicable to <code>BATTERY</code> and <code>HYBRID</code> inverters only.</p>
     </div>
 
@@ -17898,7 +17898,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The inverter is generating electrical energy.</p>
+        <p>The inverter is generating electrical energy.</p>
     </div>
 
 </div>
@@ -17922,7 +17922,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The inverter is in a faulty state.</p>
+        <p>The inverter is in a faulty state.</p>
     </div>
 
 </div>
@@ -17946,7 +17946,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The inverter is idle.</p>
+        <p>The inverter is idle.</p>
     </div>
 
 </div>
@@ -17970,7 +17970,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Inverter is switched off.</p>
+        <p>Inverter is switched off.</p>
     </div>
 
 </div>
@@ -17994,7 +17994,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The PbInverteris in a standby state, and is disconnected from the grid.</p>
+        <p>The PbInverteris in a standby state, and is disconnected from the grid.</p>
 <p>When connected to the grid, it run a few tests, and move to the <code>IDLE</code> state.</p>
     </div>
 
@@ -18019,7 +18019,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The PbInverteris switching off and needs some time to fully shut down.</p>
+        <p>The PbInverteris switching off and needs some time to fully shut down.</p>
     </div>
 
 </div>
@@ -18043,7 +18043,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The PbInverteris starting up and needs some time to become fully operational.</p>
+        <p>The PbInverteris starting up and needs some time to become fully operational.</p>
     </div>
 
 </div>
@@ -18067,7 +18067,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The inverter is online, but currently unavailable.</p>
+        <p>The inverter is online, but currently unavailable.</p>
 <p>Possibly due to a pre- scheduled maintenance.</p>
     </div>
 
@@ -18092,7 +18092,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>A state is provided by the component, but it is not one of the above states.</p>
+        <p>A state is provided by the component, but it is not one of the above states.</p>
     </div>
 
 </div>
@@ -18116,7 +18116,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified component state.</p>
+        <p>Unspecified component state.</p>
     </div>
 
 </div>
@@ -18140,7 +18140,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf state value to this enum.</p>
+        <p>Convert a protobuf state value to this enum.</p>
 
 
 <table>
@@ -18255,7 +18255,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.ComponentData" href="#frequenz.client.microgrid.ComponentData">ComponentData</a></code></p>
 
 
-      <p>A wrapper class for holding inverter data.</p>
+        <p>A wrapper class for holding inverter data.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -18597,7 +18597,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The total active 3-phase AC power, in Watts (W).</p>
+        <p>The total active 3-phase AC power, in Watts (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -18625,7 +18625,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower exclusion bound for inverter power in watts.</p>
+        <p>Lower exclusion bound for inverter power in watts.</p>
 <p>This is the lower limit of the range within which power requests are not allowed for
 the inverter.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -18653,7 +18653,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper exclusion bound for inverter power in watts.</p>
+        <p>Upper exclusion bound for inverter power in watts.</p>
 <p>This is the upper limit of the range within which power requests are not allowed for
 the inverter.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -18681,7 +18681,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Lower inclusion bound for inverter power in watts.</p>
+        <p>Lower inclusion bound for inverter power in watts.</p>
 <p>This is the lower limit of the range within which power requests are allowed for the
 inverter.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -18709,7 +18709,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Upper inclusion bound for inverter power in watts.</p>
+        <p>Upper inclusion bound for inverter power in watts.</p>
 <p>This is the upper limit of the range within which power requests are allowed for the
 inverter.</p>
 <p>See <a class="autorefs autorefs-external" href="https://frequenz-floss.github.io/frequenz-api-common/v0.5/python-reference/frequenz/api/common/metrics_pb2/#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds"><code>frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds</code></a> and
@@ -18737,7 +18737,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
+        <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -18765,7 +18765,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The ID identifying this component in the microgrid.</p>
+        <p>The ID identifying this component in the microgrid.</p>
     </div>
 
 </div>
@@ -18788,7 +18788,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>State of the inverter.</p>
+        <p>State of the inverter.</p>
     </div>
 
 </div>
@@ -18811,7 +18811,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>AC current in Amperes (A) for phase/line 1, 2 and 3 respectively.</p>
+        <p>AC current in Amperes (A) for phase/line 1, 2 and 3 respectively.</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -18839,7 +18839,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>List of errors from the component.</p>
+        <p>List of errors from the component.</p>
     </div>
 
 </div>
@@ -18862,7 +18862,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>AC frequency, in Hertz (Hz).</p>
+        <p>AC frequency, in Hertz (Hz).</p>
     </div>
 
 </div>
@@ -18886,7 +18886,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Raw component data as decoded from the wire.</p>
+        <p>Raw component data as decoded from the wire.</p>
     </div>
 
 </div>
@@ -18909,7 +18909,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
 <li>Negative power means inductive (current lagging w.r.t. voltage).</li>
@@ -18936,7 +18936,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
 <p>The provided values are for phase 1, 2, and 3 respectively.</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
@@ -18964,7 +18964,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The timestamp of when the data was measured.</p>
+        <p>The timestamp of when the data was measured.</p>
     </div>
 
 </div>
@@ -18987,7 +18987,7 @@ details.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The AC voltage in Volts (V) between the line and the neutral wire for
+        <p>The AC voltage in Volts (V) between the line and the neutral wire for
 phase/line 1, 2 and 3 respectively.</p>
     </div>
 
@@ -19012,7 +19012,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create InverterData from a protobuf message.</p>
+        <p>Create InverterData from a protobuf message.</p>
 
 
 <table>
@@ -19195,7 +19195,7 @@ phase/line 1, 2 and 3 respectively.</p>
     <div class="doc doc-contents ">
 
 
-      <p>An inverter error.</p>
+        <p>An inverter error.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -19286,7 +19286,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error code.</p>
+        <p>The error code.</p>
     </div>
 
 </div>
@@ -19310,7 +19310,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error level.</p>
+        <p>The error level.</p>
     </div>
 
 </div>
@@ -19334,7 +19334,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The error message.</p>
+        <p>The error message.</p>
     </div>
 
 </div>
@@ -19358,7 +19358,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance using a protobuf message to get the values.</p>
+        <p>Create a new instance using a protobuf message to get the values.</p>
 
 
 <table>
@@ -19471,7 +19471,7 @@ phase/line 1, 2 and 3 respectively.</p>
               Bases: <code><a class="autorefs autorefs-external" title="enum.Enum" href="https://docs.python.org/3/library/enum.html#enum.Enum">Enum</a></code></p>
 
 
-      <p>Inverter error code.</p>
+        <p>Inverter error code.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -19546,7 +19546,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified inverter error code.</p>
+        <p>Unspecified inverter error code.</p>
     </div>
 
 </div>
@@ -19570,7 +19570,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Convert a protobuf error code value to this enum.</p>
+        <p>Convert a protobuf error code value to this enum.</p>
 
 
 <table>
@@ -19681,7 +19681,7 @@ phase/line 1, 2 and 3 respectively.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component.ComponentType" href="#frequenz.client.microgrid.ComponentType">ComponentType</a></code></p>
 
 
-      <p>Enum representing inverter types.</p>
+        <p>Enum representing inverter types.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -19744,7 +19744,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Battery inverter.</p>
+        <p>Battery inverter.</p>
     </div>
 
 </div>
@@ -19768,7 +19768,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Hybrid inverter.</p>
+        <p>Hybrid inverter.</p>
     </div>
 
 </div>
@@ -19792,7 +19792,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Unspecified inverter type.</p>
+        <p>Unspecified inverter type.</p>
     </div>
 
 </div>
@@ -19816,7 +19816,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Solar inverter.</p>
+        <p>Solar inverter.</p>
     </div>
 
 </div>
@@ -19849,7 +19849,7 @@ phase/line 1, 2 and 3 respectively.</p>
     <div class="doc doc-contents ">
 
 
-      <p>Metadata for the location of microgrid.</p>
+        <p>Metadata for the location of microgrid.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_metadata.py</code></summary>
@@ -19940,7 +19940,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The latitude of the microgrid in degree.</p>
+        <p>The latitude of the microgrid in degree.</p>
     </div>
 
 </div>
@@ -19964,7 +19964,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The longitude of the microgrid in degree.</p>
+        <p>The longitude of the microgrid in degree.</p>
     </div>
 
 </div>
@@ -19988,7 +19988,7 @@ phase/line 1, 2 and 3 respectively.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The timezone of the microgrid.</p>
+        <p>The timezone of the microgrid.</p>
 <p>If not passed during construction (or <code>None</code> is passed), and there is a <code>longitude</code>
 and <code>latitude</code>, then the timezone wil be looked up in a database based on the
 coordinates. This lookup could fail, in which case the timezone will still be
@@ -20012,7 +20012,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>Initialize the timezone of the microgrid.</p>
+        <p>Initialize the timezone of the microgrid.</p>
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/microgrid/_metadata.py</code></summary>
@@ -20065,7 +20065,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
     <div class="doc doc-contents ">
 
 
-      <p>Metadata for the microgrid.</p>
+        <p>Metadata for the microgrid.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_metadata.py</code></summary>
@@ -20118,7 +20118,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The location of the microgrid.</p>
+        <p>The location of the microgrid.</p>
     </div>
 
 </div>
@@ -20142,7 +20142,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The ID of the microgrid.</p>
+        <p>The ID of the microgrid.</p>
     </div>
 
 </div>
@@ -20177,7 +20177,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.ComponentData" href="#frequenz.client.microgrid.ComponentData">ComponentData</a></code></p>
 
 
-      <p>A wrapper class for holding meter data.</p>
+        <p>A wrapper class for holding meter data.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -20399,7 +20399,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The total active 3-phase AC power, in Watts (W).</p>
+        <p>The total active 3-phase AC power, in Watts (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -20427,7 +20427,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
+        <p>The per-phase AC active power for phase 1, 2, and 3 respectively, in Watt (W).</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -20455,7 +20455,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The ID identifying this component in the microgrid.</p>
+        <p>The ID identifying this component in the microgrid.</p>
     </div>
 
 </div>
@@ -20478,7 +20478,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>AC current in Amperes (A) for phase/line 1,2 and 3 respectively.</p>
+        <p>AC current in Amperes (A) for phase/line 1,2 and 3 respectively.</p>
 <p>Represented in the passive sign convention.</p>
 <ul>
 <li>Positive means consumption from the grid.</li>
@@ -20506,7 +20506,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The AC power frequency in Hertz (Hz).</p>
+        <p>The AC power frequency in Hertz (Hz).</p>
     </div>
 
 </div>
@@ -20530,7 +20530,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>Raw component data as decoded from the wire.</p>
+        <p>Raw component data as decoded from the wire.</p>
     </div>
 
 </div>
@@ -20553,7 +20553,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The total reactive 3-phase AC power, in Volt-Ampere Reactive (VAr).</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
 <li>Negative power means inductive (current lagging w.r.t. voltage).</li>
@@ -20580,7 +20580,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
+        <p>The per-phase AC reactive power, in Volt-Ampere Reactive (VAr).</p>
 <p>The provided values are for phase 1, 2, and 3 respectively.</p>
 <ul>
 <li>Positive power means capacitive (current leading w.r.t. voltage).</li>
@@ -20608,7 +20608,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The timestamp of when the data was measured.</p>
+        <p>The timestamp of when the data was measured.</p>
     </div>
 
 </div>
@@ -20631,7 +20631,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The ac voltage in volts (v) between the line and the neutral wire for phase/line
+        <p>The ac voltage in volts (v) between the line and the neutral wire for phase/line
 1,2 and 3 respectively.</p>
     </div>
 
@@ -20656,7 +20656,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>Create MeterData from a protobuf message.</p>
+        <p>Create MeterData from a protobuf message.</p>
 
 
 <table>
@@ -20817,7 +20817,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
               Bases: <code><span title="frequenz.client.base.client.BaseApiClient">BaseApiClient</span>[<a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2_grpc.MicrogridStub" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2_grpc/#frequenz.api.microgrid.microgrid_pb2_grpc.MicrogridStub">MicrogridStub</a>]</code></p>
 
 
-      <p>A microgrid API client.</p>
+        <p>A microgrid API client.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_client.py</code></summary>
@@ -21659,7 +21659,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
     <div class="doc doc-contents ">
 
-      <p>The underlying gRPC channel used to communicate with the server.</p>
+        <p>The underlying gRPC channel used to communicate with the server.</p>
 
 
 <details class="warning" open>
@@ -21713,7 +21713,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The default options for the gRPC channel.</p>
+        <p>The default options for the gRPC channel.</p>
     </div>
 
 </div>
@@ -21736,7 +21736,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether the client is connected to the server.</p>
+        <p>Whether the client is connected to the server.</p>
     </div>
 
 </div>
@@ -21759,7 +21759,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server.</p>
+        <p>The URL of the server.</p>
     </div>
 
 </div>
@@ -21782,7 +21782,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The underlying gRPC stub.</p>
+        <p>The underlying gRPC stub.</p>
 
 
 <details class="warning" open>
@@ -21837,7 +21837,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Enter a context manager.</p>
+        <p>Enter a context manager.</p>
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
@@ -21875,7 +21875,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Exit a context manager.</p>
+        <p>Exit a context manager.</p>
 
             <details class="quote">
               <summary>Source code in <code>frequenz/client/base/client.py</code></summary>
@@ -21929,7 +21929,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Initialize the class instance.</p>
+        <p>Initialize the class instance.</p>
 
 
 <table>
@@ -22120,7 +22120,7 @@ is used.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Return a channel receiver that provides a <code>BatteryData</code> stream.</p>
+        <p>Return a channel receiver that provides a <code>BatteryData</code> stream.</p>
 
 
 <table>
@@ -22284,7 +22284,7 @@ is used.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Fetch all the components present in the microgrid.</p>
+        <p>Fetch all the components present in the microgrid.</p>
 
 
 <table>
@@ -22432,7 +22432,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Connect to the server, possibly using a new URL.</p>
+        <p>Connect to the server, possibly using a new URL.</p>
 <p>If the client is already connected and the URL is the same as the previous URL,
 this method does nothing. If you want to force a reconnection, you can call
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.MicrogridApiClient.disconnect">disconnect()</a> first.</p>
@@ -22529,7 +22529,7 @@ previously used URL is used.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Fetch the connections between components in the microgrid.</p>
+        <p>Fetch the connections between components in the microgrid.</p>
 
 
 <table>
@@ -22753,7 +22753,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Disconnect from the server.</p>
+        <p>Disconnect from the server.</p>
 <p>If the client is not connected, this method does nothing.</p>
 
             <details class="quote">
@@ -22794,7 +22794,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Return a channel receiver that provides an <code>EvChargeData</code> stream.</p>
+        <p>Return a channel receiver that provides an <code>EvChargeData</code> stream.</p>
 
 
 <table>
@@ -22960,7 +22960,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Return a channel receiver that provides an <code>InverterData</code> stream.</p>
+        <p>Return a channel receiver that provides an <code>InverterData</code> stream.</p>
 
 
 <table>
@@ -23124,7 +23124,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Fetch the microgrid metadata.</p>
+        <p>Fetch the microgrid metadata.</p>
 <p>If there is an error fetching the metadata, the microgrid ID and
 location will be set to None.</p>
 
@@ -23244,7 +23244,7 @@ location will be set to None.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Return a channel receiver that provides a <code>MeterData</code> stream.</p>
+        <p>Return a channel receiver that provides a <code>MeterData</code> stream.</p>
 
 
 <table>
@@ -23410,7 +23410,7 @@ location will be set to None.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Send <code>SetBoundsParam</code>s received from a channel to the Microgrid service.</p>
+        <p>Send <code>SetBoundsParam</code>s received from a channel to the Microgrid service.</p>
 
 
 <table>
@@ -23609,7 +23609,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Send request to the Microgrid to set power for component.</p>
+        <p>Send request to the Microgrid to set power for component.</p>
 <p>If power &gt; 0, then component will be charged with this power.
 If power &lt; 0, then component will be discharged with this power.
 If power == 0, then stop charging or discharging component.</p>
@@ -23769,7 +23769,7 @@ most likely a subclass of
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The operation was aborted.</p>
+        <p>The operation was aborted.</p>
 <p>Typically due to a concurrency issue or transaction abort.</p>
 
               <details class="quote">
@@ -23850,7 +23850,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -23873,7 +23873,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -23896,7 +23896,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -23919,7 +23919,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -23942,7 +23942,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -23967,7 +23967,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -24086,7 +24086,7 @@ most likely a subclass of
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -24311,7 +24311,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The operation was cancelled.</p>
+        <p>The operation was cancelled.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -24385,7 +24385,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -24408,7 +24408,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -24431,7 +24431,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -24454,7 +24454,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -24477,7 +24477,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -24502,7 +24502,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -24621,7 +24621,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -24846,7 +24846,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The operation is not implemented or not supported/enabled in this service.</p>
+        <p>The operation is not implemented or not supported/enabled in this service.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -24922,7 +24922,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -24945,7 +24945,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -24968,7 +24968,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -24991,7 +24991,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -25014,7 +25014,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -25039,7 +25039,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -25160,7 +25160,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -25385,7 +25385,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The operation was attempted past the valid range.</p>
+        <p>The operation was attempted past the valid range.</p>
 <p>Unlike <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.InvalidArgument">InvalidArgument</a>, this error
 indicates a problem that may be fixed if the system state changes.</p>
 <p>There is a fair bit of overlap with
@@ -25483,7 +25483,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -25506,7 +25506,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -25529,7 +25529,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -25552,7 +25552,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -25575,7 +25575,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -25600,7 +25600,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -25719,7 +25719,7 @@ an operation that doesn't even take any arguments.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -25944,7 +25944,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The operation was rejected because the system is not in a required state.</p>
+        <p>The operation was rejected because the system is not in a required state.</p>
 <p>For example, the directory to be deleted is non-empty, an rmdir operation is applied
 to a non-directory, etc. The user should perform some corrective action before
 retrying the operation.</p>
@@ -26033,7 +26033,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -26056,7 +26056,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -26079,7 +26079,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -26102,7 +26102,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -26125,7 +26125,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -26150,7 +26150,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -26271,7 +26271,7 @@ retrying the operation.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -26496,7 +26496,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The time limit was exceeded while waiting for the operationt o complete.</p>
+        <p>The time limit was exceeded while waiting for the operationt o complete.</p>
 <p>For operations that change the state of the system, this error may be returned even
 if the operation has completed successfully. For example, a successful response from
 a server could have been delayed long.</p>
@@ -26585,7 +26585,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -26608,7 +26608,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -26631,7 +26631,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -26654,7 +26654,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -26677,7 +26677,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -26702,7 +26702,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -26823,7 +26823,7 @@ a server could have been delayed long.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -27048,7 +27048,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The request does not have valid authentication credentials for the operation.</p>
+        <p>The request does not have valid authentication credentials for the operation.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -27124,7 +27124,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -27147,7 +27147,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -27170,7 +27170,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -27193,7 +27193,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -27216,7 +27216,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -27241,7 +27241,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -27362,7 +27362,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -27587,7 +27587,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The caller does not have permission to execute the specified operation.</p>
+        <p>The caller does not have permission to execute the specified operation.</p>
 <p>Note that when the operation is rejected due to other reasons, such as the resources
 being exhausted or the user not being authenticated at all, different errors should
 be catched instead
@@ -27685,7 +27685,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -27708,7 +27708,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -27731,7 +27731,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -27754,7 +27754,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -27777,7 +27777,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -27802,7 +27802,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -27923,7 +27923,7 @@ respectively).</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -28148,7 +28148,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>Some resource has been exhausted (for example per-user quota, disk space, etc.).</p>
+        <p>Some resource has been exhausted (for example per-user quota, disk space, etc.).</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -28224,7 +28224,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -28247,7 +28247,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -28270,7 +28270,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -28293,7 +28293,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -28316,7 +28316,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -28341,7 +28341,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -28462,7 +28462,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -28687,7 +28687,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The service is currently unavailable.</p>
+        <p>The service is currently unavailable.</p>
 <p>This is most likely a transient condition, which can be corrected by retrying with
 a backoff. Note that it is not always safe to retry non-idempotent operations.</p>
 
@@ -28771,7 +28771,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -28794,7 +28794,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -28817,7 +28817,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -28840,7 +28840,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -28863,7 +28863,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -28888,7 +28888,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -29007,7 +29007,7 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -29232,7 +29232,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>There was an error that can't be described using other statuses.</p>
+        <p>There was an error that can't be described using other statuses.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -29306,7 +29306,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -29329,7 +29329,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -29352,7 +29352,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -29375,7 +29375,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -29398,7 +29398,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -29423,7 +29423,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -29542,7 +29542,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
@@ -29767,7 +29767,7 @@ is not recognized, or an appropriate subclass if it is.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="frequenz.client.base.exception.GrpcError" href="#frequenz.client.microgrid.GrpcError">GrpcError</a></code></p>
 
 
-      <p>The gRPC server returned an unrecognized status code.</p>
+        <p>The gRPC server returned an unrecognized status code.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -29841,7 +29841,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The human-readable description of the error.</p>
+        <p>The human-readable description of the error.</p>
     </div>
 
 </div>
@@ -29864,7 +29864,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The original gRPC error.</p>
+        <p>The original gRPC error.</p>
     </div>
 
 </div>
@@ -29887,7 +29887,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Whether retrying the operation might succeed.</p>
+        <p>Whether retrying the operation might succeed.</p>
     </div>
 
 </div>
@@ -29910,7 +29910,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The operation that caused the error.</p>
+        <p>The operation that caused the error.</p>
     </div>
 
 </div>
@@ -29933,7 +29933,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>The URL of the server that returned the error.</p>
+        <p>The URL of the server that returned the error.</p>
     </div>
 
 </div>
@@ -29958,7 +29958,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create a new instance.</p>
+        <p>Create a new instance.</p>
 
 
 <table>
@@ -30077,7 +30077,7 @@ is not recognized, or an appropriate subclass if it is.</p>
 
     <div class="doc doc-contents ">
 
-      <p>Create an instance of the appropriate subclass from a gRPC error.</p>
+        <p>Create an instance of the appropriate subclass from a gRPC error.</p>
 
 
 <table>
