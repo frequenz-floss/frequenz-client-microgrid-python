@@ -38,7 +38,7 @@ requires-python = ">= 3.11, < 4"
 dependencies = [
   "frequenz-api-microgrid >= 0.15.3, < 0.16.0",
   "frequenz-channels >= 1.0.0-rc1, < 2.0.0",
-  "frequenz-client-base >= 0.6.0, < 0.7",
+  "frequenz-client-base >= 0.6.0, < 0.8",
   "grpcio >= 1.54.2, < 2",
   "protobuf >= 4.21.6, < 6",
   "timezonefinder >= 6.2.0, < 7",
