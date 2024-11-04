@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../_img/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -5901,6 +5901,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -5935,6 +5940,11 @@ uncertain, errors are assumed to be retryable.</p>
 <ul>
 <li><a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.GrpcError">GrpcError</a>: A gRPC operation failed.</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -6277,7 +6287,9 @@ uncertain, errors are assumed to be retryable.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -6291,7 +6303,9 @@ uncertain, errors are assumed to be retryable.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -6305,7 +6319,9 @@ uncertain, errors are assumed to be retryable.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>description</code></td>
+            <td>
+                <code>description</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>A human-readable description of the error.</p>
@@ -6319,7 +6335,9 @@ uncertain, errors are assumed to be retryable.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>retryable</code></td>
+            <td>
+                <code>retryable</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Whether retrying the operation might succeed.</p>
@@ -6438,7 +6456,9 @@ uncertain, errors are assumed to be retryable.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -6452,7 +6472,9 @@ uncertain, errors are assumed to be retryable.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -6466,7 +6488,9 @@ uncertain, errors are assumed to be retryable.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -6652,6 +6676,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Component states of a battery.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -7043,7 +7072,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>state</code></td>
+            <td>
+                <code>state</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf component state to convert.</p>
@@ -7147,6 +7178,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>A wrapper class for holding battery data.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -7594,7 +7630,7 @@ details.</p>
   </span>
 
 <a href="#frequenz.client.microgrid.BatteryData.raw" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n"><span title="dataclasses.field(default)">default</span></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><span title="dataclasses.field(init)">init</span></span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -7775,7 +7811,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>raw component data as decoded from the wire.</p>
@@ -7911,6 +7949,11 @@ in percent (%).</p>
 
 
         <p>A battery error.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -8085,7 +8128,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf message to get the values from.</p>
@@ -8187,6 +8232,11 @@ in percent (%).</p>
 
 
         <p>Battery error code.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -8951,7 +9001,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>code</code></td>
+            <td>
+                <code>code</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf error code to convert.</p>
@@ -9051,6 +9103,11 @@ in percent (%).</p>
 
 
         <p>Relay states of a battery.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -9311,7 +9368,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>state</code></td>
+            <td>
+                <code>state</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf component state to convert.</p>
@@ -9411,6 +9470,11 @@ in percent (%).</p>
 
 
         <p>The client is not connected to the server.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -9577,7 +9641,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -9591,7 +9657,9 @@ in percent (%).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -9674,7 +9742,9 @@ in percent (%).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -9688,7 +9758,9 @@ in percent (%).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -9702,7 +9774,9 @@ in percent (%).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -9890,6 +9964,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Metadata for a single microgrid component.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -10222,6 +10301,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>Possible types of microgrid component.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-63">63</a></span>
@@ -10482,6 +10566,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>A private base class for strongly typed component data classes.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-23">23</a></span>
@@ -10615,7 +10704,7 @@ is not recognized, or an appropriate subclass if it is.</p>
   </span>
 
 <a href="#frequenz.client.microgrid.ComponentData.raw" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n"><span title="dataclasses.field(default)">default</span></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><span title="dataclasses.field(init)">init</span></span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -10680,7 +10769,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>raw component data as decoded from the wire.</p>
@@ -10777,6 +10868,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>Base class for component metadata classes.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-123">123</a></span>
@@ -10854,6 +10950,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>An enum representing the various metrics available in the microgrid.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -11689,6 +11790,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>A base class from which individual component types are derived.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-13">13</a></span>
@@ -11720,6 +11826,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Metadata for a connection between microgrid components.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_connection.py</code></summary>
@@ -11907,6 +12018,11 @@ otherwise.</p>
 
 
         <p>Unrecoverable data loss or corruption.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -12109,7 +12225,9 @@ otherwise.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -12123,7 +12241,9 @@ otherwise.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -12137,7 +12257,9 @@ otherwise.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -12228,7 +12350,9 @@ otherwise.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -12242,7 +12366,9 @@ otherwise.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -12256,7 +12382,9 @@ otherwise.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -12442,6 +12570,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Cable states of an EV Charger.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -12714,7 +12847,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>state</code></td>
+            <td>
+                <code>state</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf cable state to convert.</p>
@@ -12814,6 +12949,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Component State of an EV Charger.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -13200,7 +13340,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>state</code></td>
+            <td>
+                <code>state</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf component state to convert.</p>
@@ -13304,6 +13446,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>A wrapper class for holding ev_charger data.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -13957,7 +14104,7 @@ details.</p>
   </span>
 
 <a href="#frequenz.client.microgrid.EVChargerData.raw" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n"><span title="dataclasses.field(default)">default</span></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><span title="dataclasses.field(init)">init</span></span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -14100,7 +14247,9 @@ wire for phase/line 1,2 and 3 respectively.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>raw component data as decoded from the wire.</p>
@@ -14344,6 +14493,11 @@ the charger.</p>
 
         <p>The entity that we attempted to create already exists.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-369">369</a></span>
@@ -14545,7 +14699,9 @@ the charger.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -14559,7 +14715,9 @@ the charger.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -14573,7 +14731,9 @@ the charger.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -14664,7 +14824,9 @@ the charger.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -14678,7 +14840,9 @@ the charger.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -14692,7 +14856,9 @@ the charger.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -14881,6 +15047,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 <p>Note that this error differs from
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.PermissionDenied">PermissionDenied</a>. This error is
 used when the requested entity is not found, regardless of the user's permissions.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -15093,7 +15264,9 @@ used when the requested entity is not found, regardless of the user's permission
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -15107,7 +15280,9 @@ used when the requested entity is not found, regardless of the user's permission
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -15121,7 +15296,9 @@ used when the requested entity is not found, regardless of the user's permission
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -15212,7 +15389,9 @@ used when the requested entity is not found, regardless of the user's permission
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -15226,7 +15405,9 @@ used when the requested entity is not found, regardless of the user's permission
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -15240,7 +15421,9 @@ used when the requested entity is not found, regardless of the user's permission
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -15427,6 +15610,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>Error level.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-13">13</a></span>
@@ -15596,7 +15784,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>code</code></td>
+            <td>
+                <code>code</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf error level to convert.</p>
@@ -15699,6 +15889,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>Fuse data class.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-115">115</a></span>
@@ -15779,6 +15974,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Metadata for a grid connection point.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -15900,6 +16100,11 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
    codes</a></li>
 </ul>
 </details>
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-135">135</a></span>
@@ -16229,7 +16434,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -16243,7 +16450,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -16257,7 +16466,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>description</code></td>
+            <td>
+                <code>description</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>A human-readable description of the error.</p>
@@ -16271,7 +16482,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -16285,7 +16498,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>retryable</code></td>
+            <td>
+                <code>retryable</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Whether retrying the operation might succeed.</p>
@@ -16410,7 +16625,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -16424,7 +16641,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -16438,7 +16657,9 @@ subclasses that don't have <em>grpc</em> in their name should be protocol-indepe
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -16625,6 +16846,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
         <p>Some invariants expected by the underlying system have been broken.</p>
 <p>This error code is reserved for serious errors.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -16835,7 +17061,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -16849,7 +17077,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -16863,7 +17093,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -16956,7 +17188,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -16970,7 +17204,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -16984,7 +17220,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -17174,6 +17412,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.OperationPreconditionFailed">OperationPreconditionFailed</a>.
 This error indicates arguments that are problematic regardless of the state of the
 system (e.g., a malformed file name).</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -17388,7 +17631,9 @@ system (e.g., a malformed file name).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -17402,7 +17647,9 @@ system (e.g., a malformed file name).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -17416,7 +17663,9 @@ system (e.g., a malformed file name).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -17507,7 +17756,9 @@ system (e.g., a malformed file name).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -17521,7 +17772,9 @@ system (e.g., a malformed file name).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -17535,7 +17788,9 @@ system (e.g., a malformed file name).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -17721,6 +17976,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Component states of an inverter.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_states.py</code></summary>
@@ -18152,7 +18412,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>state</code></td>
+            <td>
+                <code>state</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf component state to convert.</p>
@@ -18256,6 +18518,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>A wrapper class for holding inverter data.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -18881,7 +19148,7 @@ details.</p>
   </span>
 
 <a href="#frequenz.client.microgrid.InverterData.raw" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n"><span title="dataclasses.field(default)">default</span></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><span title="dataclasses.field(init)">init</span></span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -19024,7 +19291,9 @@ phase/line 1, 2 and 3 respectively.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>raw component data as decoded from the wire.</p>
@@ -19196,6 +19465,11 @@ phase/line 1, 2 and 3 respectively.</p>
 
 
         <p>An inverter error.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -19370,7 +19644,9 @@ phase/line 1, 2 and 3 respectively.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf message to get the values from.</p>
@@ -19472,6 +19748,11 @@ phase/line 1, 2 and 3 respectively.</p>
 
 
         <p>Inverter error code.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_error.py</code></summary>
@@ -19582,7 +19863,9 @@ phase/line 1, 2 and 3 respectively.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>code</code></td>
+            <td>
+                <code>code</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The protobuf error code to convert.</p>
@@ -19682,6 +19965,11 @@ phase/line 1, 2 and 3 respectively.</p>
 
 
         <p>Enum representing inverter types.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component.py</code></summary>
@@ -19850,6 +20138,11 @@ phase/line 1, 2 and 3 respectively.</p>
 
 
         <p>Metadata for the location of microgrid.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_metadata.py</code></summary>
@@ -20067,6 +20360,11 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
         <p>Metadata for the microgrid.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_metadata.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44">44</a></span>
@@ -20178,6 +20476,11 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
 
         <p>A wrapper class for holding meter data.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_component_data.py</code></summary>
@@ -20525,7 +20828,7 @@ coordinates. This lookup could fail, in which case the timezone will still be
   </span>
 
 <a href="#frequenz.client.microgrid.MeterData.raw" class="headerlink" title="Permanent link">¤</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">raw</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.api.microgrid.microgrid_pb2.ComponentData" href="https://frequenz-floss.github.io/frequenz-api-microgrid/v0.15/python-reference/frequenz/api/microgrid/microgrid_pb2/#frequenz.api.microgrid.microgrid_pb2.ComponentData">ComponentData</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="dataclasses.field" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">field</a></span><span class="p">(</span><span class="n"><span title="dataclasses.field(default)">default</span></span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n"><span title="dataclasses.field(init)">init</span></span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -20668,7 +20971,9 @@ coordinates. This lookup could fail, in which case the timezone will still be
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>raw</code></td>
+            <td>
+                <code>raw</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>raw component data as decoded from the wire.</p>
@@ -20818,6 +21123,11 @@ coordinates. This lookup could fail, in which case the timezone will still be
 
 
         <p>A microgrid API client.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_client.py</code></summary>
@@ -21921,7 +22231,7 @@ doing and you don't care about being tied to a specific gRPC library.</p>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nf">server_url</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">channel_defaults</span><span class="p">:</span> <span class="n"><span title="frequenz.client.base.channel.ChannelOptions">ChannelOptions</span></span> <span class="o">=</span> <span class="n">DEFAULT_CHANNEL_OPTIONS</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">channel_defaults</span><span class="p">:</span> <span class="n"><span title="frequenz.client.base.channel.ChannelOptions">ChannelOptions</span></span> <span class="o">=</span> <span class="n"><span title="frequenz.client.microgrid._client.DEFAULT_CHANNEL_OPTIONS">DEFAULT_CHANNEL_OPTIONS</span></span><span class="p">,</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connect</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">retry_strategy</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.client.base.retry.Strategy" href="https://frequenz-floss.github.io/frequenz-client-base-python/v0.2/reference/frequenz/client/base/retry/#frequenz.client.base.retry.Strategy">Strategy</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
@@ -21941,7 +22251,9 @@ doing and you don't care about being tied to a specific gRPC library.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The location of the microgrid API server in the form of a URL.
@@ -21960,7 +22272,9 @@ For example: <code>grpc://localhost:1090?ssl=true</code>.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>channel_defaults</code></td>
+            <td>
+                <code>channel_defaults</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The default options use to create the channel when not
@@ -21979,7 +22293,9 @@ specified in the URL.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>connect</code></td>
+            <td>
+                <code>connect</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Whether to connect to the server as soon as a client instance is
@@ -22000,7 +22316,9 @@ called.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>retry_strategy</code></td>
+            <td>
+                <code>retry_strategy</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The retry strategy to use to reconnect when the connection
@@ -22114,7 +22432,7 @@ is used.</p>
 
 <a href="#frequenz.client.microgrid.MicrogridApiClient.battery_data" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">battery_data</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n">RECEIVER_MAX_SIZE</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><span title="frequenz.client.microgrid._constants.RECEIVER_MAX_SIZE">RECEIVER_MAX_SIZE</span></span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.channels.Receiver" href="https://frequenz-floss.github.io/frequenz-channels-python/v1.0-pre/reference/frequenz/channels/#frequenz.channels.Receiver">Receiver</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.BatteryData" href="#frequenz.client.microgrid.BatteryData">BatteryData</a></span><span class="p">]</span>
 </span></code></pre></div>
 
@@ -22156,7 +22474,9 @@ is used.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>id of the battery to get data for.</p>
@@ -22170,7 +22490,9 @@ is used.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>maxsize</code></td>
+            <td>
+                <code>maxsize</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Size of the receiver's buffer.</p>
@@ -22447,7 +22769,9 @@ this method does nothing. If you want to force a reconnection, you can call
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server to connect to. If not provided, the
@@ -22522,8 +22846,8 @@ previously used URL is used.</p>
 
 <a href="#frequenz.client.microgrid.MicrogridApiClient.connections" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">connections</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">starts</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Set" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Set">Set</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(),</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">ends</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Set" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Set">Set</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(),</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">starts</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Set" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Set">Set</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#frozenset">frozenset</a></span><span class="p">(),</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">ends</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Set" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Set">Set</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#frozenset">frozenset</a></span><span class="p">(),</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._connection.Connection" href="#frequenz.client.microgrid.Connection">Connection</a></span><span class="p">]</span>
 </span></code></pre></div>
 
@@ -22541,7 +22865,9 @@ previously used URL is used.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>starts</code></td>
+            <td>
+                <code>starts</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>if set and non-empty, only include connections whose start
@@ -22560,7 +22886,9 @@ value matches one of the provided component IDs</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>ends</code></td>
+            <td>
+                <code>ends</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>if set and non-empty, only include connections whose end value
@@ -22788,7 +23116,7 @@ most likely a subclass of
 
 <a href="#frequenz.client.microgrid.MicrogridApiClient.ev_charger_data" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ev_charger_data</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n">RECEIVER_MAX_SIZE</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><span title="frequenz.client.microgrid._constants.RECEIVER_MAX_SIZE">RECEIVER_MAX_SIZE</span></span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.channels.Receiver" href="https://frequenz-floss.github.io/frequenz-channels-python/v1.0-pre/reference/frequenz/channels/#frequenz.channels.Receiver">Receiver</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.EVChargerData" href="#frequenz.client.microgrid.EVChargerData">EVChargerData</a></span><span class="p">]</span>
 </span></code></pre></div>
 
@@ -22830,7 +23158,9 @@ most likely a subclass of
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>id of the ev charger to get data for.</p>
@@ -22844,7 +23174,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>maxsize</code></td>
+            <td>
+                <code>maxsize</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Size of the receiver's buffer.</p>
@@ -22954,7 +23286,7 @@ most likely a subclass of
 
 <a href="#frequenz.client.microgrid.MicrogridApiClient.inverter_data" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">inverter_data</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n">RECEIVER_MAX_SIZE</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><span title="frequenz.client.microgrid._constants.RECEIVER_MAX_SIZE">RECEIVER_MAX_SIZE</span></span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.channels.Receiver" href="https://frequenz-floss.github.io/frequenz-channels-python/v1.0-pre/reference/frequenz/channels/#frequenz.channels.Receiver">Receiver</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.InverterData" href="#frequenz.client.microgrid.InverterData">InverterData</a></span><span class="p">]</span>
 </span></code></pre></div>
 
@@ -22996,7 +23328,9 @@ most likely a subclass of
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>id of the inverter to get data for.</p>
@@ -23010,7 +23344,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>maxsize</code></td>
+            <td>
+                <code>maxsize</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Size of the receiver's buffer.</p>
@@ -23238,7 +23574,7 @@ location will be set to None.</p>
 
 <a href="#frequenz.client.microgrid.MicrogridApiClient.meter_data" class="headerlink" title="Permanent link">¤</a></h6>
 <div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">meter_data</span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n">RECEIVER_MAX_SIZE</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">component_id</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">,</span> <span class="n">maxsize</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="n"><span title="frequenz.client.microgrid._constants.RECEIVER_MAX_SIZE">RECEIVER_MAX_SIZE</span></span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="frequenz.channels.Receiver" href="https://frequenz-floss.github.io/frequenz-channels-python/v1.0-pre/reference/frequenz/channels/#frequenz.channels.Receiver">Receiver</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-internal" title="frequenz.client.microgrid._component_data.MeterData" href="#frequenz.client.microgrid.MeterData">MeterData</a></span><span class="p">]</span>
 </span></code></pre></div>
 
@@ -23280,7 +23616,9 @@ location will be set to None.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>id of the meter to get data for.</p>
@@ -23294,7 +23632,9 @@ location will be set to None.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>maxsize</code></td>
+            <td>
+                <code>maxsize</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Size of the receiver's buffer.</p>
@@ -23422,7 +23762,9 @@ location will be set to None.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>ID of the component to set bounds for.</p>
@@ -23436,7 +23778,9 @@ location will be set to None.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>lower</code></td>
+            <td>
+                <code>lower</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Lower bound to be set for the component.</p>
@@ -23450,7 +23794,9 @@ location will be set to None.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>upper</code></td>
+            <td>
+                <code>upper</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Upper bound to be set for the component.</p>
@@ -23624,7 +23970,9 @@ If power == 0, then stop charging or discharging component.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>component_id</code></td>
+            <td>
+                <code>component_id</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>id of the component to set power.</p>
@@ -23638,7 +23986,9 @@ If power == 0, then stop charging or discharging component.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>power_w</code></td>
+            <td>
+                <code>power_w</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>power to set for the component.</p>
@@ -23771,6 +24121,11 @@ most likely a subclass of
 
         <p>The operation was aborted.</p>
 <p>Typically due to a concurrency issue or transaction abort.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -23979,7 +24334,9 @@ most likely a subclass of
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -23993,7 +24350,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -24007,7 +24366,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -24098,7 +24459,9 @@ most likely a subclass of
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -24112,7 +24475,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -24126,7 +24491,9 @@ most likely a subclass of
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -24312,6 +24679,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>The operation was cancelled.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -24514,7 +24886,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -24528,7 +24902,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -24542,7 +24918,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -24633,7 +25011,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -24647,7 +25027,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -24661,7 +25043,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -24847,6 +25231,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>The operation is not implemented or not supported/enabled in this service.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -25051,7 +25440,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -25065,7 +25456,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -25079,7 +25472,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -25172,7 +25567,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -25186,7 +25583,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -25200,7 +25599,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -25392,6 +25793,11 @@ indicates a problem that may be fixed if the system state changes.</p>
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.OperationPreconditionFailed">OperationPreconditionFailed</a>,
 this error is just a more specific version of that error and could be the result of
 an operation that doesn't even take any arguments.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -25612,7 +26018,9 @@ an operation that doesn't even take any arguments.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -25626,7 +26034,9 @@ an operation that doesn't even take any arguments.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -25640,7 +26050,9 @@ an operation that doesn't even take any arguments.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -25731,7 +26143,9 @@ an operation that doesn't even take any arguments.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -25745,7 +26159,9 @@ an operation that doesn't even take any arguments.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -25759,7 +26175,9 @@ an operation that doesn't even take any arguments.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -25948,6 +26366,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 <p>For example, the directory to be deleted is non-empty, an rmdir operation is applied
 to a non-directory, etc. The user should perform some corrective action before
 retrying the operation.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -26162,7 +26585,9 @@ retrying the operation.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -26176,7 +26601,9 @@ retrying the operation.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -26190,7 +26617,9 @@ retrying the operation.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -26283,7 +26712,9 @@ retrying the operation.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -26297,7 +26728,9 @@ retrying the operation.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -26311,7 +26744,9 @@ retrying the operation.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -26500,6 +26935,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 <p>For operations that change the state of the system, this error may be returned even
 if the operation has completed successfully. For example, a successful response from
 a server could have been delayed long.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -26714,7 +27154,9 @@ a server could have been delayed long.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -26728,7 +27170,9 @@ a server could have been delayed long.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -26742,7 +27186,9 @@ a server could have been delayed long.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -26835,7 +27281,9 @@ a server could have been delayed long.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -26849,7 +27297,9 @@ a server could have been delayed long.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -26863,7 +27313,9 @@ a server could have been delayed long.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -27049,6 +27501,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>The request does not have valid authentication credentials for the operation.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -27253,7 +27710,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -27267,7 +27726,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -27281,7 +27742,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -27374,7 +27837,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -27388,7 +27853,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -27402,7 +27869,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -27594,6 +28063,11 @@ be catched instead
 (<a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.ResourceExhausted">ResourceExhausted</a> and
 <a class="autorefs autorefs-internal" href="#frequenz.client.microgrid.OperationUnauthenticated">OperationUnauthenticated</a>
 respectively).</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -27814,7 +28288,9 @@ respectively).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -27828,7 +28304,9 @@ respectively).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -27842,7 +28320,9 @@ respectively).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -27935,7 +28415,9 @@ respectively).</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -27949,7 +28431,9 @@ respectively).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -27963,7 +28447,9 @@ respectively).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -28149,6 +28635,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>Some resource has been exhausted (for example per-user quota, disk space, etc.).</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -28353,7 +28844,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -28367,7 +28860,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -28381,7 +28876,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -28474,7 +28971,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -28488,7 +28987,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -28502,7 +29003,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -28690,6 +29193,11 @@ is not recognized, or an appropriate subclass if it is.</p>
         <p>The service is currently unavailable.</p>
 <p>This is most likely a transient condition, which can be corrected by retrying with
 a backoff. Note that it is not always safe to retry non-idempotent operations.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -28900,7 +29408,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -28914,7 +29424,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -28928,7 +29440,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -29019,7 +29533,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -29033,7 +29549,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -29047,7 +29565,9 @@ a backoff. Note that it is not always safe to retry non-idempotent operations.</
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -29233,6 +29753,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>There was an error that can't be described using other statuses.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -29435,7 +29960,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -29449,7 +29976,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -29463,7 +29992,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -29554,7 +30085,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -29568,7 +30101,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -29582,7 +30117,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -29768,6 +30305,11 @@ is not recognized, or an appropriate subclass if it is.</p>
 
 
         <p>The gRPC server returned an unrecognized status code.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/base/exception.py</code></summary>
@@ -29970,7 +30512,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -29984,7 +30528,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -29998,7 +30544,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error originating this exception.</p>
@@ -30089,7 +30637,9 @@ is not recognized, or an appropriate subclass if it is.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>server_url</code></td>
+            <td>
+                <code>server_url</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The URL of the server that returned the error.</p>
@@ -30103,7 +30653,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>operation</code></td>
+            <td>
+                <code>operation</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The operation that caused the error.</p>
@@ -30117,7 +30669,9 @@ is not recognized, or an appropriate subclass if it is.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>grpc_error</code></td>
+            <td>
+                <code>grpc_error</code>
+            </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The gRPC error to convert.</p>
@@ -30419,7 +30973,7 @@ is not recognized, or an appropriate subclass if it is.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.instant", "navigation.footer", "navigation.tabs", "navigation.top", "navigation.tracking", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
