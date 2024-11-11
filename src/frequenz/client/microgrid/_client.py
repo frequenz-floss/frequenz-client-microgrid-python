@@ -417,6 +417,34 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             method_name="SetPowerActive",
         )
 
+    async def set_reactive_power(  # noqa: DOC502 (raises ApiClientError indirectly)
+        self, component_id: int, reactive_power_var: float
+    ) -> None:
+        """Send request to the Microgrid to set reactive power for component.
+
+        Negative values are for inductive (lagging) power , and positive values are for
+        capacitive (leading) power.
+
+        Args:
+            component_id: id of the component to set power.
+            reactive_power_var: reactive power to set for the component.
+
+        Raises:
+            ApiClientError: If the are any errors communicating with the Microgrid API,
+                most likely a subclass of
+                [GrpcError][frequenz.client.microgrid.GrpcError].
+        """
+        await client.call_stub_method(
+            self,
+            lambda: self._async_stub.SetPowerReactive(
+                microgrid_pb2.SetPowerReactiveParam(
+                    component_id=component_id, power=reactive_power_var
+                ),
+                timeout=int(DEFAULT_GRPC_CALL_TIMEOUT),
+            ),
+            method_name="SetPowerReactive",
+        )
+
     async def set_bounds(  # noqa: DOC503 (raises ApiClientError indirectly)
         self,
         component_id: int,
