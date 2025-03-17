@@ -18,13 +18,14 @@ from ._component_states import (
     EVChargerComponentState,
     InverterComponentState,
 )
+from ._id import ComponentId
 
 
 @dataclass(frozen=True)
 class ComponentData(ABC):
     """A private base class for strongly typed component data classes."""
 
-    component_id: int
+    component_id: ComponentId
     """The ID identifying this component in the microgrid."""
 
     timestamp: datetime
@@ -129,7 +130,7 @@ class MeterData(ComponentData):
             Instance of MeterData created from the protobuf message.
         """
         meter_data = cls(
-            component_id=raw.id,
+            component_id=ComponentId(raw.id),
             timestamp=raw.ts.ToDatetime(tzinfo=timezone.utc),
             active_power=raw.meter.data.ac.power_active.value,
             active_power_per_phase=(
@@ -247,7 +248,7 @@ class BatteryData(ComponentData):  # pylint: disable=too-many-instance-attribute
         """
         raw_power = raw.battery.data.dc.power
         battery_data = cls(
-            component_id=raw.id,
+            component_id=ComponentId(raw.id),
             timestamp=raw.ts.ToDatetime(tzinfo=timezone.utc),
             soc=raw.battery.data.soc.avg,
             soc_lower_bound=raw.battery.data.soc.system_inclusion_bounds.lower,
@@ -385,7 +386,7 @@ class InverterData(ComponentData):  # pylint: disable=too-many-instance-attribut
         """
         raw_power = raw.inverter.data.ac.power_active
         inverter_data = cls(
-            component_id=raw.id,
+            component_id=ComponentId(raw.id),
             timestamp=raw.ts.ToDatetime(tzinfo=timezone.utc),
             active_power=raw.inverter.data.ac.power_active.value,
             active_power_per_phase=(
@@ -541,7 +542,7 @@ class EVChargerData(ComponentData):  # pylint: disable=too-many-instance-attribu
         """
         raw_power = raw.ev_charger.data.ac.power_active
         ev_charger_data = cls(
-            component_id=raw.id,
+            component_id=ComponentId(raw.id),
             timestamp=raw.ts.ToDatetime(tzinfo=timezone.utc),
             active_power=raw_power.value,
             active_power_per_phase=(

@@ -62,6 +62,7 @@ from ._exception import (
     UnknownError,
     UnrecognizedGrpcStatus,
 )
+from ._id import ComponentId, MicrogridId
 from ._metadata import Location, Metadata
 
 __all__ = [
@@ -75,6 +76,7 @@ __all__ = [
     "Component",
     "ComponentCategory",
     "ComponentData",
+    "ComponentId",
     "ComponentMetadata",
     "ComponentMetricId",
     "ComponentType",
@@ -100,6 +102,7 @@ __all__ = [
     "Metadata",
     "MeterData",
     "MicrogridApiClient",
+    "MicrogridId",
     "OperationAborted",
     "OperationCancelled",
     "OperationNotImplemented",

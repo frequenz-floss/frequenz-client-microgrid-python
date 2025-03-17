@@ -9,6 +9,7 @@ from frequenz.api.common import components_pb2
 from frequenz.client.microgrid import (
     Component,
     ComponentCategory,
+    ComponentId,
 )
 from frequenz.client.microgrid._component import component_category_from_protobuf
 
@@ -68,29 +69,30 @@ def test_component_category_from_protobuf() -> None:
 # pylint: disable=invalid-name
 def test_Component() -> None:
     """Test the component category."""
-    c0 = Component(0, ComponentCategory.GRID)
+    c0 = Component(ComponentId(0), ComponentCategory.GRID)
     assert c0.is_valid()
 
-    c1 = Component(1, ComponentCategory.GRID)
+    c1 = Component(ComponentId(1), ComponentCategory.GRID)
     assert c1.is_valid()
 
-    c4 = Component(4, ComponentCategory.METER)
+    c4 = Component(ComponentId(4), ComponentCategory.METER)
     assert c4.is_valid()
 
-    c5 = Component(5, ComponentCategory.INVERTER)
+    c5 = Component(ComponentId(5), ComponentCategory.INVERTER)
     assert c5.is_valid()
 
-    c6 = Component(6, ComponentCategory.BATTERY)
+    c6 = Component(ComponentId(6), ComponentCategory.BATTERY)
     assert c6.is_valid()
 
-    c7 = Component(7, ComponentCategory.EV_CHARGER)
+    c7 = Component(ComponentId(7), ComponentCategory.EV_CHARGER)
     assert c7.is_valid()
 
-    invalid_grid_id = Component(-1, ComponentCategory.GRID)
-    assert not invalid_grid_id.is_valid()
+    with pytest.raises(ValueError):
+        # Should raise error with negative ID
+        Component(ComponentId(-1), ComponentCategory.GRID)
 
-    invalid_type = Component(666, -1)  # type: ignore
+    invalid_type = Component(ComponentId(666), -1)  # type: ignore
     assert not invalid_type.is_valid()
 
-    another_invalid_type = Component(666, 666)  # type: ignore
+    another_invalid_type = Component(ComponentId(666), 666)  # type: ignore
     assert not another_invalid_type.is_valid()

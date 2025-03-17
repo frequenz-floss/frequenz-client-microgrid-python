@@ -34,6 +34,7 @@ from ._component_data import (
 from ._connection import Connection
 from ._constants import RECEIVER_MAX_SIZE
 from ._exception import ApiClientError, ClientNotConnected
+from ._id import ComponentId, MicrogridId
 from ._metadata import Location, Metadata
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0
@@ -91,7 +92,9 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             connect=connect,
             channel_defaults=channel_defaults,
         )
-        self._broadcasters: dict[int, streaming.GrpcStreamBroadcaster[Any, Any]] = {}
+        self._broadcasters: dict[
+            ComponentId, streaming.GrpcStreamBroadcaster[Any, Any]
+        ] = {}
         self._retry_strategy = retry_strategy
 
     @property
@@ -134,7 +137,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
         result: Iterable[Component] = map(
             lambda c: Component(
-                c.id,
+                ComponentId(c.id),
                 component_category_from_protobuf(c.category),
                 component_type_from_protobuf(c.category, c.inverter),
                 component_metadata_from_protobuf(c.category, c.grid),
@@ -176,12 +179,14 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 longitude=microgrid_metadata.location.longitude,
             )
 
-        return Metadata(microgrid_id=microgrid_metadata.microgrid_id, location=location)
+        return Metadata(
+            microgrid_id=MicrogridId(microgrid_metadata.microgrid_id), location=location
+        )
 
     async def connections(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
-        starts: Set[int] = frozenset(),
-        ends: Set[int] = frozenset(),
+        starts: Set[ComponentId] = frozenset(),
+        ends: Set[ComponentId] = frozenset(),
     ) -> Iterable[Connection]:
         """Fetch the connections between components in the microgrid.
 
@@ -199,7 +204,13 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
-        connection_filter = microgrid_pb2.ConnectionFilter(starts=starts, ends=ends)
+        # Convert ComponentId to raw int for the API call
+        start_ids = {int(start) for start in starts}
+        end_ids = {int(end) for end in ends}
+
+        connection_filter = microgrid_pb2.ConnectionFilter(
+            starts=start_ids, ends=end_ids
+        )
         valid_components, all_connections = await asyncio.gather(
             self.components(),
             client.call_stub_method(
@@ -214,7 +225,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
         # Filter out the components filtered in `components` method.
         # id=0 is an exception indicating grid component.
-        valid_ids = {c.component_id for c in valid_components}
+        valid_ids = {int(c.component_id) for c in valid_components}
         valid_ids.add(0)
 
         connections = filter(
@@ -223,7 +234,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
         result: Iterable[Connection] = map(
-            lambda c: Connection(c.start, c.end), connections
+            lambda c: Connection(ComponentId(c.start), ComponentId(c.end)), connections
         )
 
         return result
@@ -231,7 +242,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
     async def _new_component_data_receiver(
         self,
         *,
-        component_id: int,
+        component_id: ComponentId,
         expected_category: ComponentCategory,
         transform: Callable[[microgrid_pb2.ComponentData], _ComponentDataT],
         maxsize: int,
@@ -262,7 +273,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 f"raw-component-data-{component_id}",
                 lambda: aiter(
                     self.stub.StreamComponentData(
-                        microgrid_pb2.ComponentIdParam(id=component_id)
+                        microgrid_pb2.ComponentIdParam(id=int(component_id))
                     )
                 ),
                 transform,
@@ -276,7 +287,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
     async def _expect_category(
         self,
-        component_id: int,
+        component_id: ComponentId,
         expected_category: ComponentCategory,
     ) -> None:
         """Check if the given component_id is of the expected type.
@@ -296,19 +307,17 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 if comp.component_id == component_id
             )
         except StopIteration as exc:
-            raise ValueError(
-                f"Unable to find component with id {component_id}"
-            ) from exc
+            raise ValueError(f"Unable to find {component_id}") from exc
 
         if comp.category != expected_category:
             raise ValueError(
-                f"Component id {component_id} is a {comp.category.name.lower()}"
+                f"{component_id} is a {comp.category.name.lower()}"
                 f", not a {expected_category.name.lower()}."
             )
 
     async def meter_data(  # noqa: DOC502 (ValueError is raised indirectly by _expect_category)
         self,
-        component_id: int,
+        component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
     ) -> Receiver[MeterData]:
         """Return a channel receiver that provides a `MeterData` stream.
@@ -332,7 +341,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
     async def battery_data(  # noqa: DOC502 (ValueError is raised indirectly by _expect_category)
         self,
-        component_id: int,
+        component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
     ) -> Receiver[BatteryData]:
         """Return a channel receiver that provides a `BatteryData` stream.
@@ -356,7 +365,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
     async def inverter_data(  # noqa: DOC502 (ValueError is raised indirectly by _expect_category)
         self,
-        component_id: int,
+        component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
     ) -> Receiver[InverterData]:
         """Return a channel receiver that provides an `InverterData` stream.
@@ -380,7 +389,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
     async def ev_charger_data(  # noqa: DOC502 (ValueError is raised indirectly by _expect_category)
         self,
-        component_id: int,
+        component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
     ) -> Receiver[EVChargerData]:
         """Return a channel receiver that provides an `EvChargeData` stream.
@@ -403,7 +412,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
     async def set_power(  # noqa: DOC502 (raises ApiClientError indirectly)
-        self, component_id: int, power_w: float
+        self, component_id: ComponentId, power_w: float
     ) -> None:
         """Send request to the Microgrid to set power for component.
 
@@ -425,7 +434,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             self,
             lambda: self.stub.SetPowerActive(
                 microgrid_pb2.SetPowerActiveParam(
-                    component_id=component_id, power=power_w
+                    component_id=int(component_id), power=power_w
                 ),
                 timeout=int(DEFAULT_GRPC_CALL_TIMEOUT),
             ),
@@ -433,7 +442,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
     async def set_reactive_power(  # noqa: DOC502 (raises ApiClientError indirectly)
-        self, component_id: int, reactive_power_var: float
+        self, component_id: ComponentId, reactive_power_var: float
     ) -> None:
         """Send request to the Microgrid to set reactive power for component.
 
@@ -453,7 +462,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             self,
             lambda: self.stub.SetPowerReactive(
                 microgrid_pb2.SetPowerReactiveParam(
-                    component_id=component_id, power=reactive_power_var
+                    component_id=int(component_id), power=reactive_power_var
                 ),
                 timeout=int(DEFAULT_GRPC_CALL_TIMEOUT),
             ),
@@ -462,7 +471,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
     async def set_bounds(  # noqa: DOC503 (raises ApiClientError indirectly)
         self,
-        component_id: int,
+        component_id: ComponentId,
         lower: float,
         upper: float,
     ) -> None:
@@ -492,7 +501,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             self,
             lambda: self.stub.AddInclusionBounds(
                 microgrid_pb2.SetBoundsParam(
-                    component_id=component_id,
+                    component_id=int(component_id),
                     target_metric=target_metric,
                     bounds=metrics_pb2.Bounds(lower=lower, upper=upper),
                 ),

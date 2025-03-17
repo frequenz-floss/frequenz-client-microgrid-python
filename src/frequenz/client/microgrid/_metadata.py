@@ -8,6 +8,8 @@ from zoneinfo import ZoneInfo
 
 from timezonefinder import TimezoneFinder
 
+from ._id import MicrogridId
+
 _timezone_finder = TimezoneFinder()
 
 
@@ -45,7 +47,7 @@ class Location:
 class Metadata:
     """Metadata for the microgrid."""
 
-    microgrid_id: int | None = None
+    microgrid_id: MicrogridId | None = None
     """The ID of the microgrid."""
 
     location: Location | None = None
