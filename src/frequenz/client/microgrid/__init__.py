@@ -65,7 +65,6 @@ from ._exception import (
 from ._metadata import Location, Metadata
 
 __all__ = [
-    "MicrogridApiClient",
     "ApiClientError",
     "BatteryComponentState",
     "BatteryData",
@@ -100,6 +99,7 @@ __all__ = [
     "Location",
     "Metadata",
     "MeterData",
+    "MicrogridApiClient",
     "OperationAborted",
     "OperationCancelled",
     "OperationNotImplemented",
