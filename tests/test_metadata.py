@@ -3,7 +3,7 @@
 
 """Tests for the microgrid metadata types."""
 
-from typing import Iterator
+from collections.abc import Iterator
 from unittest.mock import MagicMock, patch
 from zoneinfo import ZoneInfo
 
