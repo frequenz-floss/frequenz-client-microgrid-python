@@ -6,11 +6,11 @@
 import pytest
 from frequenz.api.common import components_pb2
 
-from frequenz.client.microgrid._component import (
+from frequenz.client.microgrid import (
     Component,
     ComponentCategory,
-    component_category_from_protobuf,
 )
+from frequenz.client.microgrid._component import component_category_from_protobuf
 
 
 def test_component_category_from_protobuf() -> None:

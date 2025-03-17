@@ -21,6 +21,7 @@ from frequenz.client.microgrid import (
     Component,
     ComponentCategory,
     ComponentData,
+    Connection,
     EVChargerData,
     Fuse,
     GridMetadata,
@@ -29,7 +30,6 @@ from frequenz.client.microgrid import (
     MeterData,
     MicrogridApiClient,
 )
-from frequenz.client.microgrid._connection import Connection
 
 
 class _TestClient(MicrogridApiClient):
