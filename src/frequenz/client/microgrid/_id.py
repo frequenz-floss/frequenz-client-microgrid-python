@@ -4,6 +4,10 @@
 """Strongly typed IDs for microgrids and components."""
 
 
+from typing import final
+
+
+@final
 class MicrogridId:
     """A unique identifier for a microgrid."""
 
@@ -53,6 +57,7 @@ class MicrogridId:
         return f"MID{self._id}"
 
 
+@final
 class ComponentId:
     """A unique identifier for a microgrid component."""
 
