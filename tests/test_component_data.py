@@ -13,6 +13,7 @@ from google.protobuf import timestamp_pb2
 
 from frequenz.client.microgrid import (
     ComponentData,
+    ComponentId,
     InverterComponentState,
     InverterData,
     InverterError,
@@ -23,7 +24,7 @@ def test_component_data_abstract_class() -> None:
     """Verify the base class ComponentData may not be instantiated."""
     with pytest.raises(TypeError):
         # pylint: disable=abstract-class-instantiated
-        ComponentData(0, datetime.now(timezone.utc))  # type: ignore
+        ComponentData(ComponentId(0), datetime.now(timezone.utc))  # type: ignore
 
 
 def test_inverter_data() -> None:
@@ -83,7 +84,7 @@ def test_inverter_data() -> None:
     )
 
     inv_data = InverterData.from_proto(raw)
-    assert inv_data.component_id == 5
+    assert inv_data.component_id == ComponentId(5)
     assert inv_data.timestamp == datetime.fromtimestamp(seconds, timezone.utc)
     assert inv_data.component_state is InverterComponentState.DISCHARGING
     assert inv_data.errors == [InverterError(message="error message")]

@@ -9,6 +9,8 @@ from enum import Enum
 from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2
 
+from ._id import ComponentId
+
 
 class ComponentType(Enum):
     """A base class from which individual component types are derived."""
@@ -160,7 +162,7 @@ def component_metadata_from_protobuf(
 class Component:
     """Metadata for a single microgrid component."""
 
-    component_id: int
+    component_id: ComponentId
     """The ID of this component."""
 
     category: ComponentCategory
@@ -180,8 +182,9 @@ class Component:
                 == 0` and `type` is `GRID`, `False` otherwise
         """
         return (
-            self.component_id > 0 and any(t == self.category for t in ComponentCategory)
-        ) or (self.component_id == 0 and self.category == ComponentCategory.GRID)
+            int(self.component_id) > 0
+            and any(t == self.category for t in ComponentCategory)
+        ) or (int(self.component_id) == 0 and self.category == ComponentCategory.GRID)
 
     def __hash__(self) -> int:
         """Compute a hash of this instance, obtained by hashing the `component_id` field.

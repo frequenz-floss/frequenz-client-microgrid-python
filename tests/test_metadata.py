@@ -3,13 +3,13 @@
 
 """Tests for the microgrid metadata types."""
 
-from typing import Iterator
+from collections.abc import Iterator
 from unittest.mock import MagicMock, patch
 from zoneinfo import ZoneInfo
 
 import pytest
 
-from frequenz.client.microgrid import Location
+from frequenz.client.microgrid import Location, Metadata, MicrogridId
 
 
 @pytest.fixture
@@ -65,3 +65,46 @@ def test_location_timezone_lookup(
     else:
         assert location.timezone == ZoneInfo(key=timezone)
     timezone_finder.timezone_at.assert_called_once_with(lat=52.52, lng=13.405)
+
+
+def test_metadata_initialization() -> None:
+    """Test initialization of Metadata class."""
+    # Test with no parameters
+    metadata = Metadata()
+    assert metadata.microgrid_id is None
+    assert metadata.location is None
+
+    # Test with only microgrid_id
+    microgrid_id = MicrogridId(42)
+    metadata = Metadata(microgrid_id=microgrid_id)
+    assert metadata.microgrid_id == microgrid_id
+    assert metadata.location is None
+
+    # Test with only location
+    location = Location(latitude=52.52, longitude=13.405)
+    metadata = Metadata(location=location)
+    assert metadata.microgrid_id is None
+    assert metadata.location == location
+
+    # Test with both parameters
+    metadata = Metadata(microgrid_id=microgrid_id, location=location)
+    assert metadata.microgrid_id == microgrid_id
+    assert metadata.location == location
+
+
+def test_metadata_microgrid_id_validation() -> None:
+    """Test validation of microgrid_id in Metadata class."""
+    # Valid microgrid_id should work
+    metadata = Metadata(microgrid_id=MicrogridId(0))
+    assert metadata.microgrid_id == MicrogridId(0)
+
+    metadata = Metadata(microgrid_id=MicrogridId(42))
+    assert metadata.microgrid_id == MicrogridId(42)
+
+    # None should be accepted as a valid value
+    metadata = Metadata(microgrid_id=None)
+    assert metadata.microgrid_id is None
+
+    # Negative IDs should raise ValueError
+    with pytest.raises(ValueError):
+        Metadata(microgrid_id=MicrogridId(-1))
