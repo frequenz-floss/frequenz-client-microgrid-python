@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- Some minimum versions of dependencies have been bumped to support Python 3.12. You might also need to bump these dependencies in your project.
 
 ## New Features
 
