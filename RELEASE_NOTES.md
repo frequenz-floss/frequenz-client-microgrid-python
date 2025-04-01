@@ -1,14 +1,17 @@
 # Frequenz Microgrid API Client Release Notes
 
+## Summary
+
+<!-- Here goes a general summary of what this release is about -->
+
 ## Upgrading
 
-- Now component and microgrid IDs are wrapped in new classes: `ComponentId` and `MicrogridId` respectively.
+- Some minimum versions of dependencies have been bumped to support Python 3.12. You might also need to bump these dependencies in your project.
 
-   These classes provide type safety and prevent accidental errors by:
+## New Features
 
-   - Making it impossible to mix up microgrid and component IDs (equality comparisons between different ID types always return false).
-   - Preventing accidental math operations on IDs.
-   - Providing clear string representations for debugging (MID42, CID42).
-   - Ensuring proper hash behavior in collections.
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
-   To migrate you just need to wrap your `int` IDs with the appropriate class: `0` -> `ComponentId(0)` / `MicrogridId(0)`.
+## Bug Fixes
+
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
