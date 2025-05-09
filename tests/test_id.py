@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from frequenz.client.microgrid import ComponentId, MicrogridId
+from frequenz.client.microgrid import ComponentId, MicrogridId, SensorId
 
 
 @dataclass(frozen=True)
@@ -23,6 +23,7 @@ class IdTypeInfo:
 ID_TYPES: list[IdTypeInfo] = [
     IdTypeInfo(MicrogridId, "MID", "Microgrid"),
     IdTypeInfo(ComponentId, "CID", "Component"),
+    IdTypeInfo(SensorId, "SID", "Sensor"),
 ]
 
 

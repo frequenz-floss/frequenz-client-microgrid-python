@@ -62,7 +62,7 @@ from ._exception import (
     UnknownError,
     UnrecognizedGrpcStatus,
 )
-from ._id import ComponentId, MicrogridId
+from ._id import ComponentId, MicrogridId, SensorId
 from ._metadata import Location, Metadata
 
 __all__ = [
@@ -112,6 +112,7 @@ __all__ = [
     "OperationUnauthenticated",
     "PermissionDenied",
     "ResourceExhausted",
+    "SensorId",
     "ServiceUnavailable",
     "UnknownError",
     "UnrecognizedGrpcStatus",
