@@ -11,7 +11,7 @@ from unittest import mock
 import grpc.aio
 import pytest
 from frequenz.api.common import components_pb2, metrics_pb2
-from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2
+from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import retry
 from google.protobuf.empty_pb2 import Empty
 
@@ -31,6 +31,14 @@ from frequenz.client.microgrid import (
     MeterData,
     MicrogridApiClient,
     MicrogridId,
+    SensorId,
+)
+from frequenz.client.microgrid.sensor import (
+    Accelerometer,
+    Anemometer,
+    Hygrometer,
+    MismatchedCategorySensor,
+    Pyranometer,
 )
 
 
@@ -459,6 +467,104 @@ async def test_metadata_grpc_error(
     assert "The microgrid metadata is not available." in caplog.records[0].message
     assert caplog.records[0].exc_text is not None
     assert "fake grpc details for metadata" in caplog.records[0].exc_text
+
+
+async def test_list_sensors(client: _TestClient) -> None:
+    """Test the list_sensors() method."""
+    server_response = microgrid_pb2.ComponentList()
+    client.mock_stub.ListComponents.return_value = server_response
+    assert set(await client.list_sensors()) == set()
+
+    # Add a sensor
+    sensor_component = microgrid_pb2.Component(
+        id=201,
+        category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR,
+        sensor=sensor_pb2.Metadata(
+            type=components_pb2.SensorType.SENSOR_TYPE_ACCELEROMETER,
+        ),
+    )
+    server_response.components.append(sensor_component)
+    assert set(await client.list_sensors()) == {
+        Accelerometer(id=SensorId(201)),
+    }
+
+    # Add another sensor
+    sensor_component_2 = microgrid_pb2.Component(
+        id=202,
+        category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR,
+        sensor=sensor_pb2.Metadata(
+            type=components_pb2.SensorType.SENSOR_TYPE_HYGROMETER
+        ),
+    )
+    server_response.components.append(sensor_component_2)
+    assert set(await client.list_sensors()) == {
+        Accelerometer(id=SensorId(201)),
+        Hygrometer(id=SensorId(202)),
+    }
+
+    # Add a non-sensor component to the mock response from ListSensors
+    # The client.list_sensors() method should filter this out if it's robust,
+    # or the ListSensors RPC itself should only return sensor components.
+    meter_component = microgrid_pb2.Component(
+        id=203, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_METER
+    )
+    server_response.components.append(meter_component)
+    # Assert that only SENSOR category components are returned by client.list_sensors()
+    assert set(await client.list_sensors()) == {
+        Accelerometer(id=SensorId(201)),
+        Hygrometer(id=SensorId(202)),
+        MismatchedCategorySensor(
+            id=SensorId(203),
+            component_category=ComponentCategory.METER,
+        ),
+    }
+    # Clean up: remove the meter component from the mock response
+    server_response.components.pop()
+
+    _replace_components(
+        server_response,
+        [
+            microgrid_pb2.Component(
+                id=204,
+                category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR,
+                sensor=sensor_pb2.Metadata(
+                    type=components_pb2.SensorType.SENSOR_TYPE_ANEMOMETER
+                ),
+            ),
+            microgrid_pb2.Component(
+                id=205,
+                category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR,
+                sensor=sensor_pb2.Metadata(
+                    type=components_pb2.SensorType.SENSOR_TYPE_PYRANOMETER
+                ),
+            ),
+        ],
+    )
+    assert set(await client.list_sensors()) == {
+        Anemometer(id=SensorId(204)),
+        Pyranometer(id=SensorId(205)),
+    }
+
+
+async def test_list_sensors_grpc_error(client: _TestClient) -> None:
+    """Test the list_sensors() method when the gRPC call fails."""
+    client.mock_stub.GetMicrogridMetadata.return_value = (
+        microgrid_pb2.MicrogridMetadata(microgrid_id=101)
+    )
+    client.mock_stub.ListComponents.side_effect = grpc.aio.AioRpcError(
+        mock.MagicMock(name="mock_status"),
+        mock.MagicMock(name="mock_initial_metadata"),
+        mock.MagicMock(name="mock_trailing_metadata"),
+        "fake grpc details",
+        "fake grpc debug_error_string",
+    )
+    with pytest.raises(
+        ApiClientError,
+        match=r"Failed calling 'ListComponents' on 'grpc://mock_host:1234': .* "
+        r"<status=<MagicMock name='mock_status\.name' id='.*'>>: fake grpc details "
+        r"\(fake grpc debug_error_string\)",
+    ):
+        await client.list_sensors()
 
 
 @pytest.fixture
