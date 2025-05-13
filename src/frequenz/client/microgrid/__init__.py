@@ -63,6 +63,7 @@ from ._exception import (
     UnrecognizedGrpcStatus,
 )
 from ._id import ComponentId, MicrogridId, SensorId
+from ._lifetime import Lifetime
 from ._metadata import Location, Metadata
 
 __all__ = [
@@ -98,6 +99,7 @@ __all__ = [
     "InverterError",
     "InverterErrorCode",
     "InverterType",
+    "Lifetime",
     "Location",
     "Metadata",
     "MeterData",
