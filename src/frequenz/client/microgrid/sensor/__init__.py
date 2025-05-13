@@ -124,6 +124,26 @@ Example: Processing problematic sensors as a group
             case unexpected:
                 assert_never(unexpected)
     ```
+
+# Streaming Sensor Data Samples
+
+This package also provides several data structures for handling sensor readings
+and states:
+
+* [`SensorDataSamples`][frequenz.client.microgrid.sensor.SensorDataSamples]:
+    Represents a collection of sensor data samples.
+* [`SensorErrorCode`][frequenz.client.microgrid.sensor.SensorErrorCode]:
+    Defines error codes that a sensor can report.
+* [`SensorMetric`][frequenz.client.microgrid.sensor.SensorMetric]: Enumerates
+    the different metrics a sensor can measure (e.g., temperature, voltage).
+* [`SensorMetricSample`][frequenz.client.microgrid.sensor.SensorMetricSample]:
+    Represents a single sample of a sensor metric, including its value and
+    timestamp.
+* [`SensorStateCode`][frequenz.client.microgrid.sensor.SensorStateCode]:
+    Defines codes representing the operational state of a sensor.
+* [`SensorStateSample`][frequenz.client.microgrid.sensor.SensorStateSample]:
+    Represents a single sample of a sensor's state, including its state code
+    and timestamp.
 """
 
 from ._accelerometer import Accelerometer
@@ -131,6 +151,14 @@ from ._anemometer import Anemometer
 from ._barometer import Barometer
 from ._base import Sensor
 from ._category import SensorCategory
+from ._data import (
+    SensorDataSamples,
+    SensorErrorCode,
+    SensorMetric,
+    SensorMetricSample,
+    SensorStateCode,
+    SensorStateSample,
+)
 from ._general_sensor import GeneralSensor
 from ._hygrometer import Hygrometer
 from ._problematic import (
@@ -155,6 +183,12 @@ __all__ = [
     "Pyranometer",
     "Sensor",
     "SensorCategory",
+    "SensorDataSamples",
+    "SensorErrorCode",
+    "SensorMetric",
+    "SensorMetricSample",
+    "SensorStateCode",
+    "SensorStateSample",
     "SensorTypes",
     "Thermometer",
     "UnrecognizedSensor",

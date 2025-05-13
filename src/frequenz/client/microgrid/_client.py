@@ -6,17 +6,23 @@
 from __future__ import annotations
 
 import asyncio
+import itertools
 import logging
 from collections.abc import Callable, Iterable, Set
 from dataclasses import replace
-from typing import Any, TypeVar
+from typing import Any, TypeVar, assert_never
 
 from frequenz.api.common import components_pb2, metrics_pb2
-from frequenz.api.microgrid import microgrid_pb2, microgrid_pb2_grpc
+from frequenz.api.microgrid import microgrid_pb2, microgrid_pb2_grpc, sensor_pb2
 from frequenz.channels import Receiver
 from frequenz.client.base import channel, client, retry, streaming
 from google.protobuf.empty_pb2 import Empty
 from typing_extensions import override
+
+from frequenz.client.microgrid._id import SensorId
+from frequenz.client.microgrid.sensor._base import Sensor
+from frequenz.client.microgrid.sensor._data import SensorDataSamples, SensorMetric
+from frequenz.client.microgrid.sensor._data_proto import sensor_data_samples_from_proto
 
 from ._component import (
     Component,
@@ -98,6 +104,12 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         self._broadcasters: dict[
             ComponentId, streaming.GrpcStreamBroadcaster[Any, Any]
         ] = {}
+        self._sensor_data_broadcasters: dict[
+            str,
+            streaming.GrpcStreamBroadcaster[
+                microgrid_pb2.ComponentData, SensorDataSamples
+            ],
+        ] = {}
         self._retry_strategy = retry_strategy
 
     @property
@@ -119,15 +131,22 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         exc_tb: Any | None,
     ) -> bool | None:
         """Close the gRPC channel and stop all broadcasters."""
-        exceptions = [
+        exceptions = list(
             exc
             for exc in await asyncio.gather(
-                *(broadcaster.stop() for broadcaster in self._broadcasters.values()),
+                *(
+                    broadcaster.stop()
+                    for broadcaster in itertools.chain(
+                        self._broadcasters.values(),
+                        self._sensor_data_broadcasters.values(),
+                    )
+                ),
                 return_exceptions=True,
             )
             if isinstance(exc, BaseException)
-        ]
+        )
         self._broadcasters.clear()
+        self._sensor_data_broadcasters.clear()
 
         result = None
         try:
@@ -568,3 +587,83 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             ),
             method_name="AddInclusionBounds",
         )
+
+    # noqa: DOC502 (Raises ApiClientError indirectly)
+    def stream_sensor_data(
+        self,
+        sensor: SensorId | Sensor,
+        metrics: Iterable[SensorMetric | int],
+        *,
+        buffer_size: int = 50,
+    ) -> Receiver[SensorDataSamples]:
+        """Stream data samples from a sensor.
+
+        At least one metric must be specified. If no metric is specified, then the
+        stream will raise an error.
+
+        Warning:
+            Sensors may not support all metrics. If a sensor does not support
+            a given metric, then the returned data stream will not contain that metric.
+
+            There is no way to tell if a metric is not being received because the
+            sensor does not support it or because there is a transient issue when
+            retrieving the metric from the sensor.
+
+            The supported metrics by a sensor can even change with time, for example,
+            if a sensor is updated with new firmware.
+
+        Args:
+            sensor: The sensor to stream data from.
+            metrics: List of metrics to return. Only the specified metrics will be
+                returned.
+            buffer_size: The maximum number of messages to buffer in the returned
+                receiver. After this limit is reached, the oldest messages will be
+                dropped.
+
+        Returns:
+            The data stream from the sensor.
+        """
+        sensor_id = _get_sensor_id(sensor)
+        metrics_set = frozenset([_get_sensor_metric_value(m) for m in metrics])
+        key = f"{sensor_id}-{hash(metrics_set)}"
+        broadcaster = self._sensor_data_broadcasters.get(key)
+        if broadcaster is None:
+            client_id = hex(id(self))[2:]
+            stream_name = f"microgrid-client-{client_id}-sensor-data-{key}"
+            broadcaster = streaming.GrpcStreamBroadcaster(
+                stream_name,
+                lambda: aiter(
+                    self.stub.StreamComponentData(
+                        microgrid_pb2.ComponentIdParam(id=sensor_id),
+                        timeout=DEFAULT_GRPC_CALL_TIMEOUT,
+                    )
+                ),
+                lambda msg: sensor_data_samples_from_proto(msg, metrics_set),
+                retry_strategy=self._retry_strategy,
+            )
+            self._sensor_data_broadcasters[key] = broadcaster
+        return broadcaster.new_receiver(maxsize=buffer_size)
+
+
+def _get_sensor_id(sensor: SensorId | Sensor) -> int:
+    """Get the sensor ID from a sensor or sensor ID."""
+    match sensor:
+        case SensorId():
+            return int(sensor)
+        case Sensor():
+            return int(sensor.id)
+        case unexpected:
+            assert_never(unexpected)
+
+
+def _get_sensor_metric_value(
+    metric: SensorMetric | int,
+) -> sensor_pb2.SensorMetric.ValueType:
+    """Get the sensor metric ID from a sensor metric or sensor metric ID."""
+    match metric:
+        case SensorMetric():
+            return sensor_pb2.SensorMetric.ValueType(metric.value)
+        case int():
+            return sensor_pb2.SensorMetric.ValueType(metric)
+        case unexpected:
+            assert_never(unexpected)
