@@ -5,7 +5,6 @@
 
 import logging
 from collections.abc import AsyncIterator
-from contextlib import AsyncExitStack
 from typing import Any
 from unittest import mock
 
@@ -51,9 +50,17 @@ class _TestClient(MicrogridApiClient):
         self._stub = mock_stub  # pylint: disable=protected-access
 
 
-async def test_components() -> None:
+@pytest.fixture
+async def client() -> AsyncIterator[_TestClient]:
+    """Return a test client."""
+    async with _TestClient(
+        retry_strategy=retry.LinearBackoff(interval=0.0, jitter=0.0, limit=6)
+    ) as client_instance:
+        yield client_instance
+
+
+async def test_components(client: _TestClient) -> None:
     """Test the components() method."""
-    client = _TestClient()
     server_response = microgrid_pb2.ComponentList()
     client.mock_stub.ListComponents.return_value = server_response
     assert set(await client.components()) == set()
@@ -212,9 +219,8 @@ async def test_components() -> None:
     }
 
 
-async def test_components_grpc_error() -> None:
+async def test_components_grpc_error(client: _TestClient) -> None:
     """Test the components() method when the gRPC call fails."""
-    client = _TestClient()
     client.mock_stub.ListComponents.side_effect = grpc.aio.AioRpcError(
         mock.MagicMock(name="mock_status"),
         mock.MagicMock(name="mock_initial_metadata"),
@@ -231,9 +237,8 @@ async def test_components_grpc_error() -> None:
         await client.components()
 
 
-async def test_connections() -> None:
+async def test_connections(client: _TestClient) -> None:
     """Test the connections() method."""
-    client = _TestClient()
 
     def assert_filter(*, starts: set[int], ends: set[int]) -> None:
         client.mock_stub.ListConnections.assert_called_once()
@@ -370,9 +375,8 @@ async def test_connections() -> None:
     assert_filter(starts={1, 2, 4}, ends={4, 5, 6})
 
 
-async def test_connections_grpc_error() -> None:
+async def test_connections_grpc_error(client: _TestClient) -> None:
     """Test the components() method when the gRPC call fails."""
-    client = _TestClient()
     client.mock_stub.ListConnections.side_effect = grpc.aio.AioRpcError(
         mock.MagicMock(name="mock_status"),
         mock.MagicMock(name="mock_initial_metadata"),
@@ -433,9 +437,8 @@ def component_list(
 
 
 @pytest.mark.parametrize("method", ["meter_data", "battery_data", "inverter_data"])
-async def test_data_component_not_found(method: str) -> None:
+async def test_data_component_not_found(method: str, client: _TestClient) -> None:
     """Test the meter_data() method."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList()
 
     # It should raise a ValueError for a missing component_id
@@ -456,9 +459,9 @@ async def test_data_bad_category(
     method: str,
     component_id: ComponentId,
     component_list: list[microgrid_pb2.Component],
+    client: _TestClient,
 ) -> None:
     """Test the meter_data() method."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=component_list
     )
@@ -484,9 +487,9 @@ async def test_component_data(
     component_id: ComponentId,
     component_class: type[ComponentData],
     component_list: list[microgrid_pb2.Component],
+    client: _TestClient,
 ) -> None:
     """Test the meter_data() method."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=component_list
     )
@@ -498,13 +501,9 @@ async def test_component_data(
 
     client.mock_stub.StreamComponentData.side_effect = stream_data
     receiver = await getattr(client, method)(component_id)
-    async with AsyncExitStack() as stack:
-        stack.push_async_callback(
-            client._broadcasters[component_id].stop  # pylint: disable=protected-access
-        )
-        latest = await receiver.receive()
-        assert isinstance(latest, component_class)
-        assert latest.component_id == component_id
+    latest = await receiver.receive()
+    assert isinstance(latest, component_class)
+    assert latest.component_id == component_id
 
 
 @pytest.mark.parametrize(
@@ -516,18 +515,17 @@ async def test_component_data(
         ("ev_charger_data", ComponentId(101), EVChargerData),
     ],
 )
+# pylint: disable-next=too-many-arguments,too-many-positional-arguments
 async def test_component_data_grpc_error(
     method: str,
     component_id: ComponentId,
     component_class: type[ComponentData],
     component_list: list[microgrid_pb2.Component],
     caplog: pytest.LogCaptureFixture,
+    client: _TestClient,
 ) -> None:
     """Test the components() method when the gRPC call fails."""
     caplog.set_level(logging.WARNING)
-    client = _TestClient(
-        retry_strategy=retry.LinearBackoff(interval=0.0, jitter=0.0, limit=6)
-    )
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=component_list
     )
@@ -551,21 +549,17 @@ async def test_component_data_grpc_error(
 
     client.mock_stub.StreamComponentData.side_effect = stream_data
     receiver = await getattr(client, method)(component_id)
-    async with AsyncExitStack() as stack:
-        stack.push_async_callback(
-            client._broadcasters[component_id].stop  # pylint: disable=protected-access
-        )
-        latest = await receiver.receive()
-        assert isinstance(latest, component_class)
-        assert latest.component_id == component_id
+    latest = await receiver.receive()
+    assert isinstance(latest, component_class)
+    assert latest.component_id == component_id
 
-        latest = await receiver.receive()
-        assert isinstance(latest, component_class)
-        assert latest.component_id == component_id
+    latest = await receiver.receive()
+    assert isinstance(latest, component_class)
+    assert latest.component_id == component_id
 
-        latest = await receiver.receive()
-        assert isinstance(latest, component_class)
-        assert latest.component_id == component_id
+    latest = await receiver.receive()
+    assert isinstance(latest, component_class)
+    assert latest.component_id == component_id
 
     # This is not super portable, it will change if the GrpcStreamBroadcaster changes,
     # but without this there isn't much to check by this test.
@@ -584,9 +578,10 @@ async def test_component_data_grpc_error(
 
 
 @pytest.mark.parametrize("power_w", [0, 0.0, 12, -75, 0.1, -0.0001, 134.0])
-async def test_set_power_ok(power_w: float, meter83: microgrid_pb2.Component) -> None:
+async def test_set_power_ok(
+    power_w: float, meter83: microgrid_pb2.Component, client: _TestClient
+) -> None:
     """Test if charge is able to charge component."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=[meter83]
     )
@@ -600,9 +595,8 @@ async def test_set_power_ok(power_w: float, meter83: microgrid_pb2.Component) ->
     )
 
 
-async def test_set_power_grpc_error() -> None:
+async def test_set_power_grpc_error(client: _TestClient) -> None:
     """Test set_power() raises ApiClientError when the gRPC call fails."""
-    client = _TestClient()
     client.mock_stub.SetPowerActive.side_effect = grpc.aio.AioRpcError(
         mock.MagicMock(name="mock_status"),
         mock.MagicMock(name="mock_initial_metadata"),
@@ -624,10 +618,9 @@ async def test_set_power_grpc_error() -> None:
     [0, 0.0, 12, -75, 0.1, -0.0001, 134.0],
 )
 async def test_set_reactive_power_ok(
-    reactive_power_var: float, meter83: microgrid_pb2.Component
+    reactive_power_var: float, meter83: microgrid_pb2.Component, client: _TestClient
 ) -> None:
     """Test if charge is able to charge component."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=[meter83]
     )
@@ -643,9 +636,8 @@ async def test_set_reactive_power_ok(
     )
 
 
-async def test_set_reactive_power_grpc_error() -> None:
+async def test_set_reactive_power_grpc_error(client: _TestClient) -> None:
     """Test set_power() raises ApiClientError when the gRPC call fails."""
-    client = _TestClient()
     client.mock_stub.SetPowerReactive.side_effect = grpc.aio.AioRpcError(
         mock.MagicMock(name="mock_status"),
         mock.MagicMock(name="mock_initial_metadata"),
@@ -675,10 +667,9 @@ async def test_set_reactive_power_grpc_error() -> None:
     ids=str,
 )
 async def test_set_bounds_ok(
-    bounds: metrics_pb2.Bounds, inverter99: microgrid_pb2.Component
+    bounds: metrics_pb2.Bounds, inverter99: microgrid_pb2.Component, client: _TestClient
 ) -> None:
     """Test if charge is able to charge component."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=[inverter99]
     )
@@ -704,10 +695,9 @@ async def test_set_bounds_ok(
     ids=str,
 )
 async def test_set_bounds_fail(
-    bounds: metrics_pb2.Bounds, inverter99: microgrid_pb2.Component
+    bounds: metrics_pb2.Bounds, inverter99: microgrid_pb2.Component, client: _TestClient
 ) -> None:
     """Test if charge is able to charge component."""
-    client = _TestClient()
     client.mock_stub.ListComponents.return_value = microgrid_pb2.ComponentList(
         components=[inverter99]
     )
@@ -717,9 +707,8 @@ async def test_set_bounds_fail(
     client.mock_stub.AddInclusionBounds.assert_not_called()
 
 
-async def test_set_bounds_grpc_error() -> None:
-    """Test the components() method when the gRPC call fails."""
-    client = _TestClient()
+async def test_set_bounds_grpc_error(client: _TestClient) -> None:
+    """Test set_bounds() raises ApiClientError when the gRPC call fails."""
     client.mock_stub.AddInclusionBounds.side_effect = grpc.aio.AioRpcError(
         mock.MagicMock(name="mock_status"),
         mock.MagicMock(name="mock_initial_metadata"),

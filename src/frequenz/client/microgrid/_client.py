@@ -16,6 +16,7 @@ from frequenz.api.microgrid import microgrid_pb2, microgrid_pb2_grpc
 from frequenz.channels import Receiver
 from frequenz.client.base import channel, client, retry, streaming
 from google.protobuf.empty_pb2 import Empty
+from typing_extensions import override
 
 from ._component import (
     Component,
@@ -107,6 +108,35 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         # actually exists to the eyes of the interpreter, it only exists for the
         # type-checker, so it can only be used for type hints.
         return self._stub  # type: ignore
+
+    @override
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: Any | None,
+    ) -> bool | None:
+        """Close the gRPC channel and stop all broadcasters."""
+        exceptions = [
+            exc
+            for exc in await asyncio.gather(
+                *(broadcaster.stop() for broadcaster in self._broadcasters.values()),
+                return_exceptions=True,
+            )
+            if isinstance(exc, BaseException)
+        ]
+        self._broadcasters.clear()
+
+        result = None
+        try:
+            result = await super().__aexit__(exc_type, exc_val, exc_tb)
+        except Exception as exc:  # pylint: disable=broad-except
+            exceptions.append(exc)
+        if exceptions:
+            raise BaseExceptionGroup(
+                "Error while disconnecting from the microgrid API", exceptions
+            )
+        return result
 
     async def components(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
