@@ -14,4 +14,5 @@
 
 ## Bug Fixes
 
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+- When retrieving the microgrid metadata using `metadata()`, if the location was empty in the protobuf message, a wrong location with long=0, lat=0 was used. Now the location will be properly set to `None` in that case.
+- The client now does some missing cleanup (stopping background tasks) when disconnecting (and when used as a context manager).
