@@ -203,7 +203,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             return Metadata()
 
         location: Location | None = None
-        if microgrid_metadata.location:
+        if microgrid_metadata.HasField("location"):
             location = Location(
                 latitude=microgrid_metadata.location.latitude,
                 longitude=microgrid_metadata.location.longitude,
