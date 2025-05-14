@@ -13,6 +13,7 @@ import pytest
 from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2
 from frequenz.client.base import retry
+from google.protobuf.empty_pb2 import Empty
 
 from frequenz.client.microgrid import (
     ApiClientError,
@@ -29,6 +30,7 @@ from frequenz.client.microgrid import (
     InverterType,
     MeterData,
     MicrogridApiClient,
+    MicrogridId,
 )
 
 
@@ -45,6 +47,7 @@ class _TestClient(MicrogridApiClient):
         mock_stub.SetPowerReactive = mock.AsyncMock("SetPowerReactive")
         mock_stub.AddInclusionBounds = mock.AsyncMock("AddInclusionBounds")
         mock_stub.StreamComponentData = mock.Mock("StreamComponentData")
+        mock_stub.GetMicrogridMetadata = mock.AsyncMock("GetMicrogridMetadata")
         super().__init__("grpc://mock_host:1234", retry_strategy=retry_strategy)
         self.mock_stub = mock_stub
         self._stub = mock_stub  # pylint: disable=protected-access
@@ -391,6 +394,71 @@ async def test_connections_grpc_error(client: _TestClient) -> None:
         r"\(fake grpc debug_error_string\)",
     ):
         await client.connections()
+
+
+async def test_metadata_success(client: _TestClient) -> None:
+    """Test the metadata() method with a successful gRPC call."""
+    mock_metadata_response = microgrid_pb2.MicrogridMetadata(
+        microgrid_id=123,
+        location=microgrid_pb2.Location(latitude=40.7128, longitude=-74.0060),
+    )
+    client.mock_stub.GetMicrogridMetadata.return_value = mock_metadata_response
+
+    metadata = await client.metadata()
+
+    assert metadata.microgrid_id == MicrogridId(123)
+    assert metadata.location is not None
+    assert metadata.location.latitude == pytest.approx(40.7128)
+    assert metadata.location.longitude == pytest.approx(-74.0060)
+    client.mock_stub.GetMicrogridMetadata.assert_called_once_with(Empty(), timeout=60)
+
+
+async def test_metadata_no_location(client: _TestClient) -> None:
+    """Test the metadata() method when location is not set in the response."""
+    mock_metadata_response = microgrid_pb2.MicrogridMetadata(microgrid_id=456)
+    client.mock_stub.GetMicrogridMetadata.return_value = mock_metadata_response
+
+    metadata = await client.metadata()
+
+    assert metadata.microgrid_id == MicrogridId(456)
+    assert metadata.location is None
+    client.mock_stub.GetMicrogridMetadata.assert_called_once_with(Empty(), timeout=60)
+
+
+async def test_metadata_empty_response(client: _TestClient) -> None:
+    """Test the metadata() method when the server returns an empty response."""
+    client.mock_stub.GetMicrogridMetadata.return_value = None
+
+    metadata = await client.metadata()
+
+    assert metadata.microgrid_id is None
+    assert metadata.location is None
+    client.mock_stub.GetMicrogridMetadata.assert_called_once_with(Empty(), timeout=60)
+
+
+async def test_metadata_grpc_error(
+    client: _TestClient, caplog: pytest.LogCaptureFixture
+) -> None:
+    """Test the metadata() method when the gRPC call fails."""
+    caplog.set_level(logging.WARNING)
+    client.mock_stub.GetMicrogridMetadata.side_effect = grpc.aio.AioRpcError(
+        mock.MagicMock(name="mock_status"),
+        mock.MagicMock(name="mock_initial_metadata"),
+        mock.MagicMock(name="mock_trailing_metadata"),
+        "fake grpc details for metadata",
+        "fake grpc debug_error_string for metadata",
+    )
+
+    metadata = await client.metadata()
+
+    assert metadata.microgrid_id is None
+    assert metadata.location is None
+    client.mock_stub.GetMicrogridMetadata.assert_called_once_with(Empty(), timeout=60)
+    assert len(caplog.records) == 1
+    assert caplog.records[0].levelname == "ERROR"
+    assert "The microgrid metadata is not available." in caplog.records[0].message
+    assert caplog.records[0].exc_text is not None
+    assert "fake grpc details for metadata" in caplog.records[0].exc_text
 
 
 @pytest.fixture
