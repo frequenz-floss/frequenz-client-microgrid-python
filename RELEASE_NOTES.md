@@ -10,7 +10,7 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- The `MicrogridApiClient` can now list sensor retrieving their metadata (`list_sensors()`) and can stream sensor data (`stream_sensor_data()`).
 
 ## Bug Fixes
 
