@@ -37,6 +37,8 @@ from ._constants import RECEIVER_MAX_SIZE
 from ._exception import ApiClientError, ClientNotConnected
 from ._id import ComponentId, MicrogridId
 from ._metadata import Location, Metadata
+from ._sensor_proto import sensor_from_proto
+from .sensor import Sensor
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0
 """The default timeout for gRPC calls made by this client (in seconds)."""
@@ -176,6 +178,33 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
         return result
+
+    async def list_sensors(  # noqa: DOC502 (raises ApiClientError indirectly)
+        self,
+    ) -> Iterable[Sensor]:
+        """Fetch all the sensors present in the microgrid.
+
+        Returns:
+            Iterator whose elements are all the sensors in the microgrid.
+
+        Raises:
+            ApiClientError: If the are any errors communicating with the Microgrid API,
+                most likely a subclass of
+                [GrpcError][frequenz.client.microgrid.GrpcError].
+        """
+        component_list = await client.call_stub_method(
+            self,
+            lambda: self.stub.ListComponents(
+                microgrid_pb2.ComponentFilter(
+                    categories=[
+                        components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR
+                    ]
+                ),
+                timeout=int(DEFAULT_GRPC_CALL_TIMEOUT),
+            ),
+            method_name="ListComponents",
+        )
+        return map(sensor_from_proto, component_list.components)
 
     async def metadata(self) -> Metadata:
         """Fetch the microgrid metadata.
