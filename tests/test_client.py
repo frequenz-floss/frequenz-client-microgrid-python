@@ -3,8 +3,12 @@
 
 """Tests for the microgrid client thin wrapper."""
 
+# We are going to split these tests in the future, but for now...
+# pylint: disable=too-many-lines
+
 import logging
 from collections.abc import AsyncIterator
+from datetime import datetime, timezone
 from typing import Any
 from unittest import mock
 
@@ -12,7 +16,7 @@ import grpc.aio
 import pytest
 from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2, sensor_pb2
-from frequenz.client.base import retry
+from frequenz.client.base import conversion, retry
 from google.protobuf.empty_pb2 import Empty
 
 from frequenz.client.microgrid import (
@@ -33,7 +37,14 @@ from frequenz.client.microgrid import (
     MicrogridId,
     SensorId,
 )
-from frequenz.client.microgrid.sensor import Sensor
+from frequenz.client.microgrid.sensor import (
+    Sensor,
+    SensorDataSamples,
+    SensorMetric,
+    SensorMetricSample,
+    SensorStateCode,
+    SensorStateSample,
+)
 
 
 class _TestClient(MicrogridApiClient):
@@ -591,14 +602,27 @@ def ev_charger101() -> microgrid_pb2.Component:
 
 
 @pytest.fixture
+def sensor201() -> microgrid_pb2.Component:
+    """Return a test sensor component."""
+    return microgrid_pb2.Component(
+        id=201,
+        category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR,
+        sensor=sensor_pb2.Metadata(
+            type=components_pb2.SensorType.SENSOR_TYPE_THERMOMETER
+        ),
+    )
+
+
+@pytest.fixture
 def component_list(
     meter83: microgrid_pb2.Component,
     battery38: microgrid_pb2.Component,
     inverter99: microgrid_pb2.Component,
     ev_charger101: microgrid_pb2.Component,
+    sensor201: microgrid_pb2.Component,
 ) -> list[microgrid_pb2.Component]:
     """Return a list of test components."""
-    return [meter83, battery38, inverter99, ev_charger101]
+    return [meter83, battery38, inverter99, ev_charger101, sensor201]
 
 
 @pytest.mark.parametrize("method", ["meter_data", "battery_data", "inverter_data"])
@@ -888,6 +912,97 @@ async def test_set_bounds_grpc_error(client: _TestClient) -> None:
         r"\(fake grpc debug_error_string\)",
     ):
         await client.set_bounds(ComponentId(99), 0.0, 100.0)
+
+
+async def test_stream_sensor_data_success(
+    sensor201: microgrid_pb2.Component, client: _TestClient
+) -> None:
+    """Test successful streaming of sensor data."""
+    now = datetime.now(timezone.utc)
+
+    async def stream_data_impl(
+        *_: Any, **__: Any
+    ) -> AsyncIterator[microgrid_pb2.ComponentData]:
+        yield microgrid_pb2.ComponentData(
+            id=int(sensor201.id),
+            ts=conversion.to_timestamp(now),
+            sensor=sensor_pb2.Sensor(
+                state=sensor_pb2.State(
+                    component_state=sensor_pb2.ComponentState.COMPONENT_STATE_OK
+                ),
+                data=sensor_pb2.Data(
+                    sensor_data=[
+                        sensor_pb2.SensorData(
+                            value=1.0,
+                            sensor_metric=sensor_pb2.SensorMetric.SENSOR_METRIC_TEMPERATURE,
+                        )
+                    ],
+                ),
+            ),
+        )
+
+    client.mock_stub.StreamComponentData.side_effect = stream_data_impl
+    receiver = client.stream_sensor_data(
+        SensorId(sensor201.id), [SensorMetric.TEMPERATURE]
+    )
+    sample = await receiver.receive()
+
+    assert isinstance(sample, SensorDataSamples)
+    assert int(sample.sensor_id) == sensor201.id
+    assert sample.states == [
+        SensorStateSample(
+            sampled_at=now,
+            states=frozenset({SensorStateCode.ON}),
+            warnings=frozenset(),
+            errors=frozenset(),
+        )
+    ]
+    assert sample.metrics == [
+        SensorMetricSample(sampled_at=now, metric=SensorMetric.TEMPERATURE, value=1.0)
+    ]
+
+
+async def test_stream_sensor_data_grpc_error(
+    sensor201: microgrid_pb2.Component, caplog: pytest.LogCaptureFixture
+) -> None:
+    """Test stream_sensor_data() when the gRPC call fails and retries."""
+    caplog.set_level(logging.WARNING)
+
+    num_calls = 0
+
+    async def stream_data_error_impl(
+        *_: Any, **__: Any
+    ) -> AsyncIterator[microgrid_pb2.ComponentData]:
+        nonlocal num_calls
+        num_calls += 1
+        if num_calls <= 2:  # Fail first two times
+            raise grpc.aio.AioRpcError(
+                mock.MagicMock(name="mock_status"),
+                mock.MagicMock(name="mock_initial_metadata"),
+                mock.MagicMock(name="mock_trailing_metadata"),
+                f"fake grpc details stream_sensor_data num_calls={num_calls}",
+                "fake grpc debug_error_string",
+            )
+        # Succeed on the third call
+        yield microgrid_pb2.ComponentData(id=int(sensor201.id))
+
+    async with _TestClient(
+        retry_strategy=retry.LinearBackoff(interval=0.0, jitter=0.0, limit=3)
+    ) as client:
+        client.mock_stub.StreamComponentData.side_effect = stream_data_error_impl
+        receiver = client.stream_sensor_data(
+            SensorId(sensor201.id), [SensorMetric.TEMPERATURE]
+        )
+        sample = await receiver.receive()  # Should succeed after retries
+
+    assert isinstance(sample, SensorDataSamples)
+    assert int(sample.sensor_id) == sensor201.id
+
+    assert num_calls == 3  # Check that it was called 3 times (1 initial + 2 retries)
+    # Check log messages for retries
+    assert "connection ended, retrying" in caplog.text
+    assert "fake grpc details stream_sensor_data num_calls=1" in caplog.text
+    assert "fake grpc details stream_sensor_data num_calls=2" in caplog.text
 
 
 def _clear_components(component_list: microgrid_pb2.ComponentList) -> None:
