@@ -8,6 +8,7 @@ This package provides a low-level interface for interacting with the microgrid A
 
 
 from ._client import MicrogridApiClient
+from ._delivery_area import DeliveryArea, EnergyMarketCodeType
 from ._exception import (
     ApiClientError,
     ClientNotConnected,
@@ -36,6 +37,8 @@ __all__ = [
     "ApiClientError",
     "ClientNotConnected",
     "DataLoss",
+    "DeliveryArea",
+    "EnergyMarketCodeType",
     "EntityAlreadyExists",
     "EntityNotFound",
     "GrpcError",
