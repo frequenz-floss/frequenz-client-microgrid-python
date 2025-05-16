@@ -33,6 +33,7 @@ from ._exception import (
 )
 from ._lifetime import Lifetime
 from ._location import Location
+from ._microgrid_info import MicrogridInfo, MicrogridStatus
 
 __all__ = [
     "ApiClientError",
@@ -48,6 +49,8 @@ __all__ = [
     "Lifetime",
     "Location",
     "MicrogridApiClient",
+    "MicrogridInfo",
+    "MicrogridStatus",
     "OperationAborted",
     "OperationCancelled",
     "OperationNotImplemented",
