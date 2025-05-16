@@ -32,6 +32,7 @@ from ._exception import (
     UnrecognizedGrpcStatus,
 )
 from ._lifetime import Lifetime
+from ._location import Location
 
 __all__ = [
     "ApiClientError",
@@ -45,6 +46,7 @@ __all__ = [
     "InternalError",
     "InvalidArgument",
     "Lifetime",
+    "Location",
     "MicrogridApiClient",
     "OperationAborted",
     "OperationCancelled",
