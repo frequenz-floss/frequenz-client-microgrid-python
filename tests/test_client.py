@@ -3,6 +3,10 @@
 
 """Tests for the MicrogridApiClient class."""
 
+from __future__ import annotations
+
+from collections.abc import AsyncIterator
+from pathlib import Path
 
 import pytest
 from frequenz.api.microgrid.v1 import microgrid_pb2_grpc
@@ -15,9 +19,25 @@ from frequenz.client.microgrid import (
     MicrogridApiClient,
 )
 
-from .util import patch_client_class
+from .util import ApiClientTestCaseSpec, get_test_specs, patch_client_class
 
 # pylint: disable=protected-access
+
+TESTS_DIR = Path(__file__).parent / "client_test_cases"
+
+
+@pytest.fixture
+async def client() -> AsyncIterator[MicrogridApiClient]:
+    """Fixture that provides a MicrogridApiClient with a mock gRPC stub and channel."""
+    with patch_client_class(MicrogridApiClient, microgrid_pb2_grpc.MicrogridStub):
+        client = MicrogridApiClient(
+            "grpc://localhost:1234",
+            # Retry very fast to avoid long test times, and also not too many
+            # times to avoid test hanging forever.
+            retry_strategy=LinearBackoff(interval=0.0, jitter=0.0, limit=10),
+        )
+        async with client:
+            yield client
 
 
 @patch_client_class(MicrogridApiClient, microgrid_pb2_grpc.MicrogridStub)
@@ -64,3 +84,15 @@ def test_init_with_custom_retry_strategy() -> None:
         "grpc://localhost:1234", retry_strategy=retry_strategy, connect=False
     )
     client._retry_strategy = retry_strategy  # pylint: disable=protected-access
+
+
+@pytest.mark.parametrize(
+    "spec",
+    get_test_specs("get_microgrid_info", tests_dir=TESTS_DIR),
+    ids=str,
+)
+async def test_get_microgrid_info(
+    client: MicrogridApiClient, spec: ApiClientTestCaseSpec
+) -> None:
+    """Test get_microgrid_info method."""
+    await spec.test_unary_unary_call(client, "GetMicrogridMetadata")
