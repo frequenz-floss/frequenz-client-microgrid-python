@@ -154,13 +154,7 @@ def future(now: datetime) -> datetime:
     ids=lambda case: case.name,
 )
 def test_creation(now: datetime, future: datetime, case: _LifetimeTestCase) -> None:
-    """Test creating Lifetime instances with various parameters.
-
-    Args:
-        now: Current datetime fixture
-        future: Future datetime fixture
-        case: Test case parameters
-    """
+    """Test creating Lifetime instances with various parameters."""
     lifetime = Lifetime(
         start=now if case.start else None,
         end=future if case.end else None,
