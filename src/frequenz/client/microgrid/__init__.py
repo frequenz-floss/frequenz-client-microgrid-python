@@ -7,7 +7,11 @@ This package provides a low-level interface for interacting with the microgrid A
 """
 
 
-from ._client import MicrogridApiClient
+from ._client import (
+    DEFAULT_CHANNEL_OPTIONS,
+    DEFAULT_GRPC_CALL_TIMEOUT,
+    MicrogridApiClient,
+)
 from ._delivery_area import DeliveryArea, EnergyMarketCodeType
 from ._exception import (
     ApiClientError,
@@ -38,6 +42,8 @@ from ._microgrid_info import MicrogridInfo, MicrogridStatus
 __all__ = [
     "ApiClientError",
     "ClientNotConnected",
+    "DEFAULT_CHANNEL_OPTIONS",
+    "DEFAULT_GRPC_CALL_TIMEOUT",
     "DataLoss",
     "DeliveryArea",
     "EnergyMarketCodeType",
