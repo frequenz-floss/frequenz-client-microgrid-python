@@ -3,9 +3,11 @@
 
 """Metrics definitions."""
 
+from ._metric import Metric
 from ._sample import AggregatedMetricValue, AggregationMethod
 
 __all__ = [
     "AggregatedMetricValue",
     "AggregationMethod",
+    "Metric",
 ]
