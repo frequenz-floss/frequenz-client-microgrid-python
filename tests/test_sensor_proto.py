@@ -13,7 +13,7 @@ from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import common_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import conversion
 
-from frequenz.client.microgrid import Lifetime, SensorId
+from frequenz.client.microgrid import Lifetime
 from frequenz.client.microgrid._sensor_proto import (
     sensor_data_samples_from_proto,
     sensor_from_proto,
@@ -21,6 +21,7 @@ from frequenz.client.microgrid._sensor_proto import (
     sensor_metric_sample_from_proto,
     sensor_state_sample_from_proto,
 )
+from frequenz.client.microgrid.id import SensorId
 from frequenz.client.microgrid.sensor import (
     Sensor,
     SensorDataSamples,

@@ -9,7 +9,8 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
-from frequenz.client.microgrid import Location, Metadata, MicrogridId
+from frequenz.client.microgrid import Location, Metadata
+from frequenz.client.microgrid.id import MicrogridId
 
 
 @pytest.fixture

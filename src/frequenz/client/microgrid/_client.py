@@ -37,9 +37,9 @@ from ._component_data import (
 from ._connection import Connection
 from ._constants import RECEIVER_MAX_SIZE
 from ._exception import ApiClientError, ClientNotConnected
-from ._id import ComponentId, MicrogridId, SensorId
 from ._metadata import Location, Metadata
 from ._sensor_proto import sensor_data_samples_from_proto, sensor_from_proto
+from .id import ComponentId, MicrogridId, SensorId
 from .sensor import Sensor, SensorDataSamples, SensorMetric
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0

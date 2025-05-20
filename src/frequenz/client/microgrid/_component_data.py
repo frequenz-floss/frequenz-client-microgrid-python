@@ -18,7 +18,7 @@ from ._component_states import (
     EVChargerComponentState,
     InverterComponentState,
 )
-from ._id import ComponentId
+from .id import ComponentId
 
 
 @dataclass(frozen=True)

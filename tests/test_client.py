@@ -25,7 +25,6 @@ from frequenz.client.microgrid import (
     Component,
     ComponentCategory,
     ComponentData,
-    ComponentId,
     Connection,
     EVChargerData,
     Fuse,
@@ -34,9 +33,8 @@ from frequenz.client.microgrid import (
     InverterType,
     MeterData,
     MicrogridApiClient,
-    MicrogridId,
-    SensorId,
 )
+from frequenz.client.microgrid.id import ComponentId, MicrogridId, SensorId
 from frequenz.client.microgrid.sensor import (
     Sensor,
     SensorDataSamples,

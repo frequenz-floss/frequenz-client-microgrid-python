@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 
 from timezonefinder import TimezoneFinder
 
-from ._id import MicrogridId
+from .id import MicrogridId
 
 _timezone_finder = TimezoneFinder()
 

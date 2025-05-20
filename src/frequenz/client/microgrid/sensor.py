@@ -35,8 +35,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import assert_never
 
-from ._id import SensorId
 from ._lifetime import Lifetime
+from .id import SensorId
 from .metrics import AggregatedMetricValue, AggregationMethod
 
 

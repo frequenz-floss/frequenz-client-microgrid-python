@@ -13,11 +13,11 @@ from google.protobuf import timestamp_pb2
 
 from frequenz.client.microgrid import (
     ComponentData,
-    ComponentId,
     InverterComponentState,
     InverterData,
     InverterError,
 )
+from frequenz.client.microgrid.id import ComponentId
 
 
 def test_component_data_abstract_class() -> None:
