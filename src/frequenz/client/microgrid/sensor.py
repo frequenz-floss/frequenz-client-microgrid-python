@@ -35,6 +35,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import assert_never
 
+from frequenz.api.microgrid import sensor_pb2
+
 from ._lifetime import Lifetime
 from .id import SensorId
 from .metrics import AggregatedMetricValue, AggregationMethod
@@ -83,31 +85,31 @@ class SensorMetric(enum.Enum):
     environmental conditions and physical measurements.
     """
 
-    UNSPECIFIED = 0
+    UNSPECIFIED = sensor_pb2.SENSOR_METRIC_UNSPECIFIED
     """Default value (this should not be normally used and usually indicates an issue)."""
 
-    TEMPERATURE = 1
+    TEMPERATURE = sensor_pb2.SENSOR_METRIC_TEMPERATURE
     """Temperature, in Celsius (°C)."""
 
-    HUMIDITY = 2
+    HUMIDITY = sensor_pb2.SENSOR_METRIC_HUMIDITY
     """Humidity, in percentage (%)."""
 
-    PRESSURE = 3
+    PRESSURE = sensor_pb2.SENSOR_METRIC_PRESSURE
     """Pressure, in Pascal (Pa)."""
 
-    IRRADIANCE = 4
+    IRRADIANCE = sensor_pb2.SENSOR_METRIC_IRRADIANCE
     """Irradiance / Radiation flux, in watts per square meter (W / m²)."""
 
-    VELOCITY = 5
+    VELOCITY = sensor_pb2.SENSOR_METRIC_VELOCITY
     """Velocity, in meters per second (m / s)."""
 
-    ACCELERATION = 6
+    ACCELERATION = sensor_pb2.SENSOR_METRIC_ACCELERATION
     """Acceleration in meters per second per second (m / s²)."""
 
-    ANGLE = 7
+    ANGLE = sensor_pb2.SENSOR_METRIC_ANGLE
     """Angle, in degrees with respect to the (magnetic) North (°)."""
 
-    DEW_POINT = 8
+    DEW_POINT = sensor_pb2.SENSOR_METRIC_DEW_POINT
     """Dew point, in Celsius (°C).
 
     The temperature at which the air becomes saturated with water vapor.
@@ -118,13 +120,13 @@ class SensorMetric(enum.Enum):
 class SensorStateCode(enum.Enum):
     """The various states that a sensor can be in."""
 
-    UNSPECIFIED = 0
+    UNSPECIFIED = sensor_pb2.COMPONENT_STATE_UNSPECIFIED
     """Default value (this should not be normally used and usually indicates an issue)."""
 
-    ON = 1
+    ON = sensor_pb2.COMPONENT_STATE_OK
     """The sensor is up and running."""
 
-    ERROR = 2
+    ERROR = sensor_pb2.COMPONENT_STATE_ERROR
     """The sensor is in an error state."""
 
 
@@ -132,18 +134,8 @@ class SensorStateCode(enum.Enum):
 class SensorErrorCode(enum.Enum):
     """The various errors that can occur in sensors."""
 
-    UNSPECIFIED = 0
+    UNSPECIFIED = sensor_pb2.ERROR_CODE_UNSPECIFIED
     """Default value (this should not be normally used and usually indicates an issue)."""
-
-    UNKNOWN = 1
-    """An unknown or undefined error.
-
-    This is used when the error can be retrieved from the sensor but it doesn't match
-    any known error or can't be interpreted for some reason.
-    """
-
-    INTERNAL = 2
-    """An internal error within the sensor."""
 
 
 @dataclass(frozen=True, kw_only=True)
