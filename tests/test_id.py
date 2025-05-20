@@ -16,14 +16,13 @@ class IdTypeInfo:
 
     id_class: type
     str_prefix: str
-    error_prefix: str
 
 
 # Define all ID types to test here
 ID_TYPES: list[IdTypeInfo] = [
-    IdTypeInfo(MicrogridId, "MID", "Microgrid"),
-    IdTypeInfo(ComponentId, "CID", "Component"),
-    IdTypeInfo(SensorId, "SID", "Sensor"),
+    IdTypeInfo(MicrogridId, "MID"),
+    IdTypeInfo(ComponentId, "CID"),
+    IdTypeInfo(SensorId, "SID"),
 ]
 
 
@@ -42,7 +41,7 @@ class TestIds:
 
     def test_negative_id_raises(self, type_info: IdTypeInfo) -> None:
         """Test that creating a negative ID raises ValueError."""
-        error_msg = f"{type_info.error_prefix} ID can't be negative"
+        error_msg = f"{type_info.id_class.__name__} can't be negative"
         with pytest.raises(ValueError, match=error_msg):
             type_info.id_class(-1)
 
