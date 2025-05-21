@@ -122,3 +122,16 @@ async def test_set_component_power_reactive(
 ) -> None:
     """Test set_component_power_reactive method."""
     await spec.test_unary_unary_call(client, "SetComponentPowerReactive")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "spec",
+    get_test_specs("add_component_bounds", tests_dir=TESTS_DIR),
+    ids=str,
+)
+async def test_add_bounds(
+    client: MicrogridApiClient, spec: ApiClientTestCaseSpec
+) -> None:
+    """Test add_bounds method."""
+    await spec.test_unary_unary_call(client, "AddComponentBounds")
