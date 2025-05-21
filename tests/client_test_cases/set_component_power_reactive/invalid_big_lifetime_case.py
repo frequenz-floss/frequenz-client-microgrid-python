@@ -1,0 +1,1 @@
+../set_component_power_active/invalid_big_lifetime_case.py
