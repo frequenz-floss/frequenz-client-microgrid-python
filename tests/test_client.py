@@ -964,6 +964,57 @@ async def test_stream_sensor_data_one_metric(
     ]
 
 
+async def test_stream_sensor_data_all_metrics(
+    sensor201: microgrid_pb2.Component, client: _TestClient
+) -> None:
+    """Test successful streaming of sensor data."""
+    now = datetime.now(timezone.utc)
+
+    async def stream_data_impl(
+        *_: Any, **__: Any
+    ) -> AsyncIterator[microgrid_pb2.ComponentData]:
+        yield microgrid_pb2.ComponentData(
+            id=int(sensor201.id),
+            ts=conversion.to_timestamp(now),
+            sensor=sensor_pb2.Sensor(
+                state=sensor_pb2.State(
+                    component_state=sensor_pb2.ComponentState.COMPONENT_STATE_OK
+                ),
+                data=sensor_pb2.Data(
+                    sensor_data=[
+                        sensor_pb2.SensorData(
+                            value=1.0,
+                            sensor_metric=sensor_pb2.SensorMetric.SENSOR_METRIC_TEMPERATURE,
+                        ),
+                        sensor_pb2.SensorData(
+                            value=2.0,
+                            sensor_metric=sensor_pb2.SensorMetric.SENSOR_METRIC_PRESSURE,
+                        ),
+                    ],
+                ),
+            ),
+        )
+
+    client.mock_stub.StreamComponentData.side_effect = stream_data_impl
+    receiver = client.stream_sensor_data(SensorId(sensor201.id))
+    sample = await receiver.receive()
+
+    assert isinstance(sample, SensorDataSamples)
+    assert int(sample.sensor_id) == sensor201.id
+    assert sample.states == [
+        SensorStateSample(
+            sampled_at=now,
+            states=frozenset({SensorStateCode.ON}),
+            warnings=frozenset(),
+            errors=frozenset(),
+        )
+    ]
+    assert sample.metrics == [
+        SensorMetricSample(sampled_at=now, metric=SensorMetric.TEMPERATURE, value=1.0),
+        SensorMetricSample(sampled_at=now, metric=SensorMetric.PRESSURE, value=2.0),
+    ]
+
+
 async def test_stream_sensor_data_grpc_error(
     sensor201: microgrid_pb2.Component, caplog: pytest.LogCaptureFixture
 ) -> None:
