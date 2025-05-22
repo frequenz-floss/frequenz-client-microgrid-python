@@ -912,7 +912,7 @@ async def test_set_bounds_grpc_error(client: _TestClient) -> None:
         await client.set_bounds(ComponentId(99), 0.0, 100.0)
 
 
-async def test_stream_sensor_data_success(
+async def test_stream_sensor_data_one_metric(
     sensor201: microgrid_pb2.Component, client: _TestClient
 ) -> None:
     """Test successful streaming of sensor data."""
@@ -933,7 +933,11 @@ async def test_stream_sensor_data_success(
                         sensor_pb2.SensorData(
                             value=1.0,
                             sensor_metric=sensor_pb2.SensorMetric.SENSOR_METRIC_TEMPERATURE,
-                        )
+                        ),
+                        sensor_pb2.SensorData(
+                            value=2.0,
+                            sensor_metric=sensor_pb2.SensorMetric.SENSOR_METRIC_PRESSURE,
+                        ),
                     ],
                 ),
             ),
