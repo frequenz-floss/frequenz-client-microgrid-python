@@ -3,7 +3,8 @@
 
 """Tests for the microgrid Connection type."""
 
-from frequenz.client.microgrid import ComponentId, Connection
+from frequenz.client.microgrid import Connection
+from frequenz.client.microgrid.id import ComponentId
 
 
 # pylint: disable=invalid-name

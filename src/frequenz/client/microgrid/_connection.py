@@ -6,7 +6,7 @@
 
 from dataclasses import dataclass
 
-from ._id import ComponentId
+from .id import ComponentId
 
 
 @dataclass(frozen=True)
