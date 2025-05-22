@@ -106,13 +106,14 @@ def sensor_from_proto_with_issues(
 
 def sensor_data_samples_from_proto(
     message: microgrid_pb2.ComponentData,
-    metrics: Set[sensor_pb2.SensorMetric.ValueType],
+    metrics: Set[sensor_pb2.SensorMetric.ValueType] | None = None,
 ) -> SensorDataSamples:
     """Convert a protobuf component data message to a sensor data object.
 
     Args:
         message: The protobuf message to convert.
-        metrics: A set of metrics to filter the samples.
+        metrics: If not `None`, only the specified metrics will be retrieved.
+            Otherwise all available metrics will be retrieved.
 
     Returns:
         The resulting `SensorDataSamples` object.
@@ -128,7 +129,7 @@ def sensor_data_samples_from_proto(
         metrics=[
             sensor_metric_sample_from_proto(ts, sample)
             for sample in message.sensor.data.sensor_data
-            if sample.sensor_metric in metrics
+            if metrics is None or sample.sensor_metric in metrics
         ],
         states=[sensor_state_sample_from_proto(ts, message.sensor)],
     )
