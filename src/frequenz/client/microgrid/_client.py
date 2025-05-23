@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 from typing import Any, assert_never
 
 from frequenz.api.common.v1.metrics import bounds_pb2, metric_sample_pb2
+from frequenz.api.common.v1.microgrid.components import components_pb2
 from frequenz.api.microgrid.v1 import microgrid_pb2, microgrid_pb2_grpc
 from frequenz.client.base import channel, client, conversion, retry, streaming
 from frequenz.client.common.microgrid.components import ComponentId
@@ -24,7 +25,10 @@ from typing_extensions import override
 from ._exception import ClientNotConnected
 from ._microgrid_info import MicrogridInfo
 from ._microgrid_info_proto import microgrid_info_from_proto
+from .component._category import ComponentCategory
 from .component._component import Component
+from .component._component_proto import component_from_proto
+from .component._types import ComponentTypes
 from .metrics._bounds import Bounds
 from .metrics._metric import Metric
 
@@ -161,6 +165,61 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
         return microgrid_info_from_proto(microgrid.microgrid)
+
+    async def list_components(  # noqa: DOC502 (raises ApiClientError indirectly)
+        self,
+        *,
+        components: Iterable[ComponentId | Component] = (),
+        categories: Iterable[ComponentCategory | int] = (),
+    ) -> Iterable[ComponentTypes]:
+        """Fetch all the components present in the local microgrid.
+
+        Electrical components are a part of a microgrid's electrical infrastructure
+        are can be connected to each other to form an electrical circuit, which can
+        then be represented as a graph.
+
+        If provided, the filters for component and categories have an `AND`
+        relationship with one another, meaning that they are applied serially,
+        but the elements within a single filter list have an `OR` relationship with
+        each other.
+
+        Example:
+            If `ids = {1, 2, 3}`, and `categories = {ComponentCategory.INVERTER,
+            ComponentCategory.BATTERY}`, then the results will consist of elements that
+            have:
+
+            * The IDs 1, `OR` 2, `OR` 3; `AND`
+            * Are of the categories `ComponentCategory.INVERTER` `OR`
+              `ComponentCategory.BATTERY`.
+
+        If a filter list is empty, then that filter is not applied.
+
+        Args:
+            components: The components to fetch. See the method description for details.
+            categories: The categories of the components to fetch. See the method
+                description for details.
+
+        Returns:
+            Iterator whose elements are all the components in the local microgrid.
+
+        Raises:
+            ApiClientError: If the are any errors communicating with the Microgrid API,
+                most likely a subclass of
+                [GrpcError][frequenz.client.microgrid.GrpcError].
+        """
+        component_list = await client.call_stub_method(
+            self,
+            lambda: self.stub.ListComponents(
+                microgrid_pb2.ListComponentsRequest(
+                    component_ids=map(_get_component_id, components),
+                    categories=map(_get_category_value, categories),
+                ),
+                timeout=DEFAULT_GRPC_CALL_TIMEOUT,
+            ),
+            method_name="ListComponents",
+        )
+
+        return map(component_from_proto, component_list.components)
 
     async def set_component_power_active(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
@@ -452,6 +511,19 @@ def _get_metric_value(metric: Metric | int) -> metric_sample_pb2.Metric.ValueTyp
             return metric_sample_pb2.Metric.ValueType(metric.value)
         case int():
             return metric_sample_pb2.Metric.ValueType(metric)
+        case unexpected:
+            assert_never(unexpected)
+
+
+def _get_category_value(
+    category: ComponentCategory | int,
+) -> components_pb2.ComponentCategory.ValueType:
+    """Get the category value from a component or component category."""
+    match category:
+        case ComponentCategory():
+            return components_pb2.ComponentCategory.ValueType(category.value)
+        case int():
+            return components_pb2.ComponentCategory.ValueType(category)
         case unexpected:
             assert_never(unexpected)
 

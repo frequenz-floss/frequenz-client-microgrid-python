@@ -101,6 +101,19 @@ async def test_get_microgrid_info(
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "spec",
+    get_test_specs("list_components", tests_dir=TESTS_DIR),
+    ids=str,
+)
+async def test_list_components(
+    client: MicrogridApiClient, spec: ApiClientTestCaseSpec
+) -> None:
+    """Test list_components method."""
+    await spec.test_unary_unary_call(client, "ListComponents")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "spec",
     get_test_specs("set_component_power_active", tests_dir=TESTS_DIR),
     ids=str,
 )
