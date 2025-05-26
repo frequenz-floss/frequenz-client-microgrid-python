@@ -42,6 +42,12 @@ from ._inverter import (
 )
 from ._meter import Meter
 from ._precharger import Precharger
+from ._problematic import (
+    MismatchedCategoryComponent,
+    ProblematicComponent,
+    UnrecognizedComponent,
+    UnspecifiedComponent,
+)
 from ._relay import Relay
 from ._status import ComponentStatus
 from ._voltage_transformer import VoltageTransformer
@@ -72,14 +78,18 @@ __all__ = [
     "InverterType",
     "LiIonBattery",
     "Meter",
+    "MismatchedCategoryComponent",
     "NaIonBattery",
     "Precharger",
+    "ProblematicComponent",
     "Relay",
     "SolarInverter",
     "UnrecognizedBattery",
+    "UnrecognizedComponent",
     "UnrecognizedEvCharger",
     "UnrecognizedInverter",
     "UnspecifiedBattery",
+    "UnspecifiedComponent",
     "UnspecifiedEvCharger",
     "UnspecifiedInverter",
     "VoltageTransformer",
