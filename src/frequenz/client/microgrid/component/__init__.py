@@ -50,6 +50,12 @@ from ._problematic import (
 )
 from ._relay import Relay
 from ._status import ComponentStatus
+from ._types import (
+    ComponentTypes,
+    ProblematicComponentTypes,
+    UnrecognizedComponentTypes,
+    UnspecifiedComponentTypes,
+)
 from ._voltage_transformer import VoltageTransformer
 
 __all__ = [
@@ -62,6 +68,7 @@ __all__ = [
     "Component",
     "ComponentCategory",
     "ComponentStatus",
+    "ComponentTypes",
     "Converter",
     "CryptoMiner",
     "DcEvCharger",
@@ -82,14 +89,17 @@ __all__ = [
     "NaIonBattery",
     "Precharger",
     "ProblematicComponent",
+    "ProblematicComponentTypes",
     "Relay",
     "SolarInverter",
     "UnrecognizedBattery",
     "UnrecognizedComponent",
+    "UnrecognizedComponentTypes",
     "UnrecognizedEvCharger",
     "UnrecognizedInverter",
     "UnspecifiedBattery",
     "UnspecifiedComponent",
+    "UnspecifiedComponentTypes",
     "UnspecifiedEvCharger",
     "UnspecifiedInverter",
     "VoltageTransformer",
