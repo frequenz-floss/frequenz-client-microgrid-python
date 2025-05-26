@@ -9,6 +9,7 @@ from ._component import Component
 from ._converter import Converter
 from ._crypto_miner import CryptoMiner
 from ._electrolyzer import Electrolyzer
+from ._fuse import Fuse
 from ._hvac import Hvac
 from ._meter import Meter
 from ._precharger import Precharger
@@ -23,6 +24,7 @@ __all__ = [
     "Converter",
     "CryptoMiner",
     "Electrolyzer",
+    "Fuse",
     "Hvac",
     "Meter",
     "Precharger",
