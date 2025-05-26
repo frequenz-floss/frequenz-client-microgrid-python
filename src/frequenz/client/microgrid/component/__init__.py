@@ -16,6 +16,7 @@ from ._meter import Meter
 from ._precharger import Precharger
 from ._relay import Relay
 from ._status import ComponentStatus
+from ._voltage_transformer import VoltageTransformer
 
 __all__ = [
     "Chp",
@@ -31,4 +32,5 @@ __all__ = [
     "Meter",
     "Precharger",
     "Relay",
+    "VoltageTransformer",
 ]
