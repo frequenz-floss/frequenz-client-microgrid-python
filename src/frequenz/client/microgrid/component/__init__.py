@@ -3,6 +3,15 @@
 
 """All classes and functions related to microgrid components."""
 
+from ._battery import (
+    Battery,
+    BatteryType,
+    BatteryTypes,
+    LiIonBattery,
+    NaIonBattery,
+    UnrecognizedBattery,
+    UnspecifiedBattery,
+)
 from ._category import ComponentCategory
 from ._chp import Chp
 from ._component import Component
@@ -19,6 +28,9 @@ from ._status import ComponentStatus
 from ._voltage_transformer import VoltageTransformer
 
 __all__ = [
+    "Battery",
+    "BatteryType",
+    "BatteryTypes",
     "Chp",
     "Component",
     "ComponentCategory",
@@ -29,8 +41,12 @@ __all__ = [
     "Fuse",
     "GridConnectionPoint",
     "Hvac",
+    "LiIonBattery",
     "Meter",
+    "NaIonBattery",
     "Precharger",
     "Relay",
+    "UnrecognizedBattery",
+    "UnspecifiedBattery",
     "VoltageTransformer",
 ]
