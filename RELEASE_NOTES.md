@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This release introduces sensors support and adds official support for Python 3.12. It also includes some bug fixes.
 
 ## Upgrading
 
