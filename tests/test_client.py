@@ -17,6 +17,7 @@ import pytest
 from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import conversion, retry
+from frequenz.client.base.streaming import StreamRetrying, StreamStarted
 from google.protobuf.empty_pb2 import Empty
 
 from frequenz.client.microgrid import (
@@ -688,6 +689,7 @@ async def test_component_data(
 
     client.mock_stub.StreamComponentData.side_effect = stream_data
     receiver = await getattr(client, method)(component_id)
+    assert isinstance(await receiver.receive(), StreamStarted)
     latest = await receiver.receive()
     assert isinstance(latest, component_class)
     assert latest.component_id == component_id
@@ -736,13 +738,27 @@ async def test_component_data_grpc_error(
 
     client.mock_stub.StreamComponentData.side_effect = stream_data
     receiver = await getattr(client, method)(component_id)
-    latest = await receiver.receive()
-    assert isinstance(latest, component_class)
-    assert latest.component_id == component_id
+    assert isinstance(await receiver.receive(), StreamStarted)
+    assert isinstance(await receiver.receive(), StreamRetrying)
+    assert isinstance(await receiver.receive(), StreamStarted)
 
     latest = await receiver.receive()
     assert isinstance(latest, component_class)
     assert latest.component_id == component_id
+
+    assert isinstance(await receiver.receive(), StreamRetrying)
+    assert isinstance(await receiver.receive(), StreamStarted)
+    assert isinstance(await receiver.receive(), StreamRetrying)
+    assert isinstance(await receiver.receive(), StreamStarted)
+
+    latest = await receiver.receive()
+    assert isinstance(latest, component_class)
+    assert latest.component_id == component_id
+
+    assert isinstance(await receiver.receive(), StreamRetrying)
+    assert isinstance(await receiver.receive(), StreamStarted)
+    assert isinstance(await receiver.receive(), StreamRetrying)
+    assert isinstance(await receiver.receive(), StreamStarted)
 
     latest = await receiver.receive()
     assert isinstance(latest, component_class)
@@ -947,6 +963,8 @@ async def test_stream_sensor_data_one_metric(
     receiver = client.stream_sensor_data(
         SensorId(sensor201.id), [SensorMetric.TEMPERATURE]
     )
+
+    assert isinstance(await receiver.receive(), StreamStarted)
     sample = await receiver.receive()
 
     assert isinstance(sample, SensorDataSamples)
@@ -997,6 +1015,8 @@ async def test_stream_sensor_data_all_metrics(
 
     client.mock_stub.StreamComponentData.side_effect = stream_data_impl
     receiver = client.stream_sensor_data(SensorId(sensor201.id))
+
+    assert isinstance(await receiver.receive(), StreamStarted)
     sample = await receiver.receive()
 
     assert isinstance(sample, SensorDataSamples)
@@ -1046,7 +1066,12 @@ async def test_stream_sensor_data_grpc_error(
         receiver = client.stream_sensor_data(
             SensorId(sensor201.id), [SensorMetric.TEMPERATURE]
         )
-        sample = await receiver.receive()  # Should succeed after retries
+        assert isinstance(await receiver.receive(), StreamStarted)
+        assert isinstance(await receiver.receive(), StreamRetrying)
+        assert isinstance(await receiver.receive(), StreamStarted)
+        assert isinstance(await receiver.receive(), StreamRetrying)
+        assert isinstance(await receiver.receive(), StreamStarted)
+        sample = await receiver.receive()  # Get the actual sample
 
     assert isinstance(sample, SensorDataSamples)
     assert int(sample.sensor_id) == sensor201.id

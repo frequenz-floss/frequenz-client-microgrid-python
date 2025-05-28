@@ -320,7 +320,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         expected_category: ComponentCategory,
         transform: Callable[[microgrid_pb2.ComponentData], _ComponentDataT],
         maxsize: int,
-    ) -> Receiver[_ComponentDataT]:
+    ) -> Receiver[_ComponentDataT | streaming.StreamEvent]:
         """Return a new broadcaster receiver for a given `component_id`.
 
         If a broadcaster for the given `component_id` doesn't exist, it creates a new
@@ -393,7 +393,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         self,
         component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
-    ) -> Receiver[MeterData]:
+    ) -> Receiver[MeterData | streaming.StreamEvent]:
         """Return a channel receiver that provides a `MeterData` stream.
 
         Raises:
@@ -417,7 +417,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         self,
         component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
-    ) -> Receiver[BatteryData]:
+    ) -> Receiver[BatteryData | streaming.StreamEvent]:
         """Return a channel receiver that provides a `BatteryData` stream.
 
         Raises:
@@ -441,7 +441,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         self,
         component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
-    ) -> Receiver[InverterData]:
+    ) -> Receiver[InverterData | streaming.StreamEvent]:
         """Return a channel receiver that provides an `InverterData` stream.
 
         Raises:
@@ -465,7 +465,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         self,
         component_id: ComponentId,
         maxsize: int = RECEIVER_MAX_SIZE,
-    ) -> Receiver[EVChargerData]:
+    ) -> Receiver[EVChargerData | streaming.StreamEvent]:
         """Return a channel receiver that provides an `EvChargeData` stream.
 
         Raises:
@@ -591,7 +591,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         metrics: Iterable[SensorMetric | int] | None = None,
         *,
         buffer_size: int = 50,
-    ) -> Receiver[SensorDataSamples]:
+    ) -> Receiver[SensorDataSamples | streaming.StreamEvent]:
         """Stream data samples from a sensor.
 
         Warning:
