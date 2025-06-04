@@ -9,9 +9,9 @@ from frequenz.api.common.v1.metrics import bounds_pb2, metric_sample_pb2
 from frequenz.client.base import conversion
 
 from .._util import enum_from_proto
-from ..metrics._bounds import Bounds
-from ..metrics._metric import Metric
+from ._bounds import Bounds
 from ._bounds_proto import bounds_from_proto
+from ._metric import Metric
 from ._sample import AggregatedMetricValue, MetricSample
 
 
