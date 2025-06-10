@@ -6,9 +6,8 @@
 from dataclasses import dataclass
 from zoneinfo import ZoneInfo
 
+from frequenz.client.common.microgrid import MicrogridId
 from timezonefinder import TimezoneFinder
-
-from .id import MicrogridId
 
 _timezone_finder = TimezoneFinder()
 

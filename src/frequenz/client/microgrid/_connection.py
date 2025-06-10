@@ -6,7 +6,7 @@
 
 from dataclasses import dataclass
 
-from .id import ComponentId
+from frequenz.client.common.microgrid.components import ComponentId
 
 
 @dataclass(frozen=True)

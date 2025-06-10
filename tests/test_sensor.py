@@ -7,9 +7,9 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import pytest
+from frequenz.client.common.microgrid.sensors import SensorId
 
 from frequenz.client.microgrid import Lifetime
-from frequenz.client.microgrid.id import SensorId
 from frequenz.client.microgrid.metrics import (
     AggregatedMetricValue,
     AggregationMethod,

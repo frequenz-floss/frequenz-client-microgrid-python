@@ -2,16 +2,13 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This is a small release to allow for easier interoperability between different APIs.
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- Some minimum dependency versions are bumped, so you might need to update your dependencies as well.
+- The IDs (`MicrogridId`, `ComponentId`, `SensorId`) are now imported from `frequenz-client-common`. Please add it to your dependencies if you haven't already, then you can replace your imports:
 
-## New Features
-
-<!-- Here goes the main new features and examples or instructions on how to use them -->
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+    * `from frequenz.client.microgrid import MicrogridId` -> `from frequenz.client.common.microgrid import MicrogridId`
+    * `from frequenz.client.microgrid import ComponentId` -> `from frequenz.client.common.microgrid.components import ComponentId`
+    * `from frequenz.client.microgrid import SensorId` -> `from frequenz.client.common.microgrid.sensors import SensorId`

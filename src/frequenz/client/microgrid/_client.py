@@ -17,6 +17,9 @@ from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import microgrid_pb2, microgrid_pb2_grpc, sensor_pb2
 from frequenz.channels import Receiver
 from frequenz.client.base import channel, client, retry, streaming
+from frequenz.client.common.microgrid import MicrogridId
+from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.sensors import SensorId
 from google.protobuf.empty_pb2 import Empty
 from typing_extensions import override
 
@@ -39,7 +42,6 @@ from ._constants import RECEIVER_MAX_SIZE
 from ._exception import ApiClientError, ClientNotConnected
 from ._metadata import Location, Metadata
 from ._sensor_proto import sensor_data_samples_from_proto, sensor_from_proto
-from .id import ComponentId, MicrogridId, SensorId
 from .sensor import Sensor, SensorDataSamples, SensorMetric
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0

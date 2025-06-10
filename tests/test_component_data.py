@@ -9,6 +9,7 @@ import pytest
 from frequenz.api.common import metrics_pb2
 from frequenz.api.common.metrics import electrical_pb2
 from frequenz.api.microgrid import inverter_pb2, microgrid_pb2
+from frequenz.client.common.microgrid.components import ComponentId
 from google.protobuf import timestamp_pb2
 
 from frequenz.client.microgrid import (
@@ -17,7 +18,6 @@ from frequenz.client.microgrid import (
     InverterData,
     InverterError,
 )
-from frequenz.client.microgrid.id import ComponentId
 
 
 def test_component_data_abstract_class() -> None:
