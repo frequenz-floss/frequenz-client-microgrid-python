@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This is a small release to allow for easier interoperability between different APIs.
 
 ## Upgrading
 
@@ -12,11 +12,3 @@
     * `from frequenz.client.microgrid import MicrogridId` -> `from frequenz.client.common.microgrid import MicrogridId`
     * `from frequenz.client.microgrid import ComponentId` -> `from frequenz.client.common.microgrid.components import ComponentId`
     * `from frequenz.client.microgrid import SensorId` -> `from frequenz.client.common.microgrid.sensors import SensorId`
-
-## New Features
-
-<!-- Here goes the main new features and examples or instructions on how to use them -->
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
