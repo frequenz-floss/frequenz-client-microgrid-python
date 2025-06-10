@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from typing import Self
 
 from frequenz.api.microgrid import microgrid_pb2
+from frequenz.client.common.microgrid.components import ComponentId
 
 from ._component_error import BatteryError, InverterError
 from ._component_states import (
@@ -18,7 +19,6 @@ from ._component_states import (
     EVChargerComponentState,
     InverterComponentState,
 )
-from .id import ComponentId
 
 
 @dataclass(frozen=True)

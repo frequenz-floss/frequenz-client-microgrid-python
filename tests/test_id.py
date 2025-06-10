@@ -6,8 +6,9 @@
 from dataclasses import dataclass
 
 import pytest
-
-from frequenz.client.microgrid.id import ComponentId, MicrogridId, SensorId
+from frequenz.client.common.microgrid import MicrogridId
+from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.sensors import SensorId
 
 
 @dataclass(frozen=True)

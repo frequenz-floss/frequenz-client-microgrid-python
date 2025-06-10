@@ -36,9 +36,9 @@ from datetime import datetime
 from typing import assert_never
 
 from frequenz.api.microgrid import sensor_pb2
+from frequenz.client.common.microgrid.sensors import SensorId
 
 from ._lifetime import Lifetime
-from .id import SensorId
 from .metrics import AggregatedMetricValue, AggregationMethod
 
 

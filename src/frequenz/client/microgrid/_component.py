@@ -8,8 +8,7 @@ from enum import Enum
 
 from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2
-
-from .id import ComponentId
+from frequenz.client.common.microgrid.components import ComponentId
 
 
 class ComponentType(Enum):

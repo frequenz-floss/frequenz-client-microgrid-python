@@ -17,6 +17,9 @@ import pytest
 from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import conversion, retry
+from frequenz.client.common.microgrid import MicrogridId
+from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.sensors import SensorId
 from google.protobuf.empty_pb2 import Empty
 
 from frequenz.client.microgrid import (
@@ -34,7 +37,6 @@ from frequenz.client.microgrid import (
     MeterData,
     MicrogridApiClient,
 )
-from frequenz.client.microgrid.id import ComponentId, MicrogridId, SensorId
 from frequenz.client.microgrid.sensor import (
     Sensor,
     SensorDataSamples,

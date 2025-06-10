@@ -10,10 +10,10 @@ from datetime import datetime
 from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import common_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import conversion
+from frequenz.client.common.microgrid.sensors import SensorId
 
 from ._lifetime import Lifetime
 from ._util import enum_from_proto
-from .id import SensorId
 from .sensor import (
     Sensor,
     SensorDataSamples,

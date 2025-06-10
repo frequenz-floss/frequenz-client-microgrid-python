@@ -8,9 +8,9 @@ from unittest.mock import MagicMock, patch
 from zoneinfo import ZoneInfo
 
 import pytest
+from frequenz.client.common.microgrid import MicrogridId
 
 from frequenz.client.microgrid import Location, Metadata
-from frequenz.client.microgrid.id import MicrogridId
 
 
 @pytest.fixture
