@@ -10,7 +10,7 @@ import itertools
 from dataclasses import replace
 from typing import Any
 
-from frequenz.api.microgrid import microgrid_pb2_grpc
+from frequenz.api.microgrid.v1 import microgrid_pb2_grpc
 from frequenz.client.base import channel, client, retry, streaming
 from frequenz.client.common.microgrid.components import ComponentId
 from typing_extensions import override
