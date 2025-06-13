@@ -157,7 +157,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
-        microgrid = await client.call_stub_method(
+        response = await client.call_stub_method(
             self,
             lambda: self.stub.GetMicrogridMetadata(
                 Empty(),
@@ -166,7 +166,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             method_name="GetMicrogridMetadata",
         )
 
-        return microgrid_info_from_proto(microgrid.microgrid)
+        return microgrid_info_from_proto(response.microgrid)
 
     async def list_components(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
@@ -209,7 +209,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
-        component_list = await client.call_stub_method(
+        response = await client.call_stub_method(
             self,
             lambda: self.stub.ListComponents(
                 microgrid_pb2.ListComponentsRequest(
@@ -221,7 +221,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             method_name="ListComponents",
         )
 
-        return map(component_from_proto, component_list.components)
+        return map(component_from_proto, response.components)
 
     async def list_connections(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
@@ -263,7 +263,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
-        connection_list = await client.call_stub_method(
+        response = await client.call_stub_method(
             self,
             lambda: self.stub.ListConnections(
                 microgrid_pb2.ListConnectionsRequest(
@@ -277,9 +277,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
 
         return (
             conn
-            for conn in map(
-                component_connection_from_proto, connection_list.connections
-            )
+            for conn in map(component_connection_from_proto, response.connections)
             if conn is not None
         )
 
