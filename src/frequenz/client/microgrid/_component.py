@@ -145,7 +145,7 @@ class Component:
     component_id: ComponentId
     """The ID of this component."""
 
-    category: ComponentCategory
+    category: ComponentCategory | int
     """The category of this component."""
 
     type: ComponentType | None = None

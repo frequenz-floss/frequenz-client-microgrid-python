@@ -656,7 +656,8 @@ async def test_data_bad_category(
 
     # It should raise a ValueError for a wrong component category
     with pytest.raises(
-        ValueError, match=f"{component_id} is a .*, not a {method[:-5]}"
+        ValueError,
+        match=rf"{component_id} has category .*, but {method[:-5].upper()} was expected",
     ):
         await getattr(client, method)(component_id)
 

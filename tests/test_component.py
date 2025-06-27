@@ -90,8 +90,8 @@ def test_Component() -> None:
         # Should raise error with negative ID
         Component(ComponentId(-1), ComponentCategory.GRID)
 
-    invalid_type = Component(ComponentId(666), -1)  # type: ignore
+    invalid_type = Component(ComponentId(666), -1)
     assert not invalid_type.is_valid()
 
-    another_invalid_type = Component(ComponentId(666), 666)  # type: ignore
+    another_invalid_type = Component(ComponentId(666), 666)
     assert not another_invalid_type.is_valid()

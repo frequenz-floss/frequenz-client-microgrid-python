@@ -385,9 +385,13 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             raise ValueError(f"Unable to find {component_id}") from exc
 
         if comp.category != expected_category:
+            cat = (
+                comp.category.name
+                if isinstance(comp.category, ComponentCategory)
+                else comp.category
+            )
             raise ValueError(
-                f"{component_id} is a {comp.category.name.lower()}"
-                f", not a {expected_category.name.lower()}."
+                f"{component_id} has category {cat}, but {expected_category.name} was expected"
             )
 
     async def meter_data(  # noqa: DOC502 (ValueError is raised indirectly by _expect_category)
