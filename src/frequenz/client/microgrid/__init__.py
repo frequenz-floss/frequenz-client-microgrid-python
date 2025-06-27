@@ -10,7 +10,6 @@ This package provides a low-level interface for interacting with the microgrid A
 from ._client import MicrogridApiClient
 from ._component import (
     Component,
-    ComponentCategory,
     ComponentMetadata,
     ComponentMetricId,
     ComponentType,
@@ -74,7 +73,6 @@ __all__ = [
     "BatteryRelayState",
     "ClientNotConnected",
     "Component",
-    "ComponentCategory",
     "ComponentData",
     "ComponentMetadata",
     "ComponentMetricId",

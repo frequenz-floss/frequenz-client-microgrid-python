@@ -5,11 +5,10 @@
 
 import pytest
 from frequenz.api.common import components_pb2
-from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 
 from frequenz.client.microgrid import (
     Component,
-    ComponentCategory,
 )
 from frequenz.client.microgrid._component import component_category_from_protobuf
 
@@ -20,7 +19,7 @@ def test_component_category_from_protobuf() -> None:
         component_category_from_protobuf(
             components_pb2.ComponentCategory.COMPONENT_CATEGORY_UNSPECIFIED
         )
-        == ComponentCategory.NONE
+        == ComponentCategory.UNSPECIFIED
     )
 
     assert (
@@ -58,7 +57,7 @@ def test_component_category_from_protobuf() -> None:
         == ComponentCategory.EV_CHARGER
     )
 
-    assert component_category_from_protobuf(666) == ComponentCategory.NONE  # type: ignore
+    assert component_category_from_protobuf(666) == ComponentCategory.UNSPECIFIED  # type: ignore
 
     with pytest.raises(ValueError):
         component_category_from_protobuf(

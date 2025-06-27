@@ -8,7 +8,7 @@ from enum import Enum
 
 from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2
-from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 
 
 class ComponentType(Enum):
@@ -61,31 +61,6 @@ def component_type_from_protobuf(
     return None
 
 
-class ComponentCategory(Enum):
-    """Possible types of microgrid component."""
-
-    NONE = components_pb2.ComponentCategory.COMPONENT_CATEGORY_UNSPECIFIED
-    """Unspecified component category."""
-
-    GRID = components_pb2.ComponentCategory.COMPONENT_CATEGORY_GRID
-    """Grid component."""
-
-    METER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_METER
-    """Meter component."""
-
-    INVERTER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER
-    """Inverter component."""
-
-    BATTERY = components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY
-    """Battery component."""
-
-    EV_CHARGER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER
-    """EV charger component."""
-
-    CHP = components_pb2.ComponentCategory.COMPONENT_CATEGORY_CHP
-    """CHP component."""
-
-
 def component_category_from_protobuf(
     component_category: components_pb2.ComponentCategory.ValueType,
 ) -> ComponentCategory:
@@ -107,8 +82,14 @@ def component_category_from_protobuf(
     if component_category == components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR:
         raise ValueError("Cannot create a component from a sensor!")
 
-    if not any(t.value == component_category for t in ComponentCategory):
-        return ComponentCategory.NONE
+    # We are converting to `int` because the microgrid API actually uses the common API
+    # v0.4, which import files without the `v1` prefix, and the `ComponentCategory` in
+    # `client-common` uses the API version v0.6, which imports files with the `v1`
+    # prefix, so effectively here we are comparing 2 different enums.
+    # With this conversion we are assuming the enum values didn't change between v0.4
+    # and v0.6, which is the case as of v0.11.0.
+    if not any(int(t.value) == component_category for t in ComponentCategory):
+        return ComponentCategory.UNSPECIFIED
 
     return ComponentCategory(component_category)
 
