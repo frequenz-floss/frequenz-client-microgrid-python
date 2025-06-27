@@ -61,39 +61,6 @@ def component_type_from_protobuf(
     return None
 
 
-def component_category_from_protobuf(
-    component_category: components_pb2.ComponentCategory.ValueType,
-) -> ComponentCategory:
-    """Convert a protobuf ComponentCategory message to ComponentCategory enum.
-
-    For internal-only use by the `microgrid` package.
-
-    Args:
-        component_category: protobuf enum to convert
-
-    Returns:
-        Enum value corresponding to the protobuf message.
-
-    Raises:
-        ValueError: if `component_category` is a sensor (this is not considered
-            a valid component category as it does not form part of the
-            microgrid itself)
-    """
-    if component_category == components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR:
-        raise ValueError("Cannot create a component from a sensor!")
-
-    # We are converting to `int` because the microgrid API actually uses the common API
-    # v0.4, which import files without the `v1` prefix, and the `ComponentCategory` in
-    # `client-common` uses the API version v0.6, which imports files with the `v1`
-    # prefix, so effectively here we are comparing 2 different enums.
-    # With this conversion we are assuming the enum values didn't change between v0.4
-    # and v0.6, which is the case as of v0.11.0.
-    if not any(int(t.value) == component_category for t in ComponentCategory):
-        return ComponentCategory.UNSPECIFIED
-
-    return ComponentCategory(component_category)
-
-
 @dataclass(frozen=True)
 class Fuse:
     """Fuse data class."""

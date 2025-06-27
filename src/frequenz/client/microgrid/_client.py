@@ -17,6 +17,7 @@ from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import microgrid_pb2, microgrid_pb2_grpc, sensor_pb2
 from frequenz.channels import Receiver
 from frequenz.client.base import channel, client, retry, streaming
+from frequenz.client.common.enum_proto import enum_from_proto
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 from frequenz.client.common.microgrid.sensors import SensorId
@@ -25,7 +26,6 @@ from typing_extensions import override
 
 from ._component import (
     Component,
-    component_category_from_protobuf,
     component_metadata_from_protobuf,
     component_type_from_protobuf,
 )
@@ -186,7 +186,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         result: Iterable[Component] = map(
             lambda c: Component(
                 ComponentId(c.id),
-                component_category_from_protobuf(c.category),
+                enum_from_proto(c.category, ComponentCategory),
                 component_type_from_protobuf(c.category, c.inverter),
                 component_metadata_from_protobuf(c.category, c.grid),
             ),
