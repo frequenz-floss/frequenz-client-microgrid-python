@@ -1,0 +1,1 @@
+../set_component_power_active/no_lifetime_case.py
