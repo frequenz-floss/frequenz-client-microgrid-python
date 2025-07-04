@@ -200,7 +200,9 @@ def test_validation(
     )
 
     if should_fail:
-        with pytest.raises(ValueError, match="Start must be before or equal to end."):
+        with pytest.raises(
+            ValueError, match=r"Start \(.*\) must be before or equal to end \(.*\)"
+        ):
             Lifetime(start=start_time, end=end_time)
     else:
         lifetime = Lifetime(start=start_time, end=end_time)

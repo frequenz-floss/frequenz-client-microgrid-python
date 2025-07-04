@@ -33,7 +33,9 @@ class Lifetime:
     def __post_init__(self) -> None:
         """Validate this lifetime."""
         if self.start is not None and self.end is not None and self.start > self.end:
-            raise ValueError("Start must be before or equal to end.")
+            raise ValueError(
+                f"Start ({self.start}) must be before or equal to end ({self.end})"
+            )
 
     def is_operational_at(self, timestamp: datetime) -> bool:
         """Check whether this lifetime is active at a specific timestamp."""

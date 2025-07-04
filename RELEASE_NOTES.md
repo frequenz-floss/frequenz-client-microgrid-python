@@ -2,11 +2,13 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This release is a major breaking change, as we jump to the API specification version 0.17.x, which introduces big and fundamental breaking changes. This also starts using the `v1` namespace in `frequenz-api-common`, which also introduces major breaking changes. It would be very hard to detail all the API changes here, please refer to the [Microgrid API releases](https://github.com/frequenz-floss/frequenz-api-microgrid/releases) and [Common API releases](https://github.com/frequenz-floss/frequenz-api-common/releases).
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- `MicrogridApiClient`:
+
+    * The client now follows the v0.17 API names, so most methods changed names and signatures.
 
 ## New Features
 

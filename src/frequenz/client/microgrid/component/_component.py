@@ -39,8 +39,9 @@ class Component:  # pylint: disable=too-many-instance-attributes
         [`isinstance`][] of a concrete component class instead.
 
         It is only provided for using with a newer version of the API where the client
-        doesn't know about a new category yet, and in case some low level code needs to
-        know the category of a component.
+        doesn't know about a new category yet (i.e. for use with
+        [`UnrecognizedComponent`][frequenz.client.microgrid.component.UnrecognizedComponent])
+        and in case some low level code needs to know the category of a component.
         """
 
     status: ComponentStatus | int = ComponentStatus.UNSPECIFIED
@@ -89,7 +90,8 @@ class Component:  # pylint: disable=too-many-instance-attributes
     Note:
         This should not be used normally, it is only useful when accessing a newer
         version of the API where the client doesn't know about the new metadata fields
-        yet.
+        yet (i.e. for use with
+        [`UnrecognizedComponent`][frequenz.client.microgrid.component.UnrecognizedComponent]).
     """
 
     def __new__(cls, *_: Any, **__: Any) -> Self:
