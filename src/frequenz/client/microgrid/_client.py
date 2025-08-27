@@ -28,6 +28,8 @@ from ._microgrid_info_proto import microgrid_info_from_proto
 from .component._category import ComponentCategory
 from .component._component import Component
 from .component._component_proto import component_from_proto
+from .component._connection import ComponentConnection
+from .component._connection_proto import component_connection_from_proto
 from .component._types import ComponentTypes
 from .metrics._bounds import Bounds
 from .metrics._metric import Metric
@@ -220,6 +222,66 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         )
 
         return map(component_from_proto, component_list.components)
+
+    async def list_connections(  # noqa: DOC502 (raises ApiClientError indirectly)
+        self,
+        *,
+        sources: Iterable[ComponentId | Component] = (),
+        destinations: Iterable[ComponentId | Component] = (),
+    ) -> Iterable[ComponentConnection]:
+        """Fetch all the connections present in the local microgrid.
+
+        Electrical components are a part of a microgrid's electrical infrastructure
+        are can be connected to each other to form an electrical circuit, which can
+        then be represented as a graph.
+
+        The direction of a connection is always away from the grid endpoint, i.e.
+        aligned with the direction of positive current according to the passive sign
+        convention: https://en.wikipedia.org/wiki/Passive_sign_convention
+
+        The request may be filtered by `source`/`destination` component(s) of individual
+        connections.  If provided, the `sources` and `destinations` filters have an
+        `AND` relationship between each other, meaning that they are applied serially,
+        but an `OR` relationship with other elements in the same list.
+
+        Example:
+            If `sources = {1, 2, 3}`, and `destinations = {4,
+            5, 6}`, then the result should have all the connections where:
+
+            * Each `source` component ID is either `1`, `2`, OR `3`; **AND**
+            * Each `destination` component ID is either `4`, `5`, OR `6`.
+
+        Args:
+            sources: The component from which the connections originate.
+            destinations: The component at which the connections terminate.
+
+        Returns:
+            Iterator whose elements are all the connections in the local microgrid.
+
+        Raises:
+            ApiClientError: If the are any errors communicating with the Microgrid API,
+                most likely a subclass of
+                [GrpcError][frequenz.client.microgrid.GrpcError].
+        """
+        connection_list = await client.call_stub_method(
+            self,
+            lambda: self.stub.ListConnections(
+                microgrid_pb2.ListConnectionsRequest(
+                    starts=map(_get_component_id, sources),
+                    ends=map(_get_component_id, destinations),
+                ),
+                timeout=DEFAULT_GRPC_CALL_TIMEOUT,
+            ),
+            method_name="ListConnections",
+        )
+
+        return (
+            conn
+            for conn in map(
+                component_connection_from_proto, connection_list.connections
+            )
+            if conn is not None
+        )
 
     async def set_component_power_active(  # noqa: DOC502 (raises ApiClientError indirectly)
         self,
