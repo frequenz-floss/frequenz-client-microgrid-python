@@ -3,10 +3,7 @@
 
 """Tests for the microgrid metadata types."""
 
-from collections.abc import Iterator
 from dataclasses import dataclass
-from unittest.mock import MagicMock, patch
-from zoneinfo import ZoneInfo
 
 import pytest
 from frequenz.api.common.v1 import location_pb2
@@ -44,43 +41,22 @@ class _ProtoConversionTestCase:  # pylint: disable=too-many-instance-attributes
     """Whether to expect a warning during conversion."""
 
 
-@pytest.fixture
-def timezone_finder() -> Iterator[MagicMock]:
-    """Return a mock timezone finder."""
-    with patch(
-        "frequenz.client.microgrid._location._timezone_finder", autospec=True
-    ) as mock_timezone_finder:
-        yield mock_timezone_finder
+@pytest.mark.parametrize("latitude", [None, 52.52], ids=str)
+@pytest.mark.parametrize("longitude", [None, 13.405], ids=str)
+@pytest.mark.parametrize("country_code", [None, "DE"], ids=str)
+def test_location_initialization(
+    latitude: float | None,
+    longitude: float | None,
+    country_code: str | None,
+) -> None:
+    """Test location initialization with different combinations of parameters."""
+    location = Location(
+        latitude=latitude, longitude=longitude, country_code=country_code
+    )
 
-
-def test_timezone_not_looked_up_if_unused(timezone_finder: MagicMock) -> None:
-    """Test the location timezone is not looked up if it is not used."""
-    location = Location(latitude=52.52, longitude=13.405, country_code="DE")
-
-    assert location.latitude == 52.52
-    assert location.longitude == 13.405
-    assert location.country_code == "DE"
-    timezone_finder.timezone_at.assert_not_called()
-
-
-def test_timezone_looked_up_but_not_found(timezone_finder: MagicMock) -> None:
-    """Test the location timezone is not looked up if it is not used."""
-    timezone_finder.timezone_at.return_value = None
-
-    location = Location(latitude=52.52, longitude=13.405, country_code="DE")
-
-    assert location.timezone is None
-    timezone_finder.timezone_at.assert_called_once_with(lat=52.52, lng=13.405)
-
-
-def test_timezone_looked_up_and_found(timezone_finder: MagicMock) -> None:
-    """Test the location timezone is not looked up if it is not used."""
-    timezone_finder.timezone_at.return_value = "Europe/Berlin"
-
-    location = Location(latitude=52.52, longitude=13.405, country_code="DE")
-
-    assert location.timezone == ZoneInfo(key="Europe/Berlin")
-    timezone_finder.timezone_at.assert_called_once_with(lat=52.52, lng=13.405)
+    assert location.latitude == latitude
+    assert location.longitude == longitude
+    assert location.country_code == country_code
 
 
 @pytest.mark.parametrize(

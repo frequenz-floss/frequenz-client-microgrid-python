@@ -4,15 +4,7 @@
 """Location information for a microgrid."""
 
 
-import logging
 from dataclasses import dataclass
-from functools import cached_property
-from zoneinfo import ZoneInfo
-
-import timezonefinder
-
-_timezone_finder = timezonefinder.TimezoneFinder()
-_logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -27,17 +19,6 @@ class Location:
 
     country_code: str | None
     """The country code of the microgrid in ISO 3166-1 Alpha 2 format."""
-
-    @cached_property
-    def timezone(self) -> ZoneInfo | None:
-        """The timezone of the microgrid, or `None` if it could not be determined."""
-        if self.latitude is None or self.longitude is None:
-            _logger.warning(
-                "Latitude (%s) or longitude (%s) missing, cannot determine timezone"
-            )
-            return None
-        timezone = _timezone_finder.timezone_at(lat=self.latitude, lng=self.longitude)
-        return ZoneInfo(key=timezone) if timezone else None
 
     def __str__(self) -> str:
         """Return the short string representation of this instance."""
