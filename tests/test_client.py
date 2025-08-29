@@ -161,3 +161,19 @@ async def test_add_bounds(
 ) -> None:
     """Test add_bounds method."""
     await spec.test_unary_unary_call(client, "AddComponentBounds")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "spec",
+    get_test_specs(
+        "receive_component_data_samples_stream",
+        tests_dir=TESTS_DIR,
+    ),
+    ids=str,
+)
+async def test_receive_component_data_samples_stream(
+    client: MicrogridApiClient, spec: ApiClientTestCaseSpec
+) -> None:
+    """Test receive_component_data_samples_stream method."""
+    await spec.test_unary_stream_call(client, "ReceiveComponentDataStream")

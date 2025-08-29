@@ -5,11 +5,12 @@
 
 from ._bounds import Bounds
 from ._metric import Metric
-from ._sample import AggregatedMetricValue, AggregationMethod
+from ._sample import AggregatedMetricValue, AggregationMethod, MetricSample
 
 __all__ = [
     "AggregatedMetricValue",
     "AggregationMethod",
     "Bounds",
     "Metric",
+    "MetricSample",
 ]

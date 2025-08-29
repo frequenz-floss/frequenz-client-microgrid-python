@@ -18,6 +18,7 @@ from ._component import Component
 from ._connection import ComponentConnection
 from ._converter import Converter
 from ._crypto_miner import CryptoMiner
+from ._data_samples import ComponentDataSamples
 from ._electrolyzer import Electrolyzer
 from ._ev_charger import (
     AcEvCharger,
@@ -50,6 +51,7 @@ from ._problematic import (
     UnspecifiedComponent,
 )
 from ._relay import Relay
+from ._state_sample import ComponentErrorCode, ComponentStateCode, ComponentStateSample
 from ._status import ComponentStatus
 from ._types import (
     ComponentTypes,
@@ -69,6 +71,10 @@ __all__ = [
     "Component",
     "ComponentCategory",
     "ComponentConnection",
+    "ComponentDataSamples",
+    "ComponentErrorCode",
+    "ComponentStateCode",
+    "ComponentStateSample",
     "ComponentStatus",
     "ComponentTypes",
     "Converter",
