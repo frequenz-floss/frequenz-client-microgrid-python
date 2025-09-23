@@ -30,7 +30,6 @@ from ._ev_charger import (
     UnrecognizedEvCharger,
     UnspecifiedEvCharger,
 )
-from ._fuse import Fuse
 from ._grid_connection_point import GridConnectionPoint
 from ._hvac import Hvac
 from ._inverter import (
@@ -84,7 +83,6 @@ __all__ = [
     "EvCharger",
     "EvChargerType",
     "EvChargerTypes",
-    "Fuse",
     "GridConnectionPoint",
     "Hvac",
     "HybridEvCharger",

@@ -9,7 +9,6 @@ from frequenz.api.common.v1.microgrid.components import (
     battery_pb2,
     components_pb2,
     ev_charger_pb2,
-    fuse_pb2,
     grid_pb2,
     inverter_pb2,
 )
@@ -30,7 +29,6 @@ from frequenz.client.microgrid.component import (
     Electrolyzer,
     EvCharger,
     EvChargerType,
-    Fuse,
     GridConnectionPoint,
     Hvac,
     HybridEvCharger,
@@ -107,13 +105,6 @@ grpc_response = microgrid_pb2.ListComponentsResponse(
                 ev_charger=ev_charger_pb2.EvCharger(
                     type=ev_charger_pb2.EvChargerType.EV_CHARGER_TYPE_AC
                 )
-            ),
-        ),
-        components_pb2.Component(
-            id=7,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_FUSE,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                fuse=fuse_pb2.Fuse(rated_current=50)
             ),
         ),
         components_pb2.Component(
@@ -279,7 +270,6 @@ def assert_client_result(result: Any) -> None:
         Converter(id=ComponentId(4), microgrid_id=MicrogridId(0)),
         Meter(id=ComponentId(5), microgrid_id=MicrogridId(0)),
         AcEvCharger(id=ComponentId(6), microgrid_id=MicrogridId(0)),
-        Fuse(id=ComponentId(7), microgrid_id=MicrogridId(0), rated_current=50),
         Hvac(id=ComponentId(8), microgrid_id=MicrogridId(0)),
         # Additional battery types
         UnspecifiedBattery(id=ComponentId(9), microgrid_id=MicrogridId(0)),

@@ -38,7 +38,6 @@ from ._ev_charger import (
     UnrecognizedEvCharger,
     UnspecifiedEvCharger,
 )
-from ._fuse import Fuse
 from ._grid_connection_point import GridConnectionPoint
 from ._hvac import Hvac
 from ._inverter import (
@@ -362,20 +361,6 @@ def component_from_proto_with_issues(
                     )
                 case unexpected_ev_charger_type:
                     assert_never(unexpected_ev_charger_type)
-        case ComponentCategory.FUSE:
-            rated_current = message.category_type.fuse.rated_current
-            # No need to check for negatives because the protobuf type is uint32.
-            return Fuse(
-                id=base_data.component_id,
-                microgrid_id=base_data.microgrid_id,
-                name=base_data.name,
-                manufacturer=base_data.manufacturer,
-                model_name=base_data.model_name,
-                status=base_data.status,
-                operational_lifetime=base_data.lifetime,
-                rated_bounds=base_data.rated_bounds,
-                rated_current=rated_current,
-            )
         case ComponentCategory.GRID:
             rated_fuse_current = message.category_type.grid.rated_fuse_current
             # No need to check for negatives because the protobuf type is uint32.

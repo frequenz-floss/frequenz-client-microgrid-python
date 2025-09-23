@@ -61,9 +61,6 @@ class ComponentCategory(enum.Enum):
     external precharging modules.
     """
 
-    FUSE = components_pb2.COMPONENT_CATEGORY_FUSE
-    """A fuse."""
-
     VOLTAGE_TRANSFORMER = components_pb2.COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER
     """A voltage transformer.
 

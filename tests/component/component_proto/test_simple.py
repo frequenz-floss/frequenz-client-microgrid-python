@@ -17,7 +17,6 @@ from frequenz.client.microgrid.component import (
     Converter,
     CryptoMiner,
     Electrolyzer,
-    Fuse,
     GridConnectionPoint,
     Hvac,
     Meter,
@@ -162,33 +161,6 @@ def test_voltage_transformer(
     )
     assert component.secondary_voltage == (
         pytest.approx(secondary if secondary is not None else 0.0)
-    )
-
-
-@pytest.mark.parametrize("rated_current", [None, 0, 23])
-def test_fuse(
-    default_component_base_data: ComponentBaseData,
-    rated_current: int | None,
-) -> None:
-    """Test Fuse component with default values."""
-    major_issues: list[str] = []
-    minor_issues: list[str] = []
-    base_data = default_component_base_data._replace(category=ComponentCategory.FUSE)
-
-    proto = base_data_as_proto(base_data)
-    if rated_current is not None:
-        proto.category_type.fuse.rated_current = rated_current
-
-    component = component_from_proto_with_issues(
-        proto, major_issues=major_issues, minor_issues=minor_issues
-    )
-
-    assert not major_issues
-    assert not minor_issues
-    assert isinstance(component, Fuse)
-    assert_base_data(base_data, component)
-    assert component.rated_current == (
-        rated_current if rated_current is not None else 0
     )
 
 

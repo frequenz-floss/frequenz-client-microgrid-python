@@ -11,7 +11,6 @@ from ._converter import Converter
 from ._crypto_miner import CryptoMiner
 from ._electrolyzer import Electrolyzer
 from ._ev_charger import EvChargerTypes, UnrecognizedEvCharger, UnspecifiedEvCharger
-from ._fuse import Fuse
 from ._grid_connection_point import GridConnectionPoint
 from ._hvac import Hvac
 from ._inverter import InverterTypes, UnrecognizedInverter, UnspecifiedInverter
@@ -52,7 +51,6 @@ ComponentTypes: TypeAlias = (
     | CryptoMiner
     | Electrolyzer
     | EvChargerTypes
-    | Fuse
     | GridConnectionPoint
     | Hvac
     | InverterTypes
