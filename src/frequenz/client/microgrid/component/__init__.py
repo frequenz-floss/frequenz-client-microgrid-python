@@ -51,7 +51,6 @@ from ._problematic import (
 )
 from ._relay import Relay
 from ._state_sample import ComponentErrorCode, ComponentStateCode, ComponentStateSample
-from ._status import ComponentStatus
 from ._types import (
     ComponentTypes,
     ProblematicComponentTypes,
@@ -74,7 +73,6 @@ __all__ = [
     "ComponentErrorCode",
     "ComponentStateCode",
     "ComponentStateSample",
-    "ComponentStatus",
     "ComponentTypes",
     "Converter",
     "CryptoMiner",

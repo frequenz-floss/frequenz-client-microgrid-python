@@ -15,11 +15,7 @@ from frequenz.client.common.microgrid.components import ComponentId
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from frequenz.client.microgrid import Lifetime
-from frequenz.client.microgrid.component import (
-    Component,
-    ComponentCategory,
-    ComponentStatus,
-)
+from frequenz.client.microgrid.component import Component, ComponentCategory
 from frequenz.client.microgrid.component._component_proto import ComponentBaseData
 from frequenz.client.microgrid.metrics import Bounds, Metric
 
@@ -58,7 +54,6 @@ def default_component_base_data(
         manufacturer=DEFAULT_MANUFACTURER,
         model_name=DEFAULT_MODEL_NAME,
         category=ComponentCategory.UNSPECIFIED,
-        status=ComponentStatus.ACTIVE,
         lifetime=DEFAULT_LIFETIME,
         rated_bounds={Metric.AC_ACTIVE_ENERGY: Bounds(lower=0, upper=100)},
         category_specific_metadata={},
@@ -74,7 +69,6 @@ def assert_base_data(base_data: ComponentBaseData, other: Component) -> None:
     assert base_data.manufacturer == other.manufacturer
     assert base_data.model_name == other.model_name
     assert base_data.category == other.category
-    assert base_data.status == other.status
     assert base_data.lifetime == other.operational_lifetime
     assert base_data.rated_bounds == other.rated_bounds
     assert base_data.category_specific_metadata == other.category_specific_metadata
@@ -88,11 +82,6 @@ def base_data_as_proto(base_data: ComponentBaseData) -> components_pb2.Component
         name=base_data.name or "",
         manufacturer=base_data.manufacturer or "",
         model_name=base_data.model_name or "",
-        status=(
-            base_data.status
-            if isinstance(base_data.status, int)
-            else int(base_data.status.value)  # type: ignore[arg-type]
-        ),
         category=(
             base_data.category
             if isinstance(base_data.category, int)

@@ -4,12 +4,11 @@
 """Tests for protobuf conversion of the base/common part of Component objects."""
 
 
-import pytest
 from frequenz.api.common.v1.microgrid.components import battery_pb2
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from frequenz.client.microgrid import Lifetime
-from frequenz.client.microgrid.component import ComponentCategory, ComponentStatus
+from frequenz.client.microgrid.component import ComponentCategory
 from frequenz.client.microgrid.component._component_proto import (
     ComponentBaseData,
     component_base_from_proto_with_issues,
@@ -35,9 +34,8 @@ def test_complete(default_component_base_data: ComponentBaseData) -> None:
     assert parsed == base_data
 
 
-@pytest.mark.parametrize("status", [ComponentStatus.UNSPECIFIED, 999])
-def test_missing_metadata(
-    default_component_base_data: ComponentBaseData, status: ComponentStatus | int
+def test_missing_category_specific_info(
+    default_component_base_data: ComponentBaseData,
 ) -> None:
     """Test parsing with missing optional metadata."""
     major_issues: list[str] = []
@@ -47,7 +45,6 @@ def test_missing_metadata(
         manufacturer=None,
         model_name=None,
         category=ComponentCategory.UNSPECIFIED,
-        status=status,
         lifetime=Lifetime(),
         rated_bounds={},
         category_specific_metadata={},
@@ -60,12 +57,7 @@ def test_missing_metadata(
         proto, major_issues=major_issues, minor_issues=minor_issues
     )
 
-    expected_major_issues = ["category is unspecified"]
-    if status == ComponentStatus.UNSPECIFIED:
-        expected_major_issues.append("status is unspecified")
-    else:
-        expected_major_issues.append("status is unrecognized")
-    assert sorted(major_issues) == sorted(expected_major_issues)
+    assert sorted(major_issues) == sorted(["category is unspecified"])
     assert sorted(minor_issues) == sorted(
         [
             "name is empty",

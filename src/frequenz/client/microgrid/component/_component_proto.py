@@ -56,7 +56,6 @@ from ._problematic import (
     UnspecifiedComponent,
 )
 from ._relay import Relay
-from ._status import ComponentStatus
 from ._types import ComponentTypes
 from ._voltage_transformer import VoltageTransformer
 
@@ -109,7 +108,6 @@ class ComponentBaseData(NamedTuple):
     manufacturer: str | None
     model_name: str | None
     category: ComponentCategory | int
-    status: ComponentStatus | int
     lifetime: Lifetime
     rated_bounds: dict[Metric | int, Bounds]
     category_specific_metadata: dict[str, Any]
@@ -146,12 +144,6 @@ def component_base_from_proto_with_issues(
     model_name = message.model_name or None
     if model_name is None:
         minor_issues.append("model_name is empty")
-
-    status = enum_from_proto(message.status, ComponentStatus)
-    if status is ComponentStatus.UNSPECIFIED:
-        major_issues.append("status is unspecified")
-    elif isinstance(status, int):
-        major_issues.append("status is unrecognized")
 
     lifetime = _get_operational_lifetime_from_proto(
         message, major_issues=major_issues, minor_issues=minor_issues
@@ -193,7 +185,6 @@ def component_base_from_proto_with_issues(
         manufacturer,
         model_name,
         category,
-        status,
         lifetime,
         rated_bounds,
         category_specific_metadata,
@@ -229,7 +220,6 @@ def component_from_proto_with_issues(
             name=base_data.name,
             manufacturer=base_data.manufacturer,
             model_name=base_data.model_name,
-            status=base_data.status,
             category=base_data.category,
             operational_lifetime=base_data.lifetime,
             category_specific_metadata=base_data.category_specific_metadata,
@@ -244,7 +234,6 @@ def component_from_proto_with_issues(
                 name=base_data.name,
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
-                status=base_data.status,
                 category=base_data.category,
                 operational_lifetime=base_data.lifetime,
                 rated_bounds=base_data.rated_bounds,
@@ -266,7 +255,6 @@ def component_from_proto_with_issues(
                 name=base_data.name,
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
-                status=base_data.status,
                 operational_lifetime=base_data.lifetime,
                 rated_bounds=base_data.rated_bounds,
             )
@@ -291,7 +279,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                     )
@@ -303,7 +290,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                         type=battery_type,
@@ -340,7 +326,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                     )
@@ -354,7 +339,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                         type=ev_charger_type,
@@ -370,7 +354,6 @@ def component_from_proto_with_issues(
                 name=base_data.name,
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
-                status=base_data.status,
                 operational_lifetime=base_data.lifetime,
                 rated_bounds=base_data.rated_bounds,
                 rated_fuse_current=rated_fuse_current,
@@ -408,7 +391,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                     )
@@ -422,7 +404,6 @@ def component_from_proto_with_issues(
                         name=base_data.name,
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
-                        status=base_data.status,
                         operational_lifetime=base_data.lifetime,
                         rated_bounds=base_data.rated_bounds,
                         type=inverter_type,
@@ -436,7 +417,6 @@ def component_from_proto_with_issues(
                 name=base_data.name,
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
-                status=base_data.status,
                 operational_lifetime=base_data.lifetime,
                 rated_bounds=base_data.rated_bounds,
                 primary_voltage=message.category_type.voltage_transformer.primary,

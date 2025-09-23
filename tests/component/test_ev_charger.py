@@ -12,7 +12,6 @@ from frequenz.client.common.microgrid.components import ComponentId
 from frequenz.client.microgrid.component import (
     AcEvCharger,
     ComponentCategory,
-    ComponentStatus,
     DcEvCharger,
     EvCharger,
     EvChargerType,
@@ -54,7 +53,6 @@ def test_abstract_ev_charger_cannot_be_instantiated(
             name="test_charger",
             manufacturer="test_manufacturer",
             model_name="test_model",
-            status=ComponentStatus.ACTIVE,
             type=EvChargerType.AC,
         )
 
@@ -87,7 +85,6 @@ def test_recognized_ev_charger_types(  # Renamed from test_ev_charger_types
         name=case.name,
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
     )
 
     assert charger.id == component_id
@@ -95,7 +92,6 @@ def test_recognized_ev_charger_types(  # Renamed from test_ev_charger_types
     assert charger.name == case.name
     assert charger.manufacturer == "test_manufacturer"
     assert charger.model_name == "test_model"
-    assert charger.status == ComponentStatus.ACTIVE
     assert charger.category == ComponentCategory.EV_CHARGER
     assert charger.type == case.expected_type
 
@@ -110,7 +106,6 @@ def test_unrecognized_ev_charger_type(
         name="unrecognized_charger",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         type=999,  # type is passed here for UnrecognizedEvCharger
     )
 
@@ -119,6 +114,5 @@ def test_unrecognized_ev_charger_type(
     assert charger.name == "unrecognized_charger"
     assert charger.manufacturer == "test_manufacturer"
     assert charger.model_name == "test_model"
-    assert charger.status == ComponentStatus.ACTIVE
     assert charger.category == ComponentCategory.EV_CHARGER
     assert charger.type == 999

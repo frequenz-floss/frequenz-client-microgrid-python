@@ -12,7 +12,6 @@ from frequenz.client.common.microgrid.components import ComponentId
 from frequenz.client.microgrid.component import (
     BatteryInverter,
     ComponentCategory,
-    ComponentStatus,
     HybridInverter,
     Inverter,
     InverterType,
@@ -54,7 +53,6 @@ def test_abstract_inverter_cannot_be_instantiated(
             name="test_inverter",
             manufacturer="test_manufacturer",
             model_name="test_model",
-            status=ComponentStatus.ACTIVE,
             type=InverterType.BATTERY,
         )
 
@@ -89,7 +87,6 @@ def test_recognized_inverter_types(
         name=case.name,
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
     )
 
     assert inverter.id == component_id
@@ -97,7 +94,6 @@ def test_recognized_inverter_types(
     assert inverter.name == case.name
     assert inverter.manufacturer == "test_manufacturer"
     assert inverter.model_name == "test_model"
-    assert inverter.status == ComponentStatus.ACTIVE
     assert inverter.category == ComponentCategory.INVERTER
     assert inverter.type == case.expected_type
 
@@ -112,7 +108,6 @@ def test_unrecognized_inverter_type(
         name="unrecognized_inverter",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         type=999,  # type is passed here for UnrecognizedInverter
     )
 
@@ -121,6 +116,5 @@ def test_unrecognized_inverter_type(
     assert inverter.name == "unrecognized_inverter"
     assert inverter.manufacturer == "test_manufacturer"
     assert inverter.model_name == "test_model"
-    assert inverter.status == ComponentStatus.ACTIVE
     assert inverter.category == ComponentCategory.INVERTER
     assert inverter.type == 999

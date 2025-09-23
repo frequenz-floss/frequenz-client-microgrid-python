@@ -7,11 +7,7 @@ import pytest
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 
-from frequenz.client.microgrid.component import (
-    ComponentCategory,
-    ComponentStatus,
-    GridConnectionPoint,
-)
+from frequenz.client.microgrid.component import ComponentCategory, GridConnectionPoint
 
 
 @pytest.fixture
@@ -37,7 +33,6 @@ def test_creation_ok(
         name="test_grid_point",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         rated_fuse_current=rated_fuse_current,
     )
 
@@ -46,7 +41,6 @@ def test_creation_ok(
     assert grid_point.name == "test_grid_point"
     assert grid_point.manufacturer == "test_manufacturer"
     assert grid_point.model_name == "test_model"
-    assert grid_point.status == ComponentStatus.ACTIVE
     assert grid_point.category == ComponentCategory.GRID
     assert grid_point.rated_fuse_current == rated_fuse_current
 
@@ -64,6 +58,5 @@ def test_creation_invalid_rated_fuse_current(
             name="test_grid_point",
             manufacturer="test_manufacturer",
             model_name="test_model",
-            status=ComponentStatus.ACTIVE,
             rated_fuse_current=-1,
         )
