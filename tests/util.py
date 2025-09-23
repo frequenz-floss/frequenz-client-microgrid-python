@@ -1243,7 +1243,15 @@ async def _iter_to_async_iter(it: Iterable[Any]) -> AsyncIterator[Any]:
 class _IterableResponseWrapper(AsyncIterator[Any]):
     """Wrap a response to make it an async iterator.
 
-    Supports
+    Supports the following types of `response`:
+
+    * Async generator function
+    * Generator function
+    * Async generator
+    * Generator
+    * Async iterable
+    * Iterable
+    * Single value (`str`, `bytes` and non-iterables)
     """
 
     def __init__(self, response: Any) -> None:
