@@ -1001,6 +1001,10 @@ class ApiClientTestCaseSpec:
             client_result = client_method(
                 *test_case.client_args, **test_case.client_kwargs
             )
+            if asyncio.iscoroutine(client_result):
+                _logger.debug("The client method is a coroutine, awaiting it...")
+                async with asyncio.timeout(60):
+                    client_result = await client_result
             _logger.debug("Client method result: %r", client_result)
         except Exception as err:  # pylint: disable=broad-exception-caught
             _logger.debug("Client method raised an exception: %r", err)
