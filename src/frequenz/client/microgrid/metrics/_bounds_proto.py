@@ -4,7 +4,7 @@
 """Loading of Bounds objects from protobuf messages."""
 
 
-from frequenz.api.common.v1.metrics import bounds_pb2
+from frequenz.api.common.v1alpha8.metrics import bounds_pb2
 
 from ._bounds import Bounds
 

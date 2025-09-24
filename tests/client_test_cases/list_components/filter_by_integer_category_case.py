@@ -5,8 +5,10 @@
 
 from typing import Any
 
-from frequenz.api.common.v1.microgrid.components import components_pb2
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 
@@ -18,17 +20,17 @@ client_kwargs = {"categories": [999]}
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ListComponentsRequest(
-            component_ids=[],
-            categories=[999],  # type: ignore[list-item]
+        microgrid_pb2.ListElectricalComponentsRequest(
+            electrical_component_ids=[],
+            electrical_component_categories=[999],  # type: ignore[list-item]
         ),
         timeout=60.0,
     )
 
 
-grpc_response = microgrid_pb2.ListComponentsResponse(
-    components=[
-        components_pb2.Component(
+grpc_response = microgrid_pb2.ListElectricalComponentsResponse(
+    electrical_components=[
+        electrical_components_pb2.ElectricalComponent(
             id=4,
             microgrid_id=1,
             category=999,  # type: ignore[arg-type]

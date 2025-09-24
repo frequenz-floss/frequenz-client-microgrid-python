@@ -5,7 +5,7 @@
 
 from typing import Any
 
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from grpc import StatusCode
 
 from frequenz.client.microgrid import PermissionDenied
@@ -17,7 +17,8 @@ from tests.util import make_grpc_error
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ListConnectionsRequest(starts=[], ends=[]), timeout=60.0
+        microgrid_pb2.ListElectricalComponentConnectionsRequest(),
+        timeout=60.0,
     )
 
 

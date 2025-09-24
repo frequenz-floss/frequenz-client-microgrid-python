@@ -5,7 +5,9 @@
 
 import logging
 
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.common.microgrid.components import ComponentId
 
 from .._lifetime import Lifetime
@@ -16,7 +18,7 @@ _logger = logging.getLogger(__name__)
 
 
 def component_connection_from_proto(
-    message: components_pb2.ComponentConnection,
+    message: electrical_components_pb2.ElectricalComponentConnection,
 ) -> ComponentConnection | None:
     """Create a `ComponentConnection` from a protobuf message."""
     major_issues: list[str] = []
@@ -43,7 +45,7 @@ def component_connection_from_proto(
 
 
 def component_connection_from_proto_with_issues(
-    message: components_pb2.ComponentConnection,
+    message: electrical_components_pb2.ElectricalComponentConnection,
     *,
     major_issues: list[str],
     minor_issues: list[str],
@@ -63,8 +65,8 @@ def component_connection_from_proto_with_issues(
             `None` if the protobuf message is completely invalid and a
             `ComponentConnection` cannot be created.
     """
-    source_component_id = ComponentId(message.source_component_id)
-    destination_component_id = ComponentId(message.destination_component_id)
+    source_component_id = ComponentId(message.source_electrical_component_id)
+    destination_component_id = ComponentId(message.destination_electrical_component_id)
     if source_component_id == destination_component_id:
         major_issues.append(
             f"connection ignored: source and destination are the same ({source_component_id})",
@@ -83,7 +85,7 @@ def component_connection_from_proto_with_issues(
 
 
 def _get_operational_lifetime_from_proto(
-    message: components_pb2.ComponentConnection,
+    message: electrical_components_pb2.ElectricalComponentConnection,
     *,
     major_issues: list[str],
     minor_issues: list[str],

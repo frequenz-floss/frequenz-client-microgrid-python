@@ -8,7 +8,9 @@ from datetime import datetime, timezone
 from unittest.mock import patch
 
 import pytest
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.base.conversion import to_timestamp
 
 from frequenz.client.microgrid.component import (
@@ -158,22 +160,30 @@ def test_from_proto(
     timestamp: datetime,
 ) -> None:
     """Test conversion from proto message to ComponentStateSample."""
-    proto = components_pb2.ComponentState(
-        sampled_at=to_timestamp(timestamp),
+    proto = electrical_components_pb2.ElectricalComponentStateSnapshot(
+        origin_time=to_timestamp(timestamp),
         states=(
             state.value if isinstance(state, ComponentStateCode) else state  # type: ignore[misc]
             for state in case.states
         ),
         warnings=(
-            (
-                warning.value  # type: ignore[misc]
-                if isinstance(warning, ComponentErrorCode)
-                else warning
+            electrical_components_pb2.ElectricalComponentDiagnostic(
+                diagnostic_code=(
+                    warning.value  # type: ignore[arg-type]
+                    if isinstance(warning, ComponentErrorCode)
+                    else warning
+                )
             )
             for warning in case.warnings
         ),
         errors=(
-            error.value if isinstance(error, ComponentErrorCode) else error  # type: ignore[misc]
+            electrical_components_pb2.ElectricalComponentDiagnostic(
+                diagnostic_code=(
+                    error.value  # type: ignore[arg-type]
+                    if isinstance(error, ComponentErrorCode)
+                    else error
+                )
+            )
             for error in case.errors
         ),
     )

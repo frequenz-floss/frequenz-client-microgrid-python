@@ -8,8 +8,8 @@ from datetime import datetime, timezone
 from unittest.mock import Mock, patch
 
 import pytest
-from frequenz.api.common.v1.grid import delivery_area_pb2
-from frequenz.api.common.v1.microgrid import microgrid_pb2
+from frequenz.api.common.v1alpha8.grid import delivery_area_pb2
+from frequenz.api.common.v1alpha8.microgrid import microgrid_pb2
 from frequenz.client.common.microgrid import EnterpriseId, MicrogridId
 
 from frequenz.client.microgrid import (

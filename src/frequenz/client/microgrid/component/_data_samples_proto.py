@@ -7,7 +7,9 @@
 import logging
 from functools import partial
 
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.common.microgrid.components import ComponentId
 
 from ..metrics._sample_proto import metric_sample_from_proto_with_issues
@@ -18,7 +20,7 @@ _logger = logging.getLogger(__name__)
 
 
 def component_data_samples_from_proto(
-    message: components_pb2.ComponentData,
+    message: electrical_components_pb2.ElectricalComponentTelemetry,
 ) -> ComponentDataSamples:
     """Convert a protobuf component data message to a component data object.
 
@@ -57,7 +59,7 @@ def component_data_samples_from_proto(
 
 
 def component_data_samples_from_proto_with_issues(
-    message: components_pb2.ComponentData,
+    message: electrical_components_pb2.ElectricalComponentTelemetry,
     *,
     major_issues: list[str],
     minor_issues: list[str],
@@ -73,7 +75,7 @@ def component_data_samples_from_proto_with_issues(
         The resulting `ComponentDataSamples` object.
     """
     return ComponentDataSamples(
-        component_id=ComponentId(message.component_id),
+        component_id=ComponentId(message.electrical_component_id),
         metric_samples=list(
             map(
                 partial(
@@ -84,5 +86,5 @@ def component_data_samples_from_proto_with_issues(
                 message.metric_samples,
             )
         ),
-        states=list(map(component_state_sample_from_proto, message.states)),
+        states=list(map(component_state_sample_from_proto, message.state_snapshots)),
     )

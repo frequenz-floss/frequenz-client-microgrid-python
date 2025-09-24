@@ -7,7 +7,9 @@ import logging
 from collections.abc import Sequence
 from typing import Any, NamedTuple, assert_never
 
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 from google.protobuf.json_format import MessageToDict
@@ -67,7 +69,9 @@ _logger = logging.getLogger(__name__)
 # pylint: disable=too-many-arguments
 
 
-def component_from_proto(message: components_pb2.Component) -> ComponentTypes:
+def component_from_proto(
+    message: electrical_components_pb2.ElectricalComponent,
+) -> ComponentTypes:
     """Convert a protobuf message to a `Component` instance.
 
     Args:
@@ -110,12 +114,12 @@ class ComponentBaseData(NamedTuple):
     category: ComponentCategory | int
     lifetime: Lifetime
     rated_bounds: dict[Metric | int, Bounds]
-    category_specific_metadata: dict[str, Any]
+    category_specific_info: dict[str, Any]
     category_mismatched: bool = False
 
 
 def component_base_from_proto_with_issues(
-    message: components_pb2.Component,
+    message: electrical_components_pb2.ElectricalComponent,
     *,
     major_issues: list[str],
     minor_issues: list[str],
@@ -161,19 +165,19 @@ def component_base_from_proto_with_issues(
     elif isinstance(category, int):
         major_issues.append(f"category {category} is unrecognized")
 
-    metadata_category = message.category_type.WhichOneof("metadata")
-    category_specific_metadata: dict[str, Any] = {}
-    if metadata_category is not None:
-        category_specific_metadata = MessageToDict(
-            getattr(message.category_type, metadata_category),
+    category_specific_info_kind = message.category_specific_info.WhichOneof("kind")
+    category_specific_info: dict[str, Any] = {}
+    if category_specific_info_kind is not None:
+        category_specific_info = MessageToDict(
+            getattr(message.category_specific_info, category_specific_info_kind),
             always_print_fields_with_no_presence=True,
         )
 
     category_mismatched = False
     if (
-        metadata_category
+        category_specific_info_kind
         and isinstance(category, ComponentCategory)
-        and category.name.lower() != metadata_category
+        and category.name.lower() != category_specific_info_kind
     ):
         major_issues.append("category_type.metadata does not match the category_type")
         category_mismatched = True
@@ -187,14 +191,14 @@ def component_base_from_proto_with_issues(
         category,
         lifetime,
         rated_bounds,
-        category_specific_metadata,
+        category_specific_info,
         category_mismatched,
     )
 
 
 # pylint: disable-next=too-many-locals
 def component_from_proto_with_issues(
-    message: components_pb2.Component,
+    message: electrical_components_pb2.ElectricalComponent,
     *,
     major_issues: list[str],
     minor_issues: list[str],
@@ -222,7 +226,7 @@ def component_from_proto_with_issues(
             model_name=base_data.model_name,
             category=base_data.category,
             operational_lifetime=base_data.lifetime,
-            category_specific_metadata=base_data.category_specific_metadata,
+            category_specific_metadata=base_data.category_specific_info,
             rated_bounds=base_data.rated_bounds,
         )
 
@@ -267,7 +271,7 @@ def component_from_proto_with_issues(
                 BatteryType.NA_ION: NaIonBattery,
             }
             battery_type = enum_from_proto(
-                message.category_type.battery.type, BatteryType
+                message.category_specific_info.battery.type, BatteryType
             )
             match battery_type:
                 case BatteryType.UNSPECIFIED | BatteryType.LI_ION | BatteryType.NA_ION:
@@ -309,7 +313,7 @@ def component_from_proto_with_issues(
                 EvChargerType.HYBRID: HybridEvCharger,
             }
             ev_charger_type = enum_from_proto(
-                message.category_type.ev_charger.type, EvChargerType
+                message.category_specific_info.ev_charger.type, EvChargerType
             )
             match ev_charger_type:
                 case (
@@ -345,8 +349,10 @@ def component_from_proto_with_issues(
                     )
                 case unexpected_ev_charger_type:
                     assert_never(unexpected_ev_charger_type)
-        case ComponentCategory.GRID:
-            rated_fuse_current = message.category_type.grid.rated_fuse_current
+        case ComponentCategory.GRID_CONNECTION_POINT | ComponentCategory.GRID:
+            rated_fuse_current = (
+                message.category_specific_info.grid_connection_point.rated_fuse_current
+            )
             # No need to check for negatives because the protobuf type is uint32.
             return GridConnectionPoint(
                 id=base_data.component_id,
@@ -374,7 +380,7 @@ def component_from_proto_with_issues(
                 InverterType.HYBRID: HybridInverter,
             }
             inverter_type = enum_from_proto(
-                message.category_type.inverter.type, InverterType
+                message.category_specific_info.inverter.type, InverterType
             )
             match inverter_type:
                 case (
@@ -410,7 +416,9 @@ def component_from_proto_with_issues(
                     )
                 case unexpected_inverter_type:
                     assert_never(unexpected_inverter_type)
-        case ComponentCategory.VOLTAGE_TRANSFORMER:
+        case (
+            ComponentCategory.POWER_TRANSFORMER | ComponentCategory.VOLTAGE_TRANSFORMER
+        ):
             return VoltageTransformer(
                 id=base_data.component_id,
                 microgrid_id=base_data.microgrid_id,
@@ -419,8 +427,8 @@ def component_from_proto_with_issues(
                 model_name=base_data.model_name,
                 operational_lifetime=base_data.lifetime,
                 rated_bounds=base_data.rated_bounds,
-                primary_voltage=message.category_type.voltage_transformer.primary,
-                secondary_voltage=message.category_type.voltage_transformer.secondary,
+                primary_voltage=message.category_specific_info.power_transformer.primary,
+                secondary_voltage=message.category_specific_info.power_transformer.secondary,
             )
         case unexpected_category:
             assert_never(unexpected_category)
@@ -454,7 +462,7 @@ def _trivial_category_to_class(
 
 
 def _metric_config_bounds_from_proto(
-    message: Sequence[components_pb2.MetricConfigBounds],
+    message: Sequence[electrical_components_pb2.MetricConfigBounds],
     *,
     major_issues: list[str],
     minor_issues: list[str],  # pylint: disable=unused-argument
@@ -506,7 +514,7 @@ def _metric_config_bounds_from_proto(
 
 
 def _get_operational_lifetime_from_proto(
-    message: components_pb2.Component,
+    message: electrical_components_pb2.ElectricalComponent,
     *,
     major_issues: list[str],
     minor_issues: list[str],

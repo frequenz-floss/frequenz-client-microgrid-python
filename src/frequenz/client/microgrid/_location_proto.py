@@ -5,7 +5,7 @@
 
 import logging
 
-from frequenz.api.common.v1 import location_pb2
+from frequenz.api.common.v1alpha8.types import location_pb2
 
 from ._location import Location
 

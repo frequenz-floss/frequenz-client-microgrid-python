@@ -7,7 +7,7 @@ import re
 from dataclasses import dataclass
 
 import pytest
-from frequenz.api.common.v1.metrics import bounds_pb2
+from frequenz.api.common.v1alpha8.metrics import bounds_pb2
 
 from frequenz.client.microgrid.metrics import Bounds
 from frequenz.client.microgrid.metrics._bounds_proto import bounds_from_proto

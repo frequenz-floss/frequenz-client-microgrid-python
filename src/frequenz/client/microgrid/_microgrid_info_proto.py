@@ -6,7 +6,7 @@
 
 import logging
 
-from frequenz.api.common.v1.microgrid import microgrid_pb2
+from frequenz.api.common.v1alpha8.microgrid import microgrid_pb2
 from frequenz.client.base import conversion
 from frequenz.client.common.microgrid import EnterpriseId, MicrogridId
 

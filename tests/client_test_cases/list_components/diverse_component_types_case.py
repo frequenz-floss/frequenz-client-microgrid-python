@@ -5,14 +5,10 @@
 
 from typing import Any
 
-from frequenz.api.common.v1.microgrid.components import (
-    battery_pb2,
-    components_pb2,
-    ev_charger_pb2,
-    grid_pb2,
-    inverter_pb2,
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2 as ec_pb2,
 )
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 
@@ -59,199 +55,194 @@ from frequenz.client.microgrid.component import (
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ListComponentsRequest(component_ids=[], categories=[]),
+        microgrid_pb2.ListElectricalComponentsRequest(
+            electrical_component_ids=[], electrical_component_categories=[]
+        ),
         timeout=60.0,
     )
 
 
-grpc_response = microgrid_pb2.ListComponentsResponse(
-    components=[
-        components_pb2.Component(
+grpc_response = microgrid_pb2.ListElectricalComponentsResponse(
+    electrical_components=[
+        ec_pb2.ElectricalComponent(
             id=1,
             microgrid_id=1,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_GRID,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                grid=grid_pb2.GridConnectionPoint(rated_fuse_current=10_000)
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                grid_connection_point=ec_pb2.GridConnectionPoint(
+                    rated_fuse_current=10_000
+                )
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=2,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                inverter=inverter_pb2.Inverter(
-                    type=inverter_pb2.InverterType.INVERTER_TYPE_SOLAR
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                inverter=ec_pb2.Inverter(type=ec_pb2.InverterType.INVERTER_TYPE_PV)
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=3,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                battery=battery_pb2.Battery(
-                    type=battery_pb2.BatteryType.BATTERY_TYPE_LI_ION
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                battery=ec_pb2.Battery(type=ec_pb2.BatteryType.BATTERY_TYPE_LI_ION)
             ),
         ),
-        components_pb2.Component(
-            id=4, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_CONVERTER
+        ec_pb2.ElectricalComponent(
+            id=4,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_CONVERTER,
         ),
-        components_pb2.Component(
-            id=5, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_METER
+        ec_pb2.ElectricalComponent(
+            id=5,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_METER,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=6,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                ev_charger=ev_charger_pb2.EvCharger(
-                    type=ev_charger_pb2.EvChargerType.EV_CHARGER_TYPE_AC
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                ev_charger=ec_pb2.EvCharger(
+                    type=ec_pb2.EvChargerType.EV_CHARGER_TYPE_AC
                 )
             ),
         ),
-        components_pb2.Component(
-            id=8, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_HVAC
+        ec_pb2.ElectricalComponent(
+            id=8,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_HVAC,
         ),
         # Additional battery types
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=9,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                battery=battery_pb2.Battery(
-                    type=battery_pb2.BatteryType.BATTERY_TYPE_UNSPECIFIED
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                battery=ec_pb2.Battery(type=ec_pb2.BatteryType.BATTERY_TYPE_UNSPECIFIED)
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=10,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                battery=battery_pb2.Battery(
-                    type=battery_pb2.BatteryType.BATTERY_TYPE_NA_ION
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                battery=ec_pb2.Battery(type=ec_pb2.BatteryType.BATTERY_TYPE_NA_ION)
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=11,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                battery=battery_pb2.Battery(
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                battery=ec_pb2.Battery(
                     type=666,  # type: ignore[arg-type]
                 )
             ),
         ),
         # Additional inverter types
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=12,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                inverter=inverter_pb2.Inverter(
-                    type=inverter_pb2.InverterType.INVERTER_TYPE_UNSPECIFIED
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                inverter=ec_pb2.Inverter(
+                    type=ec_pb2.InverterType.INVERTER_TYPE_UNSPECIFIED
                 )
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=13,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                inverter=inverter_pb2.Inverter(
-                    type=inverter_pb2.InverterType.INVERTER_TYPE_BATTERY
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                inverter=ec_pb2.Inverter(type=ec_pb2.InverterType.INVERTER_TYPE_BATTERY)
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=14,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                inverter=inverter_pb2.Inverter(
-                    type=inverter_pb2.InverterType.INVERTER_TYPE_HYBRID
-                )
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                inverter=ec_pb2.Inverter(type=ec_pb2.InverterType.INVERTER_TYPE_HYBRID)
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=15,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                inverter=inverter_pb2.Inverter(
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                inverter=ec_pb2.Inverter(
                     type=777,  # type: ignore[arg-type]
                 )
             ),
         ),
         # Additional EV charger types
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=16,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                ev_charger=ev_charger_pb2.EvCharger(
-                    type=ev_charger_pb2.EvChargerType.EV_CHARGER_TYPE_UNSPECIFIED
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                ev_charger=ec_pb2.EvCharger(
+                    type=ec_pb2.EvChargerType.EV_CHARGER_TYPE_UNSPECIFIED
                 )
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=17,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                ev_charger=ev_charger_pb2.EvCharger(
-                    type=ev_charger_pb2.EvChargerType.EV_CHARGER_TYPE_DC
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                ev_charger=ec_pb2.EvCharger(
+                    type=ec_pb2.EvChargerType.EV_CHARGER_TYPE_DC
                 )
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=18,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                ev_charger=ev_charger_pb2.EvCharger(
-                    type=ev_charger_pb2.EvChargerType.EV_CHARGER_TYPE_HYBRID
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                ev_charger=ec_pb2.EvCharger(
+                    type=ec_pb2.EvChargerType.EV_CHARGER_TYPE_HYBRID
                 )
             ),
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=19,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
-                ev_charger=ev_charger_pb2.EvCharger(
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
+                ev_charger=ec_pb2.EvCharger(
                     type=888,  # type: ignore[arg-type]
                 )
             ),
         ),
         # Additional component categories
-        components_pb2.Component(
-            id=20, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_CHP
+        ec_pb2.ElectricalComponent(
+            id=20,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_CHP,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=21,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_CRYPTO_MINER,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_CRYPTO_MINER,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=22,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_ELECTROLYZER,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=23,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_PRECHARGER,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_PRECHARGER,
         ),
-        components_pb2.Component(
-            id=24, category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_RELAY
+        ec_pb2.ElectricalComponent(
+            id=24,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BREAKER,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=25,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER,
         ),
         # Problematic components
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=26,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_UNSPECIFIED,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED,
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=27,
             category=999,  # type: ignore[arg-type]
         ),
-        components_pb2.Component(
+        ec_pb2.ElectricalComponent(
             id=28,
-            category=components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY,
-            category_type=components_pb2.ComponentCategoryMetadataVariant(
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
+            category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
                 # Mismatched: battery category with inverter metadata
-                inverter=inverter_pb2.Inverter(
-                    type=inverter_pb2.InverterType.INVERTER_TYPE_SOLAR
-                )
+                inverter=ec_pb2.Inverter(type=ec_pb2.InverterType.INVERTER_TYPE_PV)
             ),
         ),
     ]
@@ -311,7 +302,7 @@ def assert_client_result(result: Any) -> None:
             microgrid_id=MicrogridId(0),
             category=ComponentCategory.BATTERY,
             category_specific_metadata={
-                "type": "INVERTER_TYPE_SOLAR",
+                "type": "INVERTER_TYPE_PV",
             },
         ),
     ]

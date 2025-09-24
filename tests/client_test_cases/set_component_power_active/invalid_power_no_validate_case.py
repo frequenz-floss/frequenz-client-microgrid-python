@@ -26,7 +26,7 @@ def assert_stub_method_call(stub_method: Any) -> None:
     # and then check the arguments manually
     stub_method.assert_called_once()
     request = stub_method.call_args[0][0]
-    assert request.component_id == 1
+    assert request.electrical_component_id == 1
     assert math.isnan(request.power)
     assert request.request_lifetime == 60
     assert stub_method.call_args[1]["timeout"] == 60.0

@@ -6,7 +6,7 @@
 import enum
 from dataclasses import dataclass
 
-from frequenz.api.common.v1.grid import delivery_area_pb2
+from frequenz.api.common.v1alpha8.grid import delivery_area_pb2
 
 
 @enum.unique

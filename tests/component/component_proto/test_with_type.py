@@ -4,10 +4,8 @@
 """Tests for protobuf conversion of components with a type."""
 
 import pytest
-from frequenz.api.common.v1.microgrid.components import (
-    battery_pb2,
-    ev_charger_pb2,
-    inverter_pb2,
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
 )
 
 from frequenz.client.microgrid.component import (
@@ -47,21 +45,21 @@ from .conftest import assert_base_data, base_data_as_proto
         pytest.param(
             LiIonBattery,
             BatteryType.LI_ION,
-            battery_pb2.BATTERY_TYPE_LI_ION,
+            electrical_components_pb2.BATTERY_TYPE_LI_ION,
             [],
             id="LI_ION",
         ),
         pytest.param(
             NaIonBattery,
             BatteryType.NA_ION,
-            battery_pb2.BATTERY_TYPE_NA_ION,
+            electrical_components_pb2.BATTERY_TYPE_NA_ION,
             [],
             id="NA_ION",
         ),
         pytest.param(
             UnspecifiedBattery,
             BatteryType.UNSPECIFIED,
-            battery_pb2.BATTERY_TYPE_UNSPECIFIED,
+            electrical_components_pb2.BATTERY_TYPE_UNSPECIFIED,
             ["battery type is unspecified"],
             id="UNSPECIFIED",
         ),
@@ -86,7 +84,7 @@ def test_battery(
     minor_issues: list[str] = []
     base_data = default_component_base_data._replace(category=ComponentCategory.BATTERY)
     proto = base_data_as_proto(base_data)
-    proto.category_type.battery.type = pb_battery_type  # type: ignore[assignment]
+    proto.category_specific_info.battery.type = pb_battery_type  # type: ignore[assignment]
 
     component = component_from_proto_with_issues(
         proto, major_issues=major_issues, minor_issues=minor_issues
@@ -105,28 +103,28 @@ def test_battery(
         pytest.param(
             AcEvCharger,
             EvChargerType.AC,
-            ev_charger_pb2.EV_CHARGER_TYPE_AC,
+            electrical_components_pb2.EV_CHARGER_TYPE_AC,
             [],
             id="AC",
         ),
         pytest.param(
             DcEvCharger,
             EvChargerType.DC,
-            ev_charger_pb2.EV_CHARGER_TYPE_DC,
+            electrical_components_pb2.EV_CHARGER_TYPE_DC,
             [],
             id="DC",
         ),
         pytest.param(
             HybridEvCharger,
             EvChargerType.HYBRID,
-            ev_charger_pb2.EV_CHARGER_TYPE_HYBRID,
+            electrical_components_pb2.EV_CHARGER_TYPE_HYBRID,
             [],
             id="HYBRID",
         ),
         pytest.param(
             UnspecifiedEvCharger,
             EvChargerType.UNSPECIFIED,
-            ev_charger_pb2.EV_CHARGER_TYPE_UNSPECIFIED,
+            electrical_components_pb2.EV_CHARGER_TYPE_UNSPECIFIED,
             ["ev_charger type is unspecified"],
             id="UNSPECIFIED",
         ),
@@ -153,7 +151,7 @@ def test_ev_charger(
         category=ComponentCategory.EV_CHARGER
     )
     proto = base_data_as_proto(base_data)
-    proto.category_type.ev_charger.type = pb_ev_charger_type  # type: ignore[assignment]
+    proto.category_specific_info.ev_charger.type = pb_ev_charger_type  # type: ignore[assignment]
 
     component = component_from_proto_with_issues(
         proto, major_issues=major_issues, minor_issues=minor_issues
@@ -172,28 +170,28 @@ def test_ev_charger(
         pytest.param(
             BatteryInverter,
             InverterType.BATTERY,
-            inverter_pb2.INVERTER_TYPE_BATTERY,
+            electrical_components_pb2.INVERTER_TYPE_BATTERY,
             [],
             id="BATTERY",
         ),
         pytest.param(
             SolarInverter,
             InverterType.SOLAR,
-            inverter_pb2.INVERTER_TYPE_SOLAR,
+            electrical_components_pb2.INVERTER_TYPE_PV,
             [],
             id="SOLAR",
         ),
         pytest.param(
             HybridInverter,
             InverterType.HYBRID,
-            inverter_pb2.INVERTER_TYPE_HYBRID,
+            electrical_components_pb2.INVERTER_TYPE_HYBRID,
             [],
             id="HYBRID",
         ),
         pytest.param(
             UnspecifiedInverter,
             InverterType.UNSPECIFIED,
-            inverter_pb2.INVERTER_TYPE_UNSPECIFIED,
+            electrical_components_pb2.INVERTER_TYPE_UNSPECIFIED,
             ["inverter type is unspecified"],
             id="UNSPECIFIED",
         ),
@@ -220,7 +218,7 @@ def test_inverter(
         category=ComponentCategory.INVERTER
     )
     proto = base_data_as_proto(base_data)
-    proto.category_type.inverter.type = pb_inverter_type  # type: ignore[assignment]
+    proto.category_specific_info.inverter.type = pb_inverter_type  # type: ignore[assignment]
 
     component = component_from_proto_with_issues(
         proto, major_issues=major_issues, minor_issues=minor_issues

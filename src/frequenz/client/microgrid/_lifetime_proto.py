@@ -3,7 +3,7 @@
 
 """Loading of Lifetime objects from protobuf messages."""
 
-from frequenz.api.common.v1.microgrid import lifetime_pb2
+from frequenz.api.common.v1alpha8.microgrid import lifetime_pb2
 from frequenz.client.base.conversion import to_datetime
 
 from ._lifetime import Lifetime
