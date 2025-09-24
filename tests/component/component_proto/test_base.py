@@ -91,7 +91,9 @@ def test_category_specific_info_mismatch(
         proto, major_issues=major_issues, minor_issues=minor_issues
     )
     # Actual message from _component_base_from_proto_with_issues
-    assert major_issues == ["category_type.metadata does not match the category_type"]
+    assert major_issues == [
+        "category_specific_info.kind (battery) does not match the category (grid_connection_point)"
+    ]
     assert not minor_issues
     assert parsed == base_data
 

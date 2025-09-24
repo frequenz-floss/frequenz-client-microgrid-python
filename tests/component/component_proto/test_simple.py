@@ -92,7 +92,9 @@ def test_category_mismatch(default_component_base_data: ComponentBaseData) -> No
     )
     # The actual message from component_from_proto_with_issues via
     # _component_base_from_proto_with_issues
-    assert major_issues == ["category_type.metadata does not match the category_type"]
+    assert major_issues == [
+        "category_specific_info.kind (battery) does not match the category (grid_connection_point)"
+    ]
     assert not minor_issues
     assert isinstance(component, MismatchedCategoryComponent)
     assert_base_data(base_data, component)

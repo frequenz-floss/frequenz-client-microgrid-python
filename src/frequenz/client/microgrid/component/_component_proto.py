@@ -179,7 +179,10 @@ def component_base_from_proto_with_issues(
         and isinstance(category, ComponentCategory)
         and category.name.lower() != category_specific_info_kind
     ):
-        major_issues.append("category_type.metadata does not match the category_type")
+        major_issues.append(
+            f"category_specific_info.kind ({category_specific_info_kind}) does not "
+            f"match the category ({category.name.lower()})",
+        )
         category_mismatched = True
 
     return ComponentBaseData(
