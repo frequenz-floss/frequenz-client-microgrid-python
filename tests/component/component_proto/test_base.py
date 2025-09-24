@@ -99,7 +99,7 @@ def test_category_specific_info_mismatch(
 
 
 def test_invalid_lifetime(default_component_base_data: ComponentBaseData) -> None:
-    """Test parsing with missing optional metadata."""
+    """Test invalid lifetime (start after end)."""
     major_issues: list[str] = []
     minor_issues: list[str] = []
     base_data = default_component_base_data._replace(
