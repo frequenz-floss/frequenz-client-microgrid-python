@@ -41,6 +41,7 @@ dependencies = [
   "frequenz-channels >= 1.6.1, < 2.0.0",
   "frequenz-client-base >= 0.10.0, < 0.12.0",
   "frequenz-client-common >= 0.3.6, < 0.4.0",
+  "frequenz-core >= 1.3.0, < 2.0.0",
   "grpcio >= 1.72.1, < 2",
   "protobuf >= 6.31.1, < 7",
   "typing-extensions >= 4.13.0, < 5",

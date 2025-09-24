@@ -47,6 +47,6 @@ def test_creation_ok(
     assert voltage_transformer.name == "test_voltage_transformer"
     assert voltage_transformer.manufacturer == "test_manufacturer"
     assert voltage_transformer.model_name == "test_model"
-    assert voltage_transformer.category == ComponentCategory.VOLTAGE_TRANSFORMER
+    assert voltage_transformer.category == ComponentCategory.POWER_TRANSFORMER
     assert voltage_transformer.primary_voltage == pytest.approx(primary)
     assert voltage_transformer.secondary_voltage == pytest.approx(secondary)

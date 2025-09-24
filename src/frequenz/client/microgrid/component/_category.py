@@ -3,14 +3,13 @@
 
 """The component categories that can be used in a microgrid."""
 
-import enum
-
 from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
     electrical_components_pb2,
 )
+from frequenz.core import enum
 
 
-# @enum.unique
+@enum.unique
 class ComponentCategory(enum.Enum):
     """The known categories of components that can be present in a microgrid."""
 
@@ -22,7 +21,10 @@ class ComponentCategory(enum.Enum):
     )
     """The point where the local microgrid is connected to the grid."""
 
-    GRID = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT
+    GRID = enum.deprecated_member(
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT,
+        "GRID is deprecated, use GRID_CONNECTION_POINT instead",
+    )
     """The point where the local microgrid is connected to the grid (deprecated).
 
     Deprecated: Deprecated in v0.18.0
@@ -88,8 +90,9 @@ class ComponentCategory(enum.Enum):
     proportionally reduced, and vice versa.
     """
 
-    VOLTAGE_TRANSFORMER = (
-        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER
+    VOLTAGE_TRANSFORMER = enum.deprecated_member(
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER,
+        "VOLTAGE_TRANSFORMER is deprecated, use POWER_TRANSFORMER instead",
     )
     """A voltage transformer (deprecated).
 

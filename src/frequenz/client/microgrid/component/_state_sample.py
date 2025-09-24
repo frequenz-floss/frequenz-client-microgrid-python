@@ -3,13 +3,13 @@
 
 """Definition of component states."""
 
-import enum
 from dataclasses import dataclass
 from datetime import datetime
 
 from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
     electrical_components_pb2,
 )
+from frequenz.core import enum
 
 
 @enum.unique
@@ -106,7 +106,7 @@ class ComponentStateCode(enum.Enum):
     """The precharger circuit is closed, allowing full current to flow to the main circuit."""
 
 
-# @enum.unique
+@enum.unique
 class ComponentErrorCode(enum.Enum):
     """The various errors that a component can report."""
 
@@ -182,8 +182,9 @@ class ComponentErrorCode(enum.Enum):
     )
     """Plausibility issues within the system involving this component."""
 
-    UNDERVOLTAGE_SHUTDOWN = (
-        electrical_components_pb2.ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE
+    UNDERVOLTAGE_SHUTDOWN = enum.deprecated_member(
+        electrical_components_pb2.ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE,
+        "UNDERVOLTAGE_SHUTDOWN is deprecated, use UNDERVOLTAGE instead",
     )
     """System shutdown due to undervoltage involving this component.
 

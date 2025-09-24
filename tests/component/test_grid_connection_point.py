@@ -41,7 +41,7 @@ def test_creation_ok(
     assert grid_point.name == "test_grid_point"
     assert grid_point.manufacturer == "test_manufacturer"
     assert grid_point.model_name == "test_model"
-    assert grid_point.category == ComponentCategory.GRID
+    assert grid_point.category == ComponentCategory.GRID_CONNECTION_POINT
     assert grid_point.rated_fuse_current == rated_fuse_current
 
 
