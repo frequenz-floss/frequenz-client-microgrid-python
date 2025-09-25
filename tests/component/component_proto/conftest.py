@@ -57,7 +57,7 @@ def default_component_base_data(
         model_name=DEFAULT_MODEL_NAME,
         category=ComponentCategory.UNSPECIFIED,
         lifetime=DEFAULT_LIFETIME,
-        rated_bounds={Metric.AC_ACTIVE_ENERGY: Bounds(lower=0, upper=100)},
+        rated_bounds={Metric.AC_ENERGY_ACTIVE: Bounds(lower=0, upper=100)},
         category_specific_info={},
         category_mismatched=False,
     )

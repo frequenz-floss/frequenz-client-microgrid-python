@@ -163,13 +163,13 @@ def test_metric_sample_creation(
     bounds = [Bounds(lower=-10.0, upper=10.0)]
     sample = MetricSample(
         sampled_at=now,
-        metric=Metric.AC_ACTIVE_POWER,
+        metric=Metric.AC_POWER_ACTIVE,
         value=value,
         bounds=bounds,
         connection=connection,
     )
     assert sample.sampled_at == now
-    assert sample.metric == Metric.AC_ACTIVE_POWER
+    assert sample.metric == Metric.AC_POWER_ACTIVE
     assert sample.value == value
     assert sample.bounds == bounds
     assert sample.connection == connection
@@ -222,7 +222,7 @@ def test_metric_sample_as_single_value(
 
     sample = MetricSample(
         sampled_at=now,
-        metric=Metric.AC_ACTIVE_POWER,
+        metric=Metric.AC_POWER_ACTIVE,
         value=value,
         bounds=bounds,
     )
@@ -239,7 +239,7 @@ def test_metric_sample_multiple_bounds(now: datetime) -> None:
     ]
     sample = MetricSample(
         sampled_at=now,
-        metric=Metric.AC_ACTIVE_POWER,
+        metric=Metric.AC_POWER_ACTIVE,
         value=7.0,
         bounds=bounds,
     )
@@ -304,14 +304,14 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="simple_value",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
                 value=metrics_pb2.MetricValueVariant(
                     simple_metric=metrics_pb2.SimpleMetricValue(value=5.0)
                 ),
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=5.0,
                 bounds=[],
                 connection=None,
@@ -321,7 +321,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="aggregated_value",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
                 value=metrics_pb2.MetricValueVariant(
                     aggregated_metric=metrics_pb2.AggregatedMetricValue(
                         avg_value=5.0, min_value=1.0, max_value=10.0
@@ -330,7 +330,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=AggregatedMetricValue(avg=5.0, min=1.0, max=10.0, raw_values=[]),
                 bounds=[],
                 connection=None,
@@ -340,11 +340,11 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="no_value",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=None,
                 bounds=[],
                 connection=None,
@@ -367,7 +367,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="with_valid_bounds",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
                 value=metrics_pb2.MetricValueVariant(
                     simple_metric=metrics_pb2.SimpleMetricValue(value=5.0)
                 ),
@@ -375,7 +375,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=5.0,
                 bounds=[Bounds(lower=-10.0, upper=10.0)],
                 connection=None,
@@ -385,7 +385,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="with_invalid_bounds",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
                 value=metrics_pb2.MetricValueVariant(
                     simple_metric=metrics_pb2.SimpleMetricValue(value=5.0)
                 ),
@@ -396,14 +396,14 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=5.0,
                 bounds=[Bounds(lower=-10.0, upper=10.0)],  # Invalid bounds are ignored
                 connection=None,
             ),
             expected_major_issues=[
                 (
-                    "bounds for AC_ACTIVE_POWER is invalid (Lower bound (10.0) must be "
+                    "bounds for AC_POWER_ACTIVE is invalid (Lower bound (10.0) must be "
                     "less than or equal to upper bound (-10.0)), ignoring these bounds"
                 )
             ],
@@ -412,7 +412,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             name="with_source",
             proto_message=metrics_pb2.MetricSample(
                 sample_time=TIMESTAMP,
-                metric=Metric.AC_ACTIVE_POWER.value,
+                metric=Metric.AC_POWER_ACTIVE.value,
                 value=metrics_pb2.MetricValueVariant(
                     simple_metric=metrics_pb2.SimpleMetricValue(value=5.0)
                 ),
@@ -420,7 +420,7 @@ def test_aggregated_metric_value_from_proto(case: _AggregatedValueTestCase) -> N
             ),
             expected_sample=MetricSample(
                 sampled_at=DATETIME,
-                metric=Metric.AC_ACTIVE_POWER,
+                metric=Metric.AC_POWER_ACTIVE,
                 value=5.0,
                 bounds=[],
                 connection="dc_battery_0",

@@ -131,6 +131,10 @@ check-yield-types = false
 arg-type-hints-in-docstring = false
 arg-type-hints-in-signature = true
 allow-init-docstring = true
+per-file-ignores = [
+  # Ignore the max-line-length (E501) because enum values are just too long
+  "src/frequenz/client/microgrid/metrics/_metric.py:E501",
+]
 
 [tool.pylint.similarities]
 ignore-comments = ['yes']

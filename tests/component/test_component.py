@@ -53,7 +53,7 @@ def test_creation_with_defaults() -> None:
 def test_creation_full() -> None:
     """Test component creation with all attributes."""
     bounds = Bounds(lower=-100.0, upper=100.0)
-    rated_bounds: dict[Metric | int, Bounds] = {Metric.AC_ACTIVE_POWER: bounds}
+    rated_bounds: dict[Metric | int, Bounds] = {Metric.AC_POWER_ACTIVE: bounds}
     metadata = {"key1": "value1", "key2": 42}
 
     component = _TestComponent(
@@ -140,7 +140,7 @@ COMPONENT = _TestComponent(
     name="test",
     manufacturer="Test Mfg",
     model_name="Model A",
-    rated_bounds={Metric.AC_ACTIVE_POWER: Bounds(lower=-100.0, upper=100.0)},
+    rated_bounds={Metric.AC_POWER_ACTIVE: Bounds(lower=-100.0, upper=100.0)},
     category_specific_metadata={"key": "value"},
 )
 
@@ -151,7 +151,7 @@ DIFFERENT_NONHASHABLE = _TestComponent(
     name=COMPONENT.name,
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
-    rated_bounds={Metric.AC_ACTIVE_POWER: Bounds(lower=-200.0, upper=200.0)},
+    rated_bounds={Metric.AC_POWER_ACTIVE: Bounds(lower=-200.0, upper=200.0)},
     category_specific_metadata={"different": "metadata"},
 )
 

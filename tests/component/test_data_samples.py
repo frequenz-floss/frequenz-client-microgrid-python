@@ -56,7 +56,7 @@ def timestamp() -> datetime:
 def metric_sample(timestamp: datetime) -> MetricSample:
     """Provide a test metric sample."""
     return MetricSample(
-        metric=Metric.AC_ACTIVE_POWER,
+        metric=Metric.AC_POWER_ACTIVE,
         value=100.0,
         bounds=[],
         sampled_at=timestamp,
@@ -174,7 +174,7 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     metrics_pb2.MetricSample(
                         sample_time=TIMESTAMP,
-                        metric=Metric.AC_ACTIVE_POWER.value,
+                        metric=Metric.AC_POWER_ACTIVE.value,
                         value=metrics_pb2.MetricValueVariant(
                             simple_metric=metrics_pb2.SimpleMetricValue(value=100.0)
                         ),
@@ -186,7 +186,7 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_ACTIVE_POWER,
+                        metric=Metric.AC_POWER_ACTIVE,
                         value=100.0,
                         bounds=[],
                     )
@@ -289,14 +289,14 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     metrics_pb2.MetricSample(  # Simple metric
                         sample_time=TIMESTAMP,
-                        metric=Metric.AC_ACTIVE_POWER.value,
+                        metric=Metric.AC_POWER_ACTIVE.value,
                         value=metrics_pb2.MetricValueVariant(
                             simple_metric=metrics_pb2.SimpleMetricValue(value=150.0)
                         ),
                     ),
                     metrics_pb2.MetricSample(  # Aggregated metric
                         sample_time=TIMESTAMP,
-                        metric=Metric.AC_REACTIVE_POWER.value,
+                        metric=Metric.AC_POWER_REACTIVE.value,
                         value=metrics_pb2.MetricValueVariant(
                             aggregated_metric=metrics_pb2.AggregatedMetricValue(
                                 avg_value=75.0,
@@ -339,13 +339,13 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_ACTIVE_POWER,
+                        metric=Metric.AC_POWER_ACTIVE,
                         value=150.0,
                         bounds=[],
                     ),
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_REACTIVE_POWER,
+                        metric=Metric.AC_POWER_REACTIVE,
                         value=AggregatedMetricValue(
                             avg=75.0, min=70.0, max=80.0, raw_values=[70.0, 75.0, 80.0]
                         ),
