@@ -7,11 +7,7 @@
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 
-from frequenz.client.microgrid.component import (
-    ComponentCategory,
-    ComponentStatus,
-    Meter,
-)
+from frequenz.client.microgrid.component import ComponentCategory, Meter
 
 
 def test_init() -> None:
@@ -24,7 +20,6 @@ def test_init() -> None:
         name="meter_test",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
     )
 
     assert component.id == component_id
@@ -32,5 +27,4 @@ def test_init() -> None:
     assert component.name == "meter_test"
     assert component.manufacturer == "test_manufacturer"
     assert component.model_name == "test_model"
-    assert component.status == ComponentStatus.ACTIVE
     assert component.category == ComponentCategory.METER

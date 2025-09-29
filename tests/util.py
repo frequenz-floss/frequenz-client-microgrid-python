@@ -1001,6 +1001,10 @@ class ApiClientTestCaseSpec:
             client_result = client_method(
                 *test_case.client_args, **test_case.client_kwargs
             )
+            if asyncio.iscoroutine(client_result):
+                _logger.debug("The client method is a coroutine, awaiting it...")
+                async with asyncio.timeout(60):
+                    client_result = await client_result
             _logger.debug("Client method result: %r", client_result)
         except Exception as err:  # pylint: disable=broad-exception-caught
             _logger.debug("Client method raised an exception: %r", err)
@@ -1243,7 +1247,15 @@ async def _iter_to_async_iter(it: Iterable[Any]) -> AsyncIterator[Any]:
 class _IterableResponseWrapper(AsyncIterator[Any]):
     """Wrap a response to make it an async iterator.
 
-    Supports
+    Supports the following types of `response`:
+
+    * Async generator function
+    * Generator function
+    * Async generator
+    * Generator
+    * Async iterable
+    * Iterable
+    * Single value (`str`, `bytes` and non-iterables)
     """
 
     def __init__(self, response: Any) -> None:

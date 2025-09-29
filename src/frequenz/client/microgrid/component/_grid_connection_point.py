@@ -34,7 +34,9 @@ class GridConnectionPoint(Component):
     Note that this may also be the PCC in some cases.
     """
 
-    category: Literal[ComponentCategory.GRID] = ComponentCategory.GRID
+    category: Literal[ComponentCategory.GRID_CONNECTION_POINT] = (
+        ComponentCategory.GRID_CONNECTION_POINT
+    )
     """The category of this component."""
 
     rated_fuse_current: int

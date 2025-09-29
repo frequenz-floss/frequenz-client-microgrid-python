@@ -9,7 +9,7 @@ from collections.abc import AsyncIterator
 from pathlib import Path
 
 import pytest
-from frequenz.api.microgrid.v1 import microgrid_pb2_grpc
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2_grpc
 from frequenz.client.base.channel import ChannelOptions, KeepAliveOptions, SslOptions
 from frequenz.client.base.retry import LinearBackoff
 
@@ -95,7 +95,7 @@ async def test_get_microgrid_info(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test get_microgrid_info method."""
-    await spec.test_unary_unary_call(client, "GetMicrogridMetadata")
+    await spec.test_unary_unary_call(client, "GetMicrogrid")
 
 
 @pytest.mark.asyncio
@@ -108,7 +108,7 @@ async def test_list_components(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test list_components method."""
-    await spec.test_unary_unary_call(client, "ListComponents")
+    await spec.test_unary_unary_call(client, "ListElectricalComponents")
 
 
 @pytest.mark.asyncio
@@ -121,7 +121,7 @@ async def test_list_connections(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test list_connections method."""
-    await spec.test_unary_unary_call(client, "ListConnections")
+    await spec.test_unary_unary_call(client, "ListElectricalComponentConnections")
 
 
 @pytest.mark.asyncio
@@ -134,7 +134,7 @@ async def test_set_component_power_active(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test set_component_power_active method."""
-    await spec.test_unary_unary_call(client, "SetComponentPowerActive")
+    await spec.test_unary_stream_call(client, "SetElectricalComponentPower")
 
 
 @pytest.mark.asyncio
@@ -147,7 +147,7 @@ async def test_set_component_power_reactive(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test set_component_power_reactive method."""
-    await spec.test_unary_unary_call(client, "SetComponentPowerReactive")
+    await spec.test_unary_stream_call(client, "SetElectricalComponentPower")
 
 
 @pytest.mark.asyncio
@@ -160,7 +160,7 @@ async def test_add_bounds(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test add_bounds method."""
-    await spec.test_unary_unary_call(client, "AddComponentBounds")
+    await spec.test_unary_unary_call(client, "AugmentElectricalComponentBounds")
 
 
 @pytest.mark.asyncio
@@ -176,4 +176,6 @@ async def test_receive_component_data_samples_stream(
     client: MicrogridApiClient, spec: ApiClientTestCaseSpec
 ) -> None:
     """Test receive_component_data_samples_stream method."""
-    await spec.test_unary_stream_call(client, "ReceiveComponentDataStream")
+    await spec.test_unary_stream_call(
+        client, "ReceiveElectricalComponentTelemetryStream"
+    )

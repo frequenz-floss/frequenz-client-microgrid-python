@@ -5,7 +5,7 @@
 
 from typing import Any
 
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 
 # No client_args or client_kwargs needed for this call
 
@@ -13,12 +13,14 @@ from frequenz.api.microgrid.v1 import microgrid_pb2
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ListComponentsRequest(component_ids=[], categories=[]),
+        microgrid_pb2.ListElectricalComponentsRequest(
+            electrical_component_ids=[], electrical_component_categories=[]
+        ),
         timeout=60.0,
     )
 
 
-grpc_response = microgrid_pb2.ListComponentsResponse(components=[])
+grpc_response = microgrid_pb2.ListElectricalComponentsResponse(electrical_components=[])
 
 
 def assert_client_result(result: Any) -> None:  # noqa: D103

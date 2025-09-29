@@ -5,7 +5,7 @@
 
 import logging
 
-from frequenz.api.common.v1.grid import delivery_area_pb2
+from frequenz.api.common.v1alpha8.grid import delivery_area_pb2
 
 from ._delivery_area import DeliveryArea, EnergyMarketCodeType
 from ._util import enum_from_proto

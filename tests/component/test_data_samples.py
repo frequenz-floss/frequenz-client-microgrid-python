@@ -7,8 +7,10 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 import pytest
-from frequenz.api.common.v1.metrics import bounds_pb2, metric_sample_pb2
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.metrics import bounds_pb2, metrics_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.common.microgrid.components import ComponentId
 from google.protobuf.timestamp_pb2 import Timestamp
 
@@ -31,6 +33,12 @@ from frequenz.client.microgrid.metrics import (
 DATETIME = datetime(2025, 3, 1, 12, 0, 0, tzinfo=timezone.utc)
 TIMESTAMP = Timestamp(seconds=int(DATETIME.timestamp()))
 
+# Some aliases to avoid max line length issues
+HARDWARE_INACCESSIBLE = (
+    electrical_components_pb2.ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE
+)
+OVERCURRENT = electrical_components_pb2.ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT
+
 
 @pytest.fixture
 def component_id() -> ComponentId:
@@ -48,7 +56,7 @@ def timestamp() -> datetime:
 def metric_sample(timestamp: datetime) -> MetricSample:
     """Provide a test metric sample."""
     return MetricSample(
-        metric=Metric.AC_ACTIVE_POWER,
+        metric=Metric.AC_POWER_ACTIVE,
         value=100.0,
         bounds=[],
         sampled_at=timestamp,
@@ -134,7 +142,7 @@ class _ComponentDataSamplesConversionTestCase:
     name: str
     """The description of the test case."""
 
-    message: components_pb2.ComponentData
+    message: electrical_components_pb2.ElectricalComponentTelemetry
     """The input protobuf message."""
 
     expected_samples: ComponentDataSamples
@@ -152,23 +160,23 @@ class _ComponentDataSamplesConversionTestCase:
     [
         _ComponentDataSamplesConversionTestCase(
             name="empty",
-            message=components_pb2.ComponentData(component_id=1),
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=1
+            ),
             expected_samples=ComponentDataSamples(
                 component_id=ComponentId(1), metric_samples=[], states=[]
             ),
         ),
         _ComponentDataSamplesConversionTestCase(
             name="metrics_only_valid",
-            message=components_pb2.ComponentData(
-                component_id=2,
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=2,
                 metric_samples=[
-                    metric_sample_pb2.MetricSample(
-                        sampled_at=TIMESTAMP,
-                        metric=Metric.AC_ACTIVE_POWER.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            simple_metric=metric_sample_pb2.SimpleMetricValue(
-                                value=100.0
-                            )
+                    metrics_pb2.MetricSample(
+                        sample_time=TIMESTAMP,
+                        metric=Metric.AC_POWER_ACTIVE.value,
+                        value=metrics_pb2.MetricValueVariant(
+                            simple_metric=metrics_pb2.SimpleMetricValue(value=100.0)
                         ),
                     )
                 ],
@@ -178,7 +186,7 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_ACTIVE_POWER,
+                        metric=Metric.AC_POWER_ACTIVE,
                         value=100.0,
                         bounds=[],
                     )
@@ -188,12 +196,14 @@ class _ComponentDataSamplesConversionTestCase:
         ),
         _ComponentDataSamplesConversionTestCase(
             name="states_only_valid",
-            message=components_pb2.ComponentData(
-                component_id=3,
-                states=[
-                    components_pb2.ComponentState(
-                        sampled_at=TIMESTAMP,
-                        states=[components_pb2.COMPONENT_STATE_CODE_READY],
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=3,
+                state_snapshots=[
+                    electrical_components_pb2.ElectricalComponentStateSnapshot(
+                        origin_time=TIMESTAMP,
+                        states=[
+                            electrical_components_pb2.ELECTRICAL_COMPONENT_STATE_CODE_READY
+                        ],
                     )
                 ],
             ),
@@ -212,16 +222,14 @@ class _ComponentDataSamplesConversionTestCase:
         ),
         _ComponentDataSamplesConversionTestCase(
             name="metric_with_invalid_bounds",
-            message=components_pb2.ComponentData(
-                component_id=4,
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=4,
                 metric_samples=[
-                    metric_sample_pb2.MetricSample(
-                        sampled_at=TIMESTAMP,
+                    metrics_pb2.MetricSample(
+                        sample_time=TIMESTAMP,
                         metric=Metric.DC_CURRENT.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            simple_metric=metric_sample_pb2.SimpleMetricValue(
-                                value=50.0
-                            )
+                        value=metrics_pb2.MetricValueVariant(
+                            simple_metric=metrics_pb2.SimpleMetricValue(value=50.0)
                         ),
                         bounds=[bounds_pb2.Bounds(lower=10.0, upper=5.0)],  # Invalid
                     )
@@ -246,19 +254,17 @@ class _ComponentDataSamplesConversionTestCase:
         ),
         _ComponentDataSamplesConversionTestCase(
             name="metric_with_valid_bounds_and_source",
-            message=components_pb2.ComponentData(
-                component_id=5,
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=5,
                 metric_samples=[
-                    metric_sample_pb2.MetricSample(
-                        sampled_at=TIMESTAMP,
+                    metrics_pb2.MetricSample(
+                        sample_time=TIMESTAMP,
                         metric=Metric.AC_FREQUENCY.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            simple_metric=metric_sample_pb2.SimpleMetricValue(
-                                value=50.0
-                            )
+                        value=metrics_pb2.MetricValueVariant(
+                            simple_metric=metrics_pb2.SimpleMetricValue(value=50.0)
                         ),
                         bounds=[bounds_pb2.Bounds(lower=49.0, upper=51.0)],
-                        source="sensor_A",
+                        connection=metrics_pb2.MetricConnection(name="sensor_A"),
                     )
                 ],
             ),
@@ -278,23 +284,21 @@ class _ComponentDataSamplesConversionTestCase:
         ),
         _ComponentDataSamplesConversionTestCase(
             name="full_example_with_issues",
-            message=components_pb2.ComponentData(
-                component_id=6,
+            message=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=6,
                 metric_samples=[
-                    metric_sample_pb2.MetricSample(  # Simple metric
-                        sampled_at=TIMESTAMP,
-                        metric=Metric.AC_ACTIVE_POWER.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            simple_metric=metric_sample_pb2.SimpleMetricValue(
-                                value=150.0
-                            )
+                    metrics_pb2.MetricSample(  # Simple metric
+                        sample_time=TIMESTAMP,
+                        metric=Metric.AC_POWER_ACTIVE.value,
+                        value=metrics_pb2.MetricValueVariant(
+                            simple_metric=metrics_pb2.SimpleMetricValue(value=150.0)
                         ),
                     ),
-                    metric_sample_pb2.MetricSample(  # Aggregated metric
-                        sampled_at=TIMESTAMP,
-                        metric=Metric.AC_REACTIVE_POWER.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            aggregated_metric=metric_sample_pb2.AggregatedMetricValue(
+                    metrics_pb2.MetricSample(  # Aggregated metric
+                        sample_time=TIMESTAMP,
+                        metric=Metric.AC_POWER_REACTIVE.value,
+                        value=metrics_pb2.MetricValueVariant(
+                            aggregated_metric=metrics_pb2.AggregatedMetricValue(
                                 avg_value=75.0,
                                 min_value=70.0,
                                 max_value=80.0,
@@ -302,25 +306,31 @@ class _ComponentDataSamplesConversionTestCase:
                             )
                         ),
                     ),
-                    metric_sample_pb2.MetricSample(  # Metric with invalid bounds
-                        sampled_at=TIMESTAMP,
+                    metrics_pb2.MetricSample(  # Metric with invalid bounds
+                        sample_time=TIMESTAMP,
                         metric=Metric.AC_VOLTAGE.value,
-                        value=metric_sample_pb2.MetricValueVariant(
-                            simple_metric=metric_sample_pb2.SimpleMetricValue(
-                                value=230.0
-                            )
+                        value=metrics_pb2.MetricValueVariant(
+                            simple_metric=metrics_pb2.SimpleMetricValue(value=230.0)
                         ),
                         bounds=[bounds_pb2.Bounds(lower=250.0, upper=220.0)],  # Invalid
                     ),
                 ],
-                states=[
-                    components_pb2.ComponentState(
-                        sampled_at=TIMESTAMP,
-                        states=[components_pb2.COMPONENT_STATE_CODE_READY],
-                        warnings=[
-                            components_pb2.COMPONENT_ERROR_CODE_HARDWARE_INACCESSIBLE
+                state_snapshots=[
+                    electrical_components_pb2.ElectricalComponentStateSnapshot(
+                        origin_time=TIMESTAMP,
+                        states=[
+                            electrical_components_pb2.ELECTRICAL_COMPONENT_STATE_CODE_READY
                         ],
-                        errors=[components_pb2.COMPONENT_ERROR_CODE_OVERCURRENT],
+                        warnings=[
+                            electrical_components_pb2.ElectricalComponentDiagnostic(
+                                diagnostic_code=HARDWARE_INACCESSIBLE
+                            )
+                        ],
+                        errors=[
+                            electrical_components_pb2.ElectricalComponentDiagnostic(
+                                diagnostic_code=OVERCURRENT
+                            )
+                        ],
                     )
                 ],
             ),
@@ -329,13 +339,13 @@ class _ComponentDataSamplesConversionTestCase:
                 metric_samples=[
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_ACTIVE_POWER,
+                        metric=Metric.AC_POWER_ACTIVE,
                         value=150.0,
                         bounds=[],
                     ),
                     MetricSample(
                         sampled_at=DATETIME,
-                        metric=Metric.AC_REACTIVE_POWER,
+                        metric=Metric.AC_POWER_REACTIVE,
                         value=AggregatedMetricValue(
                             avg=75.0, min=70.0, max=80.0, raw_values=[70.0, 75.0, 80.0]
                         ),

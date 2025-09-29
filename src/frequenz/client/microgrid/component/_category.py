@@ -3,46 +3,61 @@
 
 """The component categories that can be used in a microgrid."""
 
-import enum
-
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
+from frequenz.core import enum
 
 
 @enum.unique
 class ComponentCategory(enum.Enum):
     """The known categories of components that can be present in a microgrid."""
 
-    UNSPECIFIED = components_pb2.COMPONENT_CATEGORY_UNSPECIFIED
+    UNSPECIFIED = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED
     """The component category is unspecified, probably due to an error in the message."""
 
-    GRID = components_pb2.COMPONENT_CATEGORY_GRID
+    GRID_CONNECTION_POINT = (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT
+    )
     """The point where the local microgrid is connected to the grid."""
 
-    METER = components_pb2.COMPONENT_CATEGORY_METER
+    GRID = enum.deprecated_member(
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT,
+        "GRID is deprecated, use GRID_CONNECTION_POINT instead",
+    )
+    """The point where the local microgrid is connected to the grid (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use
+        [`GRID_CONNECTION_POINT`][frequenz.client.microgrid.component.ComponentCategory.GRID_CONNECTION_POINT]
+        instead.
+    """
+
+    METER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_METER
     """A meter, for measuring electrical metrics, e.g., current, voltage, etc."""
 
-    INVERTER = components_pb2.COMPONENT_CATEGORY_INVERTER
+    INVERTER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_INVERTER
     """An electricity generator, with batteries or solar energy."""
 
-    CONVERTER = components_pb2.COMPONENT_CATEGORY_CONVERTER
+    CONVERTER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_CONVERTER
     """A DC-DC converter."""
 
-    BATTERY = components_pb2.COMPONENT_CATEGORY_BATTERY
+    BATTERY = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY
     """A storage system for electrical energy, used by inverters."""
 
-    EV_CHARGER = components_pb2.COMPONENT_CATEGORY_EV_CHARGER
+    EV_CHARGER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER
     """A station for charging electrical vehicles."""
 
-    CRYPTO_MINER = components_pb2.COMPONENT_CATEGORY_CRYPTO_MINER
+    CRYPTO_MINER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_CRYPTO_MINER
     """A crypto miner."""
 
-    ELECTROLYZER = components_pb2.COMPONENT_CATEGORY_ELECTROLYZER
+    ELECTROLYZER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER
     """An electrolyzer for converting water into hydrogen and oxygen."""
 
-    CHP = components_pb2.COMPONENT_CATEGORY_CHP
+    CHP = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_CHP
     """A heat and power combustion plant (CHP stands for combined heat and power)."""
 
-    RELAY = components_pb2.COMPONENT_CATEGORY_RELAY
+    RELAY = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_BREAKER
     """A relay.
 
     Relays generally have two states: open (connected) and closed (disconnected).
@@ -50,7 +65,7 @@ class ComponentCategory(enum.Enum):
     control whether the component is connected to the grid or not.
     """
 
-    PRECHARGER = components_pb2.COMPONENT_CATEGORY_PRECHARGER
+    PRECHARGER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_PRECHARGER
     """A precharge module.
 
     Precharging involves gradually ramping up the DC voltage to prevent any
@@ -61,20 +76,31 @@ class ComponentCategory(enum.Enum):
     external precharging modules.
     """
 
-    FUSE = components_pb2.COMPONENT_CATEGORY_FUSE
-    """A fuse."""
+    POWER_TRANSFORMER = (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER
+    )
+    """A power transformer.
 
-    VOLTAGE_TRANSFORMER = components_pb2.COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER
-    """A voltage transformer.
+    A power transformer is designed for the bulk transfer of electrical energy. Its main
+    job is to "step-up" or "step-down" voltage levels for efficient transmission and
+    distribution of power.
 
-    Voltage transformers are used to step up or step down the voltage, keeping
-    the power somewhat constant by increasing or decreasing the current.  If voltage is
-    stepped up, current is stepped down, and vice versa.
-
-    Note:
-        Voltage transformers have efficiency losses, so the output power is
-        always less than the input power.
+    Since power transformers try to keep the output power same as the input
+    power (ignoring losses), when they step-up the voltage, the current gets
+    proportionally reduced, and vice versa.
     """
 
-    HVAC = components_pb2.COMPONENT_CATEGORY_HVAC
+    VOLTAGE_TRANSFORMER = enum.deprecated_member(
+        electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER,
+        "VOLTAGE_TRANSFORMER is deprecated, use POWER_TRANSFORMER instead",
+    )
+    """A voltage transformer (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use
+        [`POWER_TRANSFORMER`][frequenz.client.microgrid.component.ComponentCategory.POWER_TRANSFORMER]
+        instead.
+    """
+
+    HVAC = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_HVAC
     """A Heating, Ventilation, and Air Conditioning (HVAC) system."""

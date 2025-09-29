@@ -13,7 +13,6 @@ from frequenz.client.microgrid.component import (
     Battery,
     BatteryType,
     ComponentCategory,
-    ComponentStatus,
     LiIonBattery,
     NaIonBattery,
     UnrecognizedBattery,
@@ -53,7 +52,6 @@ def test_abstract_battery_cannot_be_instantiated(
             name="test_battery",
             manufacturer="test_manufacturer",
             model_name="test_model",
-            status=ComponentStatus.ACTIVE,
             type=BatteryType.LI_ION,
         )
 
@@ -85,7 +83,6 @@ def test_recognized_battery_types(
         name=case.name,
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
     )
 
     assert battery.id == component_id
@@ -93,7 +90,6 @@ def test_recognized_battery_types(
     assert battery.name == case.name
     assert battery.manufacturer == "test_manufacturer"
     assert battery.model_name == "test_model"
-    assert battery.status == ComponentStatus.ACTIVE
     assert battery.category == ComponentCategory.BATTERY
     assert battery.type == case.expected_type
 
@@ -108,7 +104,6 @@ def test_unrecognized_battery_type(
         name="unrecognized_battery",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         type=999,
     )
 
@@ -117,6 +112,5 @@ def test_unrecognized_battery_type(
     assert battery.name == "unrecognized_battery"
     assert battery.manufacturer == "test_manufacturer"
     assert battery.model_name == "test_model"
-    assert battery.status == ComponentStatus.ACTIVE
     assert battery.category == ComponentCategory.BATTERY
     assert battery.type == 999

@@ -7,11 +7,7 @@ import pytest
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 
-from frequenz.client.microgrid.component import (
-    ComponentCategory,
-    ComponentStatus,
-    VoltageTransformer,
-)
+from frequenz.client.microgrid.component import ComponentCategory, VoltageTransformer
 
 
 @pytest.fixture
@@ -42,7 +38,6 @@ def test_creation_ok(
         name="test_voltage_transformer",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         primary_voltage=primary,
         secondary_voltage=secondary,
     )
@@ -52,7 +47,6 @@ def test_creation_ok(
     assert voltage_transformer.name == "test_voltage_transformer"
     assert voltage_transformer.manufacturer == "test_manufacturer"
     assert voltage_transformer.model_name == "test_model"
-    assert voltage_transformer.status == ComponentStatus.ACTIVE
-    assert voltage_transformer.category == ComponentCategory.VOLTAGE_TRANSFORMER
+    assert voltage_transformer.category == ComponentCategory.POWER_TRANSFORMER
     assert voltage_transformer.primary_voltage == pytest.approx(primary)
     assert voltage_transformer.secondary_voltage == pytest.approx(secondary)

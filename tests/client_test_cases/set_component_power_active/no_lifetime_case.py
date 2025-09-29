@@ -21,7 +21,7 @@ def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once()
     request = stub_method.call_args[0][0]
-    assert request.component_id == 1
+    assert request.electrical_component_id == 1
     assert request.power == pytest.approx(1000.0)
     assert stub_method.call_args[1]["timeout"] == 60.0
 

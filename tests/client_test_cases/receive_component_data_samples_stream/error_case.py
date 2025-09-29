@@ -5,12 +5,14 @@
 
 import enum
 from collections.abc import AsyncIterator
-from typing import Any
+from typing import Any, TypeAlias
 
 import pytest
-from frequenz.api.common.v1.metrics import metric_sample_pb2
-from frequenz.api.common.v1.microgrid.components import components_pb2
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.common.v1alpha8.metrics import metrics_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from frequenz.channels import Receiver, ReceiverStoppedError
 from frequenz.client.common.microgrid.components import ComponentId
 from grpc import StatusCode
@@ -18,17 +20,19 @@ from grpc import StatusCode
 from frequenz.client.microgrid.component import ComponentDataSamples
 from tests.util import make_grpc_error
 
-client_args = (ComponentId(1), [metric_sample_pb2.Metric.METRIC_DC_VOLTAGE])
+client_args = (ComponentId(1), [metrics_pb2.Metric.METRIC_DC_VOLTAGE])
+
+_Filter: TypeAlias = (
+    microgrid_pb2.ReceiveElectricalComponentTelemetryStreamRequest.ComponentTelemetryStreamFilter
+)
 
 
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ReceiveComponentDataStreamRequest(
-            component_id=1,
-            filter=microgrid_pb2.ReceiveComponentDataStreamRequest.ComponentDataStreamFilter(
-                metrics=[metric_sample_pb2.Metric.METRIC_DC_VOLTAGE]
-            ),
+        microgrid_pb2.ReceiveElectricalComponentTelemetryStreamRequest(
+            electrical_component_id=1,
+            filter=_Filter(metrics=[metrics_pb2.Metric.METRIC_DC_VOLTAGE]),
         ),
         timeout=60.0,
     )
@@ -43,7 +47,7 @@ class _State(enum.Enum):
     RECEIVING = "receiving"
 
 
-_iterations = 0
+_iterations: int = 0
 _state: _State = _State.INITIAL
 
 
@@ -58,9 +62,9 @@ async def grpc_response() -> AsyncIterator[Any]:
 
     _state = _State.RECEIVING
     for _ in range(3):
-        yield microgrid_pb2.ReceiveComponentDataStreamResponse(
-            data=components_pb2.ComponentData(
-                component_id=1, metric_samples=[], states=[]
+        yield microgrid_pb2.ReceiveElectricalComponentTelemetryStreamResponse(
+            telemetry=electrical_components_pb2.ElectricalComponentTelemetry(
+                electrical_component_id=1, metric_samples=[], state_snapshots=[]
             ),
         )
 

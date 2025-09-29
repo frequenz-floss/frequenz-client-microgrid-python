@@ -4,7 +4,6 @@
 """Base component from which all other components inherit."""
 
 import dataclasses
-import logging
 from collections.abc import Mapping
 from datetime import datetime, timezone
 from typing import Any, Self
@@ -16,9 +15,6 @@ from .._lifetime import Lifetime
 from ..metrics._bounds import Bounds
 from ..metrics._metric import Metric
 from ._category import ComponentCategory
-from ._status import ComponentStatus
-
-_logger = logging.getLogger(__name__)
 
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
@@ -43,17 +39,6 @@ class Component:  # pylint: disable=too-many-instance-attributes
         [`UnrecognizedComponent`][frequenz.client.microgrid.component.UnrecognizedComponent])
         and in case some low level code needs to know the category of a component.
         """
-
-    status: ComponentStatus | int = ComponentStatus.UNSPECIFIED
-    """The status of this component.
-
-    Tip:
-        You can also use
-        [`is_active_now()`][frequenz.client.microgrid.component.Component.is_active_now]
-        or
-        [`is_active_at()`][frequenz.client.microgrid.component.Component.is_active_at],
-        which also checks if the component is operational.
-    """
 
     name: str | None = None
     """The name of this component."""
@@ -100,48 +85,24 @@ class Component:  # pylint: disable=too-many-instance-attributes
             raise TypeError(f"Cannot instantiate {cls.__name__} directly")
         return super().__new__(cls)
 
-    def is_active_at(self, timestamp: datetime) -> bool:
-        """Check whether this component is active at a specific timestamp.
-
-        A component is considered active if it is in the active state and is
-        operational at the given timestamp. The operational lifetime is used to
-        determine whether the component is operational at the given timestamp.
-
-        If a component has an unspecified status, it is assumed to be active
-        and a warning is logged.
+    def is_operational_at(self, timestamp: datetime) -> bool:
+        """Check whether this component is operational at a specific timestamp.
 
         Args:
             timestamp: The timestamp to check.
 
         Returns:
-            Whether this component is active at the given timestamp.
+            Whether this component is operational at the given timestamp.
         """
-        if self.status is ComponentStatus.UNSPECIFIED:
-            _logger.warning(
-                "Component %s has an unspecified status. Assuming it is active.",
-                self,
-            )
-            return self.operational_lifetime.is_operational_at(timestamp)
+        return self.operational_lifetime.is_operational_at(timestamp)
 
-        return (
-            self.status is ComponentStatus.ACTIVE
-            and self.operational_lifetime.is_operational_at(timestamp)
-        )
-
-    def is_active_now(self) -> bool:
-        """Check whether this component is currently active.
-
-        A component is considered active if it is in the active state and is
-        operational at the current time. The operational lifetime is used to
-        determine whether the component is operational at the current time.
-
-        If a component has an unspecified status, it is assumed to be active
-        and a warning is logged.
+    def is_operational_now(self) -> bool:
+        """Check whether this component is currently operational.
 
         Returns:
-            Whether this component is active at the current time.
+            Whether this component is operational at the current time.
         """
-        return self.is_active_at(datetime.now(timezone.utc))
+        return self.is_operational_at(datetime.now(timezone.utc))
 
     @property
     def identity(self) -> tuple[ComponentId, MicrogridId]:

@@ -9,7 +9,7 @@ import logging
 from dataclasses import dataclass
 from functools import cached_property
 
-from frequenz.api.common.v1.microgrid import microgrid_pb2
+from frequenz.api.common.v1alpha8.microgrid import microgrid_pb2
 from frequenz.client.common.microgrid import EnterpriseId, MicrogridId
 
 from ._delivery_area import DeliveryArea

@@ -24,8 +24,8 @@ class VoltageTransformer(Component):
         than the input power.
     """
 
-    category: Literal[ComponentCategory.VOLTAGE_TRANSFORMER] = (
-        ComponentCategory.VOLTAGE_TRANSFORMER
+    category: Literal[ComponentCategory.POWER_TRANSFORMER] = (
+        ComponentCategory.POWER_TRANSFORMER
     )
     """The category of this component."""
 

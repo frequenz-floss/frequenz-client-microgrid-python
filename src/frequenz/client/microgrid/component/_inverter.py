@@ -7,7 +7,9 @@ import dataclasses
 import enum
 from typing import Any, Literal, Self, TypeAlias
 
-from frequenz.api.common.v1.microgrid.components import inverter_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 
 from ._category import ComponentCategory
 from ._component import Component
@@ -17,16 +19,16 @@ from ._component import Component
 class InverterType(enum.Enum):
     """The known types of inverters."""
 
-    UNSPECIFIED = inverter_pb2.INVERTER_TYPE_UNSPECIFIED
+    UNSPECIFIED = electrical_components_pb2.INVERTER_TYPE_UNSPECIFIED
     """The type of the inverter is unspecified."""
 
-    BATTERY = inverter_pb2.INVERTER_TYPE_BATTERY
+    BATTERY = electrical_components_pb2.INVERTER_TYPE_BATTERY
     """The inverter is a battery inverter."""
 
-    SOLAR = inverter_pb2.INVERTER_TYPE_SOLAR
+    SOLAR = electrical_components_pb2.INVERTER_TYPE_PV
     """The inverter is a solar inverter."""
 
-    HYBRID = inverter_pb2.INVERTER_TYPE_HYBRID
+    HYBRID = electrical_components_pb2.INVERTER_TYPE_HYBRID
     """The inverter is a hybrid inverter."""
 
 

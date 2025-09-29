@@ -6,7 +6,7 @@
 from dataclasses import dataclass
 
 import pytest
-from frequenz.api.common.v1 import location_pb2
+from frequenz.api.common.v1alpha8.types import location_pb2
 
 from frequenz.client.microgrid import Location
 from frequenz.client.microgrid._location_proto import location_from_proto

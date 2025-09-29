@@ -4,12 +4,13 @@
 """Tests for protobuf conversion of the base/common part of Component objects."""
 
 
-import pytest
-from frequenz.api.common.v1.microgrid.components import battery_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from frequenz.client.microgrid import Lifetime
-from frequenz.client.microgrid.component import ComponentCategory, ComponentStatus
+from frequenz.client.microgrid.component import ComponentCategory
 from frequenz.client.microgrid.component._component_proto import (
     ComponentBaseData,
     component_base_from_proto_with_issues,
@@ -35,11 +36,10 @@ def test_complete(default_component_base_data: ComponentBaseData) -> None:
     assert parsed == base_data
 
 
-@pytest.mark.parametrize("status", [ComponentStatus.UNSPECIFIED, 999])
-def test_missing_metadata(
-    default_component_base_data: ComponentBaseData, status: ComponentStatus | int
+def test_missing_category_specific_info(
+    default_component_base_data: ComponentBaseData,
 ) -> None:
-    """Test parsing with missing optional metadata."""
+    """Test parsing with missing optional category specific info."""
     major_issues: list[str] = []
     minor_issues: list[str] = []
     base_data = default_component_base_data._replace(
@@ -47,10 +47,9 @@ def test_missing_metadata(
         manufacturer=None,
         model_name=None,
         category=ComponentCategory.UNSPECIFIED,
-        status=status,
         lifetime=Lifetime(),
         rated_bounds={},
-        category_specific_metadata={},
+        category_specific_info={},
     )
     proto = base_data_as_proto(base_data)
     proto.ClearField("operational_lifetime")
@@ -60,12 +59,7 @@ def test_missing_metadata(
         proto, major_issues=major_issues, minor_issues=minor_issues
     )
 
-    expected_major_issues = ["category is unspecified"]
-    if status == ComponentStatus.UNSPECIFIED:
-        expected_major_issues.append("status is unspecified")
-    else:
-        expected_major_issues.append("status is unrecognized")
-    assert sorted(major_issues) == sorted(expected_major_issues)
+    assert sorted(major_issues) == sorted(["category is unspecified"])
     assert sorted(minor_issues) == sorted(
         [
             "name is empty",
@@ -77,31 +71,35 @@ def test_missing_metadata(
     assert parsed == base_data
 
 
-def test_category_metadata_mismatch(
+def test_category_specific_info_mismatch(
     default_component_base_data: ComponentBaseData,
 ) -> None:
-    """Test category and metadata mismatch."""
+    """Test category and category specific info mismatch."""
     major_issues: list[str] = []
     minor_issues: list[str] = []
     base_data = default_component_base_data._replace(
-        category=ComponentCategory.GRID,
-        category_specific_metadata={"type": "BATTERY_TYPE_LI_ION"},
+        category=ComponentCategory.GRID_CONNECTION_POINT,
+        category_specific_info={"type": "BATTERY_TYPE_LI_ION"},
         category_mismatched=True,
     )
     proto = base_data_as_proto(base_data)
-    proto.category_type.battery.type = battery_pb2.BATTERY_TYPE_LI_ION
+    proto.category_specific_info.battery.type = (
+        electrical_components_pb2.BATTERY_TYPE_LI_ION
+    )
 
     parsed = component_base_from_proto_with_issues(
         proto, major_issues=major_issues, minor_issues=minor_issues
     )
     # Actual message from _component_base_from_proto_with_issues
-    assert major_issues == ["category_type.metadata does not match the category_type"]
+    assert major_issues == [
+        "category_specific_info.kind (battery) does not match the category (grid_connection_point)"
+    ]
     assert not minor_issues
     assert parsed == base_data
 
 
 def test_invalid_lifetime(default_component_base_data: ComponentBaseData) -> None:
-    """Test parsing with missing optional metadata."""
+    """Test invalid lifetime (start after end)."""
     major_issues: list[str] = []
     minor_issues: list[str] = []
     base_data = default_component_base_data._replace(

@@ -9,7 +9,7 @@ from enum import Enum, auto
 from typing import Any
 
 import pytest
-from frequenz.api.common.v1.microgrid import lifetime_pb2
+from frequenz.api.common.v1alpha8.microgrid import lifetime_pb2
 from google.protobuf import timestamp_pb2
 
 from frequenz.client.microgrid import Lifetime

@@ -5,7 +5,9 @@
 
 from functools import partial
 
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.base import conversion
 
 from .._util import enum_from_proto
@@ -16,7 +18,7 @@ _error_from_proto = partial(enum_from_proto, enum_type=ComponentErrorCode)
 
 
 def component_state_sample_from_proto(
-    message: components_pb2.ComponentState,
+    message: electrical_components_pb2.ElectricalComponentStateSnapshot,
 ) -> ComponentStateSample:
     """Convert a protobuf message to a `ComponentStateSample` object.
 
@@ -27,8 +29,14 @@ def component_state_sample_from_proto(
         The resulting `ComponentStateSample` object.
     """
     return ComponentStateSample(
-        sampled_at=conversion.to_datetime(message.sampled_at),
+        sampled_at=conversion.to_datetime(message.origin_time),
         states=frozenset(map(_state_from_proto, message.states)),
-        warnings=frozenset(map(_error_from_proto, message.warnings)),
-        errors=frozenset(map(_error_from_proto, message.errors)),
+        # pylint: disable-next=fixme
+        # TODO: Wrap the full diagnostic object.
+        warnings=frozenset(
+            map(_error_from_proto, (w.diagnostic_code for w in message.warnings))
+        ),
+        errors=frozenset(
+            map(_error_from_proto, (e.diagnostic_code for e in message.errors))
+        ),
     )

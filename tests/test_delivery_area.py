@@ -6,7 +6,7 @@
 from dataclasses import dataclass
 
 import pytest
-from frequenz.api.common.v1.grid import delivery_area_pb2
+from frequenz.api.common.v1alpha8.grid import delivery_area_pb2
 
 from frequenz.client.microgrid import DeliveryArea, EnergyMarketCodeType
 from frequenz.client.microgrid._delivery_area_proto import delivery_area_from_proto

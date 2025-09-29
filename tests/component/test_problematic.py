@@ -9,7 +9,6 @@ from frequenz.client.common.microgrid.components import ComponentId
 
 from frequenz.client.microgrid.component import (
     ComponentCategory,
-    ComponentStatus,
     MismatchedCategoryComponent,
     ProblematicComponent,
     UnrecognizedComponent,
@@ -42,7 +41,6 @@ def test_abstract_problematic_component_cannot_be_instantiated(
             name="test_problematic",
             manufacturer="test_manufacturer",
             model_name="test_model",
-            status=ComponentStatus.ACTIVE,
             category=ComponentCategory.UNSPECIFIED,
         )
 
@@ -57,7 +55,6 @@ def test_unspecified_component(
         name="unspecified_component",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
     )
 
     assert component.id == component_id
@@ -65,7 +62,6 @@ def test_unspecified_component(
     assert component.name == "unspecified_component"
     assert component.manufacturer == "test_manufacturer"
     assert component.model_name == "test_model"
-    assert component.status == ComponentStatus.ACTIVE
     assert component.category == ComponentCategory.UNSPECIFIED
 
 
@@ -80,7 +76,6 @@ def test_mismatched_category_component_with_known_category(
         name="mismatched_battery",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         category=expected_category,
     )
 
@@ -89,7 +84,6 @@ def test_mismatched_category_component_with_known_category(
     assert component.name == "mismatched_battery"
     assert component.manufacturer == "test_manufacturer"
     assert component.model_name == "test_model"
-    assert component.status == ComponentStatus.ACTIVE
     assert component.category == expected_category
 
 
@@ -104,7 +98,6 @@ def test_mismatched_category_component_with_unrecognized_category(
         name="mismatched_unrecognized",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         category=expected_category,
     )
 
@@ -113,7 +106,6 @@ def test_mismatched_category_component_with_unrecognized_category(
     assert component.name == "mismatched_unrecognized"
     assert component.manufacturer == "test_manufacturer"
     assert component.model_name == "test_model"
-    assert component.status == ComponentStatus.ACTIVE
     assert component.category == expected_category
 
 
@@ -127,7 +119,6 @@ def test_unrecognized_component_type(
         name="unrecognized_component",
         manufacturer="test_manufacturer",
         model_name="test_model",
-        status=ComponentStatus.ACTIVE,
         category=999,
     )
 
@@ -136,5 +127,4 @@ def test_unrecognized_component_type(
     assert component.name == "unrecognized_component"
     assert component.manufacturer == "test_manufacturer"
     assert component.model_name == "test_model"
-    assert component.status == ComponentStatus.ACTIVE
     assert component.category == 999

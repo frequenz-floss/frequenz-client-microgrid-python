@@ -4,12 +4,14 @@
 """Test data for successful component data stream."""
 
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, TypeAlias
 
 import pytest
-from frequenz.api.common.v1.metrics import metric_sample_pb2
-from frequenz.api.common.v1.microgrid.components import components_pb2
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.common.v1alpha8.metrics import metrics_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from frequenz.channels import Receiver, ReceiverStoppedError
 from frequenz.client.base.conversion import to_timestamp
 from frequenz.client.common.microgrid.components import ComponentId
@@ -21,21 +23,25 @@ from frequenz.client.microgrid.metrics._sample import AggregatedMetricValue
 client_args = (
     ComponentId(1),
     [
-        metric_sample_pb2.Metric.METRIC_DC_VOLTAGE,
-        metric_sample_pb2.Metric.METRIC_DC_CURRENT,
+        metrics_pb2.Metric.METRIC_DC_VOLTAGE,
+        metrics_pb2.Metric.METRIC_DC_CURRENT,
     ],
+)
+
+_Filter: TypeAlias = (
+    microgrid_pb2.ReceiveElectricalComponentTelemetryStreamRequest.ComponentTelemetryStreamFilter
 )
 
 
 def assert_stub_method_call(stub_method: Any) -> None:
     """Assert that the gRPC request matches the expected request."""
     stub_method.assert_called_once_with(
-        microgrid_pb2.ReceiveComponentDataStreamRequest(
-            component_id=1,
-            filter=microgrid_pb2.ReceiveComponentDataStreamRequest.ComponentDataStreamFilter(
+        microgrid_pb2.ReceiveElectricalComponentTelemetryStreamRequest(
+            electrical_component_id=1,
+            filter=_Filter(
                 metrics=[
-                    metric_sample_pb2.Metric.METRIC_DC_VOLTAGE,
-                    metric_sample_pb2.Metric.METRIC_DC_CURRENT,
+                    metrics_pb2.Metric.METRIC_DC_VOLTAGE,
+                    metrics_pb2.Metric.METRIC_DC_CURRENT,
                 ]
             ),
         ),
@@ -46,22 +52,22 @@ def assert_stub_method_call(stub_method: Any) -> None:
 timestamp = datetime(2023, 10, 1, 12, 0, 0, tzinfo=timezone.utc)
 timestamp_proto = to_timestamp(timestamp)
 grpc_response = [
-    microgrid_pb2.ReceiveComponentDataStreamResponse(
-        data=components_pb2.ComponentData(
-            component_id=1,
+    microgrid_pb2.ReceiveElectricalComponentTelemetryStreamResponse(
+        telemetry=electrical_components_pb2.ElectricalComponentTelemetry(
+            electrical_component_id=1,
             metric_samples=[
-                metric_sample_pb2.MetricSample(
-                    metric=metric_sample_pb2.Metric.METRIC_DC_VOLTAGE,
-                    sampled_at=timestamp_proto,
-                    value=metric_sample_pb2.MetricValueVariant(
-                        simple_metric=metric_sample_pb2.SimpleMetricValue(value=230.5),
+                metrics_pb2.MetricSample(
+                    metric=metrics_pb2.Metric.METRIC_DC_VOLTAGE,
+                    sample_time=timestamp_proto,
+                    value=metrics_pb2.MetricValueVariant(
+                        simple_metric=metrics_pb2.SimpleMetricValue(value=230.5),
                     ),
                 ),
-                metric_sample_pb2.MetricSample(
-                    metric=metric_sample_pb2.Metric.METRIC_DC_CURRENT,
-                    sampled_at=timestamp_proto,
-                    value=metric_sample_pb2.MetricValueVariant(
-                        aggregated_metric=metric_sample_pb2.AggregatedMetricValue(
+                metrics_pb2.MetricSample(
+                    metric=metrics_pb2.Metric.METRIC_DC_CURRENT,
+                    sample_time=timestamp_proto,
+                    value=metrics_pb2.MetricValueVariant(
+                        aggregated_metric=metrics_pb2.AggregatedMetricValue(
                             min_value=10.0,
                             max_value=10.5,
                             avg_value=10.2,
@@ -70,25 +76,25 @@ grpc_response = [
                     ),
                 ),
             ],
-            states=[],
+            state_snapshots=[],
         ),
     ),
-    microgrid_pb2.ReceiveComponentDataStreamResponse(
-        data=components_pb2.ComponentData(
-            component_id=1,
+    microgrid_pb2.ReceiveElectricalComponentTelemetryStreamResponse(
+        telemetry=electrical_components_pb2.ElectricalComponentTelemetry(
+            electrical_component_id=1,
             metric_samples=[
-                metric_sample_pb2.MetricSample(
-                    metric=metric_sample_pb2.Metric.METRIC_DC_VOLTAGE,
-                    sampled_at=timestamp_proto,
-                    value=metric_sample_pb2.MetricValueVariant(
-                        simple_metric=metric_sample_pb2.SimpleMetricValue(value=231.5),
+                metrics_pb2.MetricSample(
+                    metric=metrics_pb2.Metric.METRIC_DC_VOLTAGE,
+                    sample_time=timestamp_proto,
+                    value=metrics_pb2.MetricValueVariant(
+                        simple_metric=metrics_pb2.SimpleMetricValue(value=231.5),
                     ),
                 ),
-                metric_sample_pb2.MetricSample(
-                    metric=metric_sample_pb2.Metric.METRIC_DC_CURRENT,
-                    sampled_at=timestamp_proto,
-                    value=metric_sample_pb2.MetricValueVariant(
-                        aggregated_metric=metric_sample_pb2.AggregatedMetricValue(
+                metrics_pb2.MetricSample(
+                    metric=metrics_pb2.Metric.METRIC_DC_CURRENT,
+                    sample_time=timestamp_proto,
+                    value=metrics_pb2.MetricValueVariant(
+                        aggregated_metric=metrics_pb2.AggregatedMetricValue(
                             min_value=12.0,
                             max_value=12.5,
                             avg_value=12.2,
@@ -97,7 +103,7 @@ grpc_response = [
                     ),
                 ),
             ],
-            states=[],
+            state_snapshots=[],
         ),
     ),
 ]

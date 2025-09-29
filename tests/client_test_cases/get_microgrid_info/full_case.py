@@ -8,10 +8,10 @@ from typing import Any
 from unittest.mock import AsyncMock
 
 import pytest
-from frequenz.api.common.v1 import location_pb2
-from frequenz.api.common.v1.grid import delivery_area_pb2
-from frequenz.api.common.v1.microgrid import microgrid_pb2 as microgrid_common_pb2
-from frequenz.api.microgrid.v1 import microgrid_pb2
+from frequenz.api.common.v1alpha8.grid import delivery_area_pb2
+from frequenz.api.common.v1alpha8.microgrid import microgrid_pb2 as microgrid_common_pb2
+from frequenz.api.common.v1alpha8.types import location_pb2
+from frequenz.api.microgrid.v1alpha18 import microgrid_pb2
 from frequenz.client.base.conversion import to_timestamp
 from frequenz.client.common.microgrid import EnterpriseId, MicrogridId
 from google.protobuf.empty_pb2 import Empty
@@ -33,7 +33,7 @@ def assert_stub_method_call(stub_method: AsyncMock) -> None:
 
 
 create_timestamp = datetime(2023, 1, 1, tzinfo=timezone.utc)
-grpc_response = microgrid_pb2.GetMicrogridMetadataResponse(
+grpc_response = microgrid_pb2.GetMicrogridResponse(
     microgrid=microgrid_common_pb2.Microgrid(
         id=1234,
         enterprise_id=5678,

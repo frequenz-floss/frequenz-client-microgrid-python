@@ -14,7 +14,6 @@ from frequenz.client.common.microgrid.components import ComponentId
 from frequenz.client.microgrid import Lifetime
 from frequenz.client.microgrid.component._category import ComponentCategory
 from frequenz.client.microgrid.component._component import Component
-from frequenz.client.microgrid.component._status import ComponentStatus
 from frequenz.client.microgrid.metrics._bounds import Bounds
 from frequenz.client.microgrid.metrics._metric import Metric
 
@@ -43,7 +42,6 @@ def test_creation_with_defaults() -> None:
         category=ComponentCategory.UNSPECIFIED,
     )
 
-    assert component.status == ComponentStatus.UNSPECIFIED
     assert component.name is None
     assert component.manufacturer is None
     assert component.model_name is None
@@ -55,7 +53,7 @@ def test_creation_with_defaults() -> None:
 def test_creation_full() -> None:
     """Test component creation with all attributes."""
     bounds = Bounds(lower=-100.0, upper=100.0)
-    rated_bounds: dict[Metric | int, Bounds] = {Metric.AC_ACTIVE_POWER: bounds}
+    rated_bounds: dict[Metric | int, Bounds] = {Metric.AC_POWER_ACTIVE: bounds}
     metadata = {"key1": "value1", "key2": 42}
 
     component = _TestComponent(
@@ -95,42 +93,29 @@ def test_str(name: str | None, expected_str: str) -> None:
     assert str(component) == expected_str
 
 
-@pytest.mark.parametrize("status", list(ComponentStatus), ids=lambda s: s.name)
 @pytest.mark.parametrize(
-    "lifetime_active", [True, False], ids=["operational", "not-operational"]
+    "is_operational", [True, False], ids=["operational", "not-operational"]
 )
-def test_active_at(
-    status: ComponentStatus, lifetime_active: bool, caplog: pytest.LogCaptureFixture
-) -> None:
-    """Test active_at behavior with different status and lifetime combinations."""
-    caplog.set_level("WARNING")
-
+def test_operational_at(is_operational: bool) -> None:
+    """Test active_at behavior with lifetime combinations."""
     mock_lifetime = Mock(spec=Lifetime)
-    mock_lifetime.is_operational_at.return_value = lifetime_active
+    mock_lifetime.is_operational_at.return_value = is_operational
 
     component = _TestComponent(
         id=ComponentId(1),
         microgrid_id=MicrogridId(1),
         category=ComponentCategory.UNSPECIFIED,
-        status=status,
         operational_lifetime=mock_lifetime,
     )
 
     test_time = datetime.now(timezone.utc)
-    expected = status != ComponentStatus.INACTIVE and lifetime_active
-    assert component.is_active_at(test_time) == expected
+    assert component.is_operational_at(test_time) == is_operational
 
-    if status in (ComponentStatus.ACTIVE, ComponentStatus.UNSPECIFIED):
-        mock_lifetime.is_operational_at.assert_called_once_with(test_time)
-    else:
-        mock_lifetime.is_operational_at.assert_not_called()
-
-    if status is ComponentStatus.UNSPECIFIED:
-        assert "unspecified status" in caplog.text.lower()
+    mock_lifetime.is_operational_at.assert_called_once_with(test_time)
 
 
 @patch("frequenz.client.microgrid.component._component.datetime")
-def test_is_active_now(mock_datetime: Mock) -> None:
+def test_is_operational_now(mock_datetime: Mock) -> None:
     """Test is_active_now method."""
     now = datetime(2025, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
     mock_datetime.now.side_effect = lambda tz: now.replace(tzinfo=tz)
@@ -140,11 +125,10 @@ def test_is_active_now(mock_datetime: Mock) -> None:
         id=ComponentId(1),
         microgrid_id=MicrogridId(1),
         category=ComponentCategory.UNSPECIFIED,
-        status=ComponentStatus.ACTIVE,
         operational_lifetime=mock_lifetime,
     )
 
-    assert component.is_active_now() is True
+    assert component.is_operational_now() is True
 
     mock_lifetime.is_operational_at.assert_called_once_with(now)
 
@@ -153,11 +137,10 @@ COMPONENT = _TestComponent(
     id=ComponentId(1),
     microgrid_id=MicrogridId(1),
     category=ComponentCategory.UNSPECIFIED,
-    status=ComponentStatus.ACTIVE,
     name="test",
     manufacturer="Test Mfg",
     model_name="Model A",
-    rated_bounds={Metric.AC_ACTIVE_POWER: Bounds(lower=-100.0, upper=100.0)},
+    rated_bounds={Metric.AC_POWER_ACTIVE: Bounds(lower=-100.0, upper=100.0)},
     category_specific_metadata={"key": "value"},
 )
 
@@ -165,31 +148,17 @@ DIFFERENT_NONHASHABLE = _TestComponent(
     id=COMPONENT.id,
     microgrid_id=COMPONENT.microgrid_id,
     category=COMPONENT.category,
-    status=COMPONENT.status,
     name=COMPONENT.name,
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
-    rated_bounds={Metric.AC_ACTIVE_POWER: Bounds(lower=-200.0, upper=200.0)},
+    rated_bounds={Metric.AC_POWER_ACTIVE: Bounds(lower=-200.0, upper=200.0)},
     category_specific_metadata={"different": "metadata"},
-)
-
-DIFFERENT_STATUS = _TestComponent(
-    id=COMPONENT.id,
-    microgrid_id=COMPONENT.microgrid_id,
-    category=COMPONENT.category,
-    status=ComponentStatus.INACTIVE,
-    name=COMPONENT.name,
-    manufacturer=COMPONENT.manufacturer,
-    model_name=COMPONENT.model_name,
-    rated_bounds=COMPONENT.rated_bounds,
-    category_specific_metadata=COMPONENT.category_specific_metadata,
 )
 
 DIFFERENT_NAME = _TestComponent(
     id=COMPONENT.id,
     microgrid_id=COMPONENT.microgrid_id,
     category=COMPONENT.category,
-    status=COMPONENT.status,
     name="different",
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
@@ -201,7 +170,6 @@ DIFFERENT_ID = _TestComponent(
     id=ComponentId(2),
     microgrid_id=COMPONENT.microgrid_id,
     category=COMPONENT.category,
-    status=COMPONENT.status,
     name=COMPONENT.name,
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
@@ -213,7 +181,6 @@ DIFFERENT_MICROGRID_ID = _TestComponent(
     id=COMPONENT.id,
     microgrid_id=MicrogridId(2),
     category=COMPONENT.category,
-    status=COMPONENT.status,
     name=COMPONENT.name,
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
@@ -225,7 +192,6 @@ DIFFERENT_BOTH_ID = _TestComponent(
     id=ComponentId(2),
     microgrid_id=MicrogridId(2),
     category=COMPONENT.category,
-    status=COMPONENT.status,
     name=COMPONENT.name,
     manufacturer=COMPONENT.manufacturer,
     model_name=COMPONENT.model_name,
@@ -239,7 +205,6 @@ DIFFERENT_BOTH_ID = _TestComponent(
     [
         pytest.param(COMPONENT, True, id="self"),
         pytest.param(DIFFERENT_NONHASHABLE, False, id="other-nonhashable"),
-        pytest.param(DIFFERENT_STATUS, False, id="other-status"),
         pytest.param(DIFFERENT_NAME, False, id="other-name"),
         pytest.param(DIFFERENT_ID, False, id="other-id"),
         pytest.param(DIFFERENT_MICROGRID_ID, False, id="other-microgrid-id"),
@@ -260,7 +225,6 @@ def test_equality(comp: Component, expected: bool) -> None:
     [
         pytest.param(COMPONENT, True, id="self"),
         pytest.param(DIFFERENT_NONHASHABLE, True, id="other-nonhashable"),
-        pytest.param(DIFFERENT_STATUS, True, id="other-status"),
         pytest.param(DIFFERENT_NAME, True, id="other-name"),
         pytest.param(DIFFERENT_ID, False, id="other-id"),
         pytest.param(DIFFERENT_MICROGRID_ID, False, id="other-microgrid-id"),
@@ -276,7 +240,6 @@ def test_identity(comp: Component, expected: bool) -> None:
 ALL_COMPONENTS_PARAMS = [
     pytest.param(COMPONENT, id="comp"),
     pytest.param(DIFFERENT_NONHASHABLE, id="nonhashable"),
-    pytest.param(DIFFERENT_STATUS, id="status"),
     pytest.param(DIFFERENT_NAME, id="name"),
     pytest.param(DIFFERENT_ID, id="id"),
     pytest.param(DIFFERENT_MICROGRID_ID, id="microgrid_id"),

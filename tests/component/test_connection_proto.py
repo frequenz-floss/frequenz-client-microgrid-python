@@ -9,8 +9,10 @@ from typing import Any
 from unittest.mock import Mock, patch
 
 import pytest
-from frequenz.api.common.v1.microgrid import lifetime_pb2
-from frequenz.api.common.v1.microgrid.components import components_pb2
+from frequenz.api.common.v1alpha8.microgrid import lifetime_pb2
+from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
+    electrical_components_pb2,
+)
 from frequenz.client.common.microgrid.components import ComponentId
 from google.protobuf import timestamp_pb2
 
@@ -26,8 +28,8 @@ from frequenz.client.microgrid.component._connection_proto import (
     [
         pytest.param(
             {
-                "source_component_id": 1,
-                "destination_component_id": 2,
+                "source_electrical_component_id": 1,
+                "destination_electrical_component_id": 2,
                 "has_lifetime": True,
             },
             [],
@@ -35,8 +37,8 @@ from frequenz.client.microgrid.component._connection_proto import (
         ),
         pytest.param(
             {
-                "source_component_id": 1,
-                "destination_component_id": 2,
+                "source_electrical_component_id": 1,
+                "destination_electrical_component_id": 2,
                 "has_lifetime": False,
             },
             ["missing operational lifetime, considering it always operational"],
@@ -46,9 +48,11 @@ from frequenz.client.microgrid.component._connection_proto import (
 )
 def test_success(proto_data: dict[str, Any], expected_minor_issues: list[str]) -> None:
     """Test successful conversion from protobuf message to ComponentConnection."""
-    proto = components_pb2.ComponentConnection(
-        source_component_id=proto_data["source_component_id"],
-        destination_component_id=proto_data["destination_component_id"],
+    proto = electrical_components_pb2.ElectricalComponentConnection(
+        source_electrical_component_id=proto_data["source_electrical_component_id"],
+        destination_electrical_component_id=proto_data[
+            "destination_electrical_component_id"
+        ],
     )
 
     if proto_data["has_lifetime"]:
@@ -70,14 +74,18 @@ def test_success(proto_data: dict[str, Any], expected_minor_issues: list[str]) -
     assert connection is not None
     assert not major_issues
     assert minor_issues == expected_minor_issues
-    assert connection.source == ComponentId(proto_data["source_component_id"])
-    assert connection.destination == ComponentId(proto_data["destination_component_id"])
+    assert connection.source == ComponentId(
+        proto_data["source_electrical_component_id"]
+    )
+    assert connection.destination == ComponentId(
+        proto_data["destination_electrical_component_id"]
+    )
 
 
 def test_error_same_ids() -> None:
     """Test proto conversion with same source and destination returns None."""
-    proto = components_pb2.ComponentConnection(
-        source_component_id=1, destination_component_id=1
+    proto = electrical_components_pb2.ElectricalComponentConnection(
+        source_electrical_component_id=1, destination_electrical_component_id=1
     )
 
     major_issues: list[str] = []
@@ -103,8 +111,8 @@ def test_invalid_lifetime(mock_lifetime_from_proto: Mock) -> None:
     """Test proto conversion with invalid lifetime data."""
     mock_lifetime_from_proto.side_effect = ValueError("Invalid lifetime")
 
-    proto = components_pb2.ComponentConnection(
-        source_component_id=1, destination_component_id=2
+    proto = electrical_components_pb2.ElectricalComponentConnection(
+        source_electrical_component_id=1, destination_electrical_component_id=2
     )
     now = datetime.now(timezone.utc)
     start_time = timestamp_pb2.Timestamp()
@@ -143,7 +151,7 @@ def test_issues_logging(
 
     # mypy needs the explicit return
     def _fake_from_proto_with_issues(  # pylint: disable=useless-return
-        _: components_pb2.ComponentConnection,
+        _: electrical_components_pb2.ElectricalComponentConnection,
         *,
         major_issues: list[str],
         minor_issues: list[str],
@@ -155,7 +163,9 @@ def test_issues_logging(
 
     mock_from_proto_with_issues.side_effect = _fake_from_proto_with_issues
 
-    mock_proto = Mock(name="proto", spec=components_pb2.ComponentConnection)
+    mock_proto = Mock(
+        name="proto", spec=electrical_components_pb2.ElectricalComponentConnection
+    )
     connection = component_connection_from_proto(mock_proto)
 
     assert connection is None

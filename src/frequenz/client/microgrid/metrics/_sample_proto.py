@@ -5,7 +5,7 @@
 
 from collections.abc import Sequence
 
-from frequenz.api.common.v1.metrics import bounds_pb2, metric_sample_pb2
+from frequenz.api.common.v1alpha8.metrics import bounds_pb2, metrics_pb2
 from frequenz.client.base import conversion
 
 from .._util import enum_from_proto
@@ -16,7 +16,7 @@ from ._sample import AggregatedMetricValue, MetricSample
 
 
 def aggregated_metric_sample_from_proto(
-    message: metric_sample_pb2.AggregatedMetricValue,
+    message: metrics_pb2.AggregatedMetricValue,
 ) -> AggregatedMetricValue:
     """Convert a protobuf message to a `AggregatedMetricValue` object.
 
@@ -35,7 +35,7 @@ def aggregated_metric_sample_from_proto(
 
 
 def metric_sample_from_proto_with_issues(
-    message: metric_sample_pb2.MetricSample,
+    message: metrics_pb2.MetricSample,
     *,
     major_issues: list[str],
     minor_issues: list[str],
@@ -63,7 +63,7 @@ def metric_sample_from_proto_with_issues(
     metric = enum_from_proto(message.metric, Metric)
 
     return MetricSample(
-        sampled_at=conversion.to_datetime(message.sampled_at),
+        sampled_at=conversion.to_datetime(message.sample_time),
         metric=metric,
         value=value,
         bounds=_metric_bounds_from_proto(
@@ -72,7 +72,9 @@ def metric_sample_from_proto_with_issues(
             major_issues=major_issues,
             minor_issues=minor_issues,
         ),
-        connection=message.source or None,
+        # pylint: disable-next=fixme
+        # TODO: Wrap the full connection object
+        connection=(message.connection.name or None) if message.connection else None,
     )
 
 
