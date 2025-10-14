@@ -384,15 +384,48 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy consumed in phase 1."""
 
+    AC_ACTIVE_ENERGY_CONSUMED_PHASE_1 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_1,
+        "AC_ACTIVE_ENERGY_CONSUMED_PHASE_1 is deprecated, use AC_ENERGY_ACTIVE_CONSUMED_PHASE_1 instead",
+    )
+    """The alternating current active energy consumed in phase 1 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_1]
+        instead.
+    """
+
     AC_ENERGY_ACTIVE_CONSUMED_PHASE_2 = (
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_2
     )
     """The alternating current active energy consumed in phase 2."""
 
+    AC_ACTIVE_ENERGY_CONSUMED_PHASE_2 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_2,
+        "AC_ACTIVE_ENERGY_CONSUMED_PHASE_2 is deprecated, use AC_ENERGY_ACTIVE_CONSUMED_PHASE_2 instead",
+    )
+    """The alternating current active energy consumed in phase 2 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_2]
+        instead.
+    """
+
     AC_ENERGY_ACTIVE_CONSUMED_PHASE_3 = (
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_3
     )
     """The alternating current active energy consumed in phase 3."""
+
+    AC_ACTIVE_ENERGY_CONSUMED_PHASE_3 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_3,
+        "AC_ACTIVE_ENERGY_CONSUMED_PHASE_3 is deprecated, use AC_ENERGY_ACTIVE_CONSUMED_PHASE_3 instead",
+    )
+    """The alternating current active energy consumed in phase 3 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_3]
+        instead.
+    """
 
     AC_ENERGY_ACTIVE_DELIVERED = metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED
     """The alternating current active energy delivered."""
@@ -413,15 +446,48 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy delivered in phase 1."""
 
+    AC_ACTIVE_ENERGY_DELIVERED_PHASE_1 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_1,
+        "AC_ACTIVE_ENERGY_DELIVERED_PHASE_1 is deprecated, use AC_ENERGY_ACTIVE_DELIVERED_PHASE_1 instead",
+    )
+    """The alternating current active energy delivered in phase 1 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_1]
+        instead.
+    """
+
     AC_ENERGY_ACTIVE_DELIVERED_PHASE_2 = (
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_2
     )
     """The alternating current active energy delivered in phase 2."""
 
+    AC_ACTIVE_ENERGY_DELIVERED_PHASE_2 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_2,
+        "AC_ACTIVE_ENERGY_DELIVERED_PHASE_2 is deprecated, use AC_ENERGY_ACTIVE_DELIVERED_PHASE_2 instead",
+    )
+    """The alternating current active energy delivered in phase 2 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_2]
+        instead.
+    """
+
     AC_ENERGY_ACTIVE_DELIVERED_PHASE_3 = (
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_3
     )
     """The alternating current active energy delivered in phase 3."""
+
+    AC_ACTIVE_ENERGY_DELIVERED_PHASE_3 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_3,
+        "AC_ACTIVE_ENERGY_DELIVERED_PHASE_3 is deprecated, use AC_ENERGY_ACTIVE_DELIVERED_PHASE_3 instead",
+    )
+    """The alternating current active energy delivered in phase 3 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_3]
+        instead.
+    """
 
     AC_ENERGY_REACTIVE = metrics_pb2.METRIC_AC_ENERGY_REACTIVE
     """The alternating current reactive energy."""
@@ -440,8 +506,41 @@ class Metric(enum.Enum):
     AC_ENERGY_REACTIVE_PHASE_1 = metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_1
     """The alternating current reactive energy in phase 1."""
 
+    AC_REACTIVE_ENERGY_PHASE_1 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_1,
+        "AC_REACTIVE_ENERGY_PHASE_1 is deprecated, use AC_ENERGY_REACTIVE_PHASE_1 instead",
+    )
+    """The alternating current reactive energy in phase 1 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_REACTIVE_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_1]
+        instead.
+    """
+
     AC_ENERGY_REACTIVE_PHASE_2 = metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_2
     """The alternating current reactive energy in phase 2."""
 
+    AC_REACTIVE_ENERGY_PHASE_2 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_2,
+        "AC_REACTIVE_ENERGY_PHASE_2 is deprecated, use AC_ENERGY_REACTIVE_PHASE_2 instead",
+    )
+    """The alternating current reactive energy in phase 2 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_REACTIVE_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_2]
+        instead.
+    """
+
     AC_ENERGY_REACTIVE_PHASE_3 = metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_3
     """The alternating current reactive energy in phase 3."""
+
+    AC_REACTIVE_ENERGY_PHASE_3 = enum.deprecated_member(
+        metrics_pb2.METRIC_AC_ENERGY_REACTIVE_PHASE_3,
+        "AC_REACTIVE_ENERGY_PHASE_3 is deprecated, use AC_ENERGY_REACTIVE_PHASE_3 instead",
+    )
+    """The alternating current reactive energy in phase 3 (deprecated).
+
+    Deprecated: Deprecated in v0.18.0
+        Use [`AC_ENERGY_REACTIVE_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_3]
+        instead.
+    """
