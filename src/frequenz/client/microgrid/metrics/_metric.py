@@ -78,7 +78,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_POWER = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_APPARENT,
-        "AC_APPARENT_POWER is deprecated, user AC_POWER_APPARENT instead",
+        "AC_APPARENT_POWER is deprecated, use AC_POWER_APPARENT instead",
     )
     """The alternating current apparent power (deprecated).
 
@@ -92,7 +92,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_POWER_PHASE_1 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_APPARENT_PHASE_1,
-        "AC_APPARENT_POWER_PHASE_1 is deprecated, user AC_POWER_APPARENT_PHASE_1 instead",
+        "AC_APPARENT_POWER_PHASE_1 is deprecated, use AC_POWER_APPARENT_PHASE_1 instead",
     )
     """The alternating current apparent power in phase 1 (deprecated).
 
@@ -106,7 +106,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_POWER_PHASE_2 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_APPARENT_PHASE_2,
-        "AC_APPARENT_POWER_PHASE_2 is deprecated, user AC_POWER_APPARENT_PHASE_2 instead",
+        "AC_APPARENT_POWER_PHASE_2 is deprecated, use AC_POWER_APPARENT_PHASE_2 instead",
     )
     """The alternating current apparent power in phase 2 (deprecated).
 
@@ -120,7 +120,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_POWER_PHASE_3 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_APPARENT_PHASE_3,
-        "AC_APPARENT_POWER_PHASE_3 is deprecated, user AC_POWER_APPARENT_PHASE_3 instead",
+        "AC_APPARENT_POWER_PHASE_3 is deprecated, use AC_POWER_APPARENT_PHASE_3 instead",
     )
     """The alternating current apparent power in phase 3 (deprecated).
 
@@ -134,7 +134,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_POWER = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_ACTIVE,
-        "AC_ACTIVE_POWER is deprecated, user AC_POWER_ACTIVE instead",
+        "AC_ACTIVE_POWER is deprecated, use AC_POWER_ACTIVE instead",
     )
     """The alternating current active power (deprecated).
 
@@ -148,7 +148,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_POWER_PHASE_1 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_ACTIVE_PHASE_1,
-        "AC_ACTIVE_POWER_PHASE_1 is deprecated, user AC_POWER_ACTIVE_PHASE_1 instead",
+        "AC_ACTIVE_POWER_PHASE_1 is deprecated, use AC_POWER_ACTIVE_PHASE_1 instead",
     )
     """The alternating current active power in phase 1 (deprecated).
 
@@ -162,7 +162,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_POWER_PHASE_2 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_ACTIVE_PHASE_2,
-        "AC_ACTIVE_POWER_PHASE_2 is deprecated, user AC_POWER_ACTIVE_PHASE_2 instead",
+        "AC_ACTIVE_POWER_PHASE_2 is deprecated, use AC_POWER_ACTIVE_PHASE_2 instead",
     )
     """The alternating current active power in phase 2 (deprecated).
 
@@ -176,7 +176,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_POWER_PHASE_3 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_ACTIVE_PHASE_3,
-        "AC_ACTIVE_POWER_PHASE_3 is deprecated, user AC_POWER_ACTIVE_PHASE_3 instead",
+        "AC_ACTIVE_POWER_PHASE_3 is deprecated, use AC_POWER_ACTIVE_PHASE_3 instead",
     )
     """The alternating current active power in phase 3 (deprecated).
 
@@ -190,7 +190,7 @@ class Metric(enum.Enum):
 
     AC_REACTIVE_POWER = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_REACTIVE,
-        "AC_REACTIVE_POWER is deprecated, user AC_POWER_REACTIVE instead",
+        "AC_REACTIVE_POWER is deprecated, use AC_POWER_REACTIVE instead",
     )
     """The alternating current reactive power (deprecated).
 
@@ -204,7 +204,7 @@ class Metric(enum.Enum):
 
     AC_REACTIVE_POWER_PHASE_1 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_REACTIVE_PHASE_1,
-        "AC_REACTIVE_POWER_PHASE_1 is deprecated, user AC_POWER_REACTIVE_PHASE_1 instead",
+        "AC_REACTIVE_POWER_PHASE_1 is deprecated, use AC_POWER_REACTIVE_PHASE_1 instead",
     )
     """The alternating current reactive power in phase 1 (deprecated).
 
@@ -218,7 +218,7 @@ class Metric(enum.Enum):
 
     AC_REACTIVE_POWER_PHASE_2 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_REACTIVE_PHASE_2,
-        "AC_REACTIVE_POWER_PHASE_2 is deprecated, user AC_POWER_REACTIVE_PHASE_2 instead",
+        "AC_REACTIVE_POWER_PHASE_2 is deprecated, use AC_POWER_REACTIVE_PHASE_2 instead",
     )
     """The alternating current reactive power in phase 2 (deprecated).
 
@@ -232,7 +232,7 @@ class Metric(enum.Enum):
 
     AC_REACTIVE_POWER_PHASE_3 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_POWER_REACTIVE_PHASE_3,
-        "AC_REACTIVE_POWER_PHASE_3 is deprecated, user AC_POWER_REACTIVE_PHASE_3 instead",
+        "AC_REACTIVE_POWER_PHASE_3 is deprecated, use AC_POWER_REACTIVE_PHASE_3 instead",
     )
     """The alternating current reactive power in phase 3 (deprecated).
 
@@ -258,7 +258,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_ENERGY = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_APPARENT,
-        "AC_APPARENT_ENERGY is deprecated, user AC_ENERGY_APPARENT instead",
+        "AC_APPARENT_ENERGY is deprecated, use AC_ENERGY_APPARENT instead",
     )
     """The alternating current apparent energy (deprecated).
 
@@ -272,7 +272,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_ENERGY_PHASE_1 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_APPARENT_PHASE_1,
-        "AC_APPARENT_ENERGY_PHASE_1 is deprecated, user AC_ENERGY_APPARENT_PHASE_1 instead",
+        "AC_APPARENT_ENERGY_PHASE_1 is deprecated, use AC_ENERGY_APPARENT_PHASE_1 instead",
     )
     """The alternating current apparent energy in phase 1 (deprecated).
 
@@ -286,7 +286,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_ENERGY_PHASE_2 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_APPARENT_PHASE_2,
-        "AC_APPARENT_ENERGY_PHASE_2 is deprecated, user AC_ENERGY_APPARENT_PHASE_2 instead",
+        "AC_APPARENT_ENERGY_PHASE_2 is deprecated, use AC_ENERGY_APPARENT_PHASE_2 instead",
     )
     """The alternating current apparent energy in phase 2 (deprecated).
 
@@ -300,7 +300,7 @@ class Metric(enum.Enum):
 
     AC_APPARENT_ENERGY_PHASE_3 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_APPARENT_PHASE_3,
-        "AC_APPARENT_ENERGY_PHASE_3 is deprecated, user AC_ENERGY_APPARENT_PHASE_3 instead",
+        "AC_APPARENT_ENERGY_PHASE_3 is deprecated, use AC_ENERGY_APPARENT_PHASE_3 instead",
     )
     """The alternating current apparent energy in phase 3 (deprecated).
 
@@ -314,7 +314,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE,
-        "AC_ACTIVE_ENERGY is deprecated, user AC_ENERGY_ACTIVE instead",
+        "AC_ACTIVE_ENERGY is deprecated, use AC_ENERGY_ACTIVE instead",
     )
     """The alternating current active energy (deprecated).
 
@@ -328,7 +328,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY_PHASE_1 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_PHASE_1,
-        "AC_ACTIVE_ENERGY_PHASE_1 is deprecated, user AC_ENERGY_ACTIVE_PHASE_1 instead",
+        "AC_ACTIVE_ENERGY_PHASE_1 is deprecated, use AC_ENERGY_ACTIVE_PHASE_1 instead",
     )
     """The alternating current active energy in phase 1 (deprecated).
 
@@ -342,7 +342,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY_PHASE_2 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_PHASE_2,
-        "AC_ACTIVE_ENERGY_PHASE_2 is deprecated, user AC_ENERGY_ACTIVE_PHASE_2 instead",
+        "AC_ACTIVE_ENERGY_PHASE_2 is deprecated, use AC_ENERGY_ACTIVE_PHASE_2 instead",
     )
     """The alternating current active energy in phase 2 (deprecated).
 
@@ -356,7 +356,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY_PHASE_3 = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_PHASE_3,
-        "AC_ACTIVE_ENERGY_PHASE_3 is deprecated, user AC_ENERGY_ACTIVE_PHASE_3 instead",
+        "AC_ACTIVE_ENERGY_PHASE_3 is deprecated, use AC_ENERGY_ACTIVE_PHASE_3 instead",
     )
     """The alternating current active energy in phase 3 (deprecated).
 
@@ -370,7 +370,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY_CONSUMED = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_CONSUMED,
-        "AC_ACTIVE_ENERGY_CONSUMED is deprecated, user AC_ENERGY_ACTIVE_CONSUMED instead",
+        "AC_ACTIVE_ENERGY_CONSUMED is deprecated, use AC_ENERGY_ACTIVE_CONSUMED instead",
     )
     """The alternating current active energy consumed (deprecated).
 
@@ -399,7 +399,7 @@ class Metric(enum.Enum):
 
     AC_ACTIVE_ENERGY_DELIVERED = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_ACTIVE_DELIVERED,
-        "AC_ACTIVE_ENERGY_DELIVERED is deprecated, user AC_ENERGY_ACTIVE_DELIVERED instead",
+        "AC_ACTIVE_ENERGY_DELIVERED is deprecated, use AC_ENERGY_ACTIVE_DELIVERED instead",
     )
     """The alternating current active energy delivered (deprecated).
 
@@ -428,7 +428,7 @@ class Metric(enum.Enum):
 
     AC_REACTIVE_ENERGY = enum.deprecated_member(
         metrics_pb2.METRIC_AC_ENERGY_REACTIVE,
-        "AC_REACTIVE_ENERGY is deprecated, user AC_ENERGY_REACTIVE instead",
+        "AC_REACTIVE_ENERGY is deprecated, use AC_ENERGY_REACTIVE instead",
     )
     """The alternating current reactive energy (deprecated).
 
