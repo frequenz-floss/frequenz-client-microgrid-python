@@ -624,7 +624,6 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                                 metrics=metrics_set
                             ),
                         ),
-                        timeout=DEFAULT_GRPC_CALL_TIMEOUT,
                     )
                 ),
                 lambda msg: component_data_samples_from_proto(msg.telemetry),

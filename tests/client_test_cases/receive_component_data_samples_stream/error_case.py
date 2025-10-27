@@ -33,8 +33,7 @@ def assert_stub_method_call(stub_method: Any) -> None:
         microgrid_pb2.ReceiveElectricalComponentTelemetryStreamRequest(
             electrical_component_id=1,
             filter=_Filter(metrics=[metrics_pb2.Metric.METRIC_DC_VOLTAGE]),
-        ),
-        timeout=60.0,
+        )
     )
 
 
