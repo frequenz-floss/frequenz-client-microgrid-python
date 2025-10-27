@@ -10294,8 +10294,7 @@ asset has been permanently removed from the system.</p>
 <span class="normal"><a href="#__codelineno-0-630">630</a></span>
 <span class="normal"><a href="#__codelineno-0-631">631</a></span>
 <span class="normal"><a href="#__codelineno-0-632">632</a></span>
-<span class="normal"><a href="#__codelineno-0-633">633</a></span>
-<span class="normal"><a href="#__codelineno-0-634">634</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="k">class</span><span class="w"> </span><span class="nc">MicrogridApiClient</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">BaseApiClient</span><span class="p">[</span><span class="n">microgrid_pb2_grpc</span><span class="o">.</span><span class="n">MicrogridStub</span><span class="p">]):</span>
+<span class="normal"><a href="#__codelineno-0-633">633</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="k">class</span><span class="w"> </span><span class="nc">MicrogridApiClient</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">BaseApiClient</span><span class="p">[</span><span class="n">microgrid_pb2_grpc</span><span class="o">.</span><span class="n">MicrogridStub</span><span class="p">]):</span>
 </span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A microgrid API client.&quot;&quot;&quot;</span>
 </span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a>
 </span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -10864,14 +10863,13 @@ asset has been permanently removed from the system.</p>
 </span><span id="__span-0-624"><a id="__codelineno-0-624" name="__codelineno-0-624"></a>                                <span class="n">metrics</span><span class="o">=</span><span class="n">metrics_set</span>
 </span><span id="__span-0-625"><a id="__codelineno-0-625" name="__codelineno-0-625"></a>                            <span class="p">),</span>
 </span><span id="__span-0-626"><a id="__codelineno-0-626" name="__codelineno-0-626"></a>                        <span class="p">),</span>
-</span><span id="__span-0-627"><a id="__codelineno-0-627" name="__codelineno-0-627"></a>                        <span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_GRPC_CALL_TIMEOUT</span><span class="p">,</span>
-</span><span id="__span-0-628"><a id="__codelineno-0-628" name="__codelineno-0-628"></a>                    <span class="p">)</span>
-</span><span id="__span-0-629"><a id="__codelineno-0-629" name="__codelineno-0-629"></a>                <span class="p">),</span>
-</span><span id="__span-0-630"><a id="__codelineno-0-630" name="__codelineno-0-630"></a>                <span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="n">component_data_samples_from_proto</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">telemetry</span><span class="p">),</span>
-</span><span id="__span-0-631"><a id="__codelineno-0-631" name="__codelineno-0-631"></a>                <span class="n">retry_strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retry_strategy</span><span class="p">,</span>
-</span><span id="__span-0-632"><a id="__codelineno-0-632" name="__codelineno-0-632"></a>            <span class="p">)</span>
-</span><span id="__span-0-633"><a id="__codelineno-0-633" name="__codelineno-0-633"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_component_data_broadcasters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">broadcaster</span>
-</span><span id="__span-0-634"><a id="__codelineno-0-634" name="__codelineno-0-634"></a>        <span class="k">return</span> <span class="n">broadcaster</span><span class="o">.</span><span class="n">new_receiver</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="n">buffer_size</span><span class="p">)</span>
+</span><span id="__span-0-627"><a id="__codelineno-0-627" name="__codelineno-0-627"></a>                    <span class="p">)</span>
+</span><span id="__span-0-628"><a id="__codelineno-0-628" name="__codelineno-0-628"></a>                <span class="p">),</span>
+</span><span id="__span-0-629"><a id="__codelineno-0-629" name="__codelineno-0-629"></a>                <span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="n">component_data_samples_from_proto</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">telemetry</span><span class="p">),</span>
+</span><span id="__span-0-630"><a id="__codelineno-0-630" name="__codelineno-0-630"></a>                <span class="n">retry_strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retry_strategy</span><span class="p">,</span>
+</span><span id="__span-0-631"><a id="__codelineno-0-631" name="__codelineno-0-631"></a>            <span class="p">)</span>
+</span><span id="__span-0-632"><a id="__codelineno-0-632" name="__codelineno-0-632"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_component_data_broadcasters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">broadcaster</span>
+</span><span id="__span-0-633"><a id="__codelineno-0-633" name="__codelineno-0-633"></a>        <span class="k">return</span> <span class="n">broadcaster</span><span class="o">.</span><span class="n">new_receiver</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="n">buffer_size</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
 
@@ -13004,8 +13002,7 @@ dropped.</p>
 <span class="normal"><a href="#__codelineno-0-630">630</a></span>
 <span class="normal"><a href="#__codelineno-0-631">631</a></span>
 <span class="normal"><a href="#__codelineno-0-632">632</a></span>
-<span class="normal"><a href="#__codelineno-0-633">633</a></span>
-<span class="normal"><a href="#__codelineno-0-634">634</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-573"><a id="__codelineno-0-573" name="__codelineno-0-573"></a><span class="k">def</span><span class="w"> </span><span class="nf">receive_component_data_samples_stream</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-633">633</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-573"><a id="__codelineno-0-573" name="__codelineno-0-573"></a><span class="k">def</span><span class="w"> </span><span class="nf">receive_component_data_samples_stream</span><span class="p">(</span>
 </span><span id="__span-0-574"><a id="__codelineno-0-574" name="__codelineno-0-574"></a>    <span class="bp">self</span><span class="p">,</span>
 </span><span id="__span-0-575"><a id="__codelineno-0-575" name="__codelineno-0-575"></a>    <span class="n">component</span><span class="p">:</span> <span class="n">ComponentId</span> <span class="o">|</span> <span class="n">Component</span><span class="p">,</span>
 </span><span id="__span-0-576"><a id="__codelineno-0-576" name="__codelineno-0-576"></a>    <span class="n">metrics</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Metric</span> <span class="o">|</span> <span class="nb">int</span><span class="p">],</span>
@@ -13059,14 +13056,13 @@ dropped.</p>
 </span><span id="__span-0-624"><a id="__codelineno-0-624" name="__codelineno-0-624"></a>                            <span class="n">metrics</span><span class="o">=</span><span class="n">metrics_set</span>
 </span><span id="__span-0-625"><a id="__codelineno-0-625" name="__codelineno-0-625"></a>                        <span class="p">),</span>
 </span><span id="__span-0-626"><a id="__codelineno-0-626" name="__codelineno-0-626"></a>                    <span class="p">),</span>
-</span><span id="__span-0-627"><a id="__codelineno-0-627" name="__codelineno-0-627"></a>                    <span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_GRPC_CALL_TIMEOUT</span><span class="p">,</span>
-</span><span id="__span-0-628"><a id="__codelineno-0-628" name="__codelineno-0-628"></a>                <span class="p">)</span>
-</span><span id="__span-0-629"><a id="__codelineno-0-629" name="__codelineno-0-629"></a>            <span class="p">),</span>
-</span><span id="__span-0-630"><a id="__codelineno-0-630" name="__codelineno-0-630"></a>            <span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="n">component_data_samples_from_proto</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">telemetry</span><span class="p">),</span>
-</span><span id="__span-0-631"><a id="__codelineno-0-631" name="__codelineno-0-631"></a>            <span class="n">retry_strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retry_strategy</span><span class="p">,</span>
-</span><span id="__span-0-632"><a id="__codelineno-0-632" name="__codelineno-0-632"></a>        <span class="p">)</span>
-</span><span id="__span-0-633"><a id="__codelineno-0-633" name="__codelineno-0-633"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_component_data_broadcasters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">broadcaster</span>
-</span><span id="__span-0-634"><a id="__codelineno-0-634" name="__codelineno-0-634"></a>    <span class="k">return</span> <span class="n">broadcaster</span><span class="o">.</span><span class="n">new_receiver</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="n">buffer_size</span><span class="p">)</span>
+</span><span id="__span-0-627"><a id="__codelineno-0-627" name="__codelineno-0-627"></a>                <span class="p">)</span>
+</span><span id="__span-0-628"><a id="__codelineno-0-628" name="__codelineno-0-628"></a>            <span class="p">),</span>
+</span><span id="__span-0-629"><a id="__codelineno-0-629" name="__codelineno-0-629"></a>            <span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="n">component_data_samples_from_proto</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">telemetry</span><span class="p">),</span>
+</span><span id="__span-0-630"><a id="__codelineno-0-630" name="__codelineno-0-630"></a>            <span class="n">retry_strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_retry_strategy</span><span class="p">,</span>
+</span><span id="__span-0-631"><a id="__codelineno-0-631" name="__codelineno-0-631"></a>        <span class="p">)</span>
+</span><span id="__span-0-632"><a id="__codelineno-0-632" name="__codelineno-0-632"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_component_data_broadcasters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">broadcaster</span>
+</span><span id="__span-0-633"><a id="__codelineno-0-633" name="__codelineno-0-633"></a>    <span class="k">return</span> <span class="n">broadcaster</span><span class="o">.</span><span class="n">new_receiver</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="n">buffer_size</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -21273,7 +21269,8 @@ is not recognized, or an appropriate subclass if it is.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/client/microgrid/_client.py</code></summary>
-                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-640">640</a></span>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-639">639</a></span>
+<span class="normal"><a href="#__codelineno-0-640">640</a></span>
 <span class="normal"><a href="#__codelineno-0-641">641</a></span>
 <span class="normal"><a href="#__codelineno-0-642">642</a></span>
 <span class="normal"><a href="#__codelineno-0-643">643</a></span>
@@ -21285,21 +21282,20 @@ is not recognized, or an appropriate subclass if it is.</p>
 <span class="normal"><a href="#__codelineno-0-649">649</a></span>
 <span class="normal"><a href="#__codelineno-0-650">650</a></span>
 <span class="normal"><a href="#__codelineno-0-651">651</a></span>
-<span class="normal"><a href="#__codelineno-0-652">652</a></span>
-<span class="normal"><a href="#__codelineno-0-653">653</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-640"><a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="k">class</span><span class="w"> </span><span class="nc">Validity</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
-</span><span id="__span-0-641"><a id="__codelineno-0-641" name="__codelineno-0-641"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The duration for which a given list of bounds will stay in effect.&quot;&quot;&quot;</span>
-</span><span id="__span-0-642"><a id="__codelineno-0-642" name="__codelineno-0-642"></a>
-</span><span id="__span-0-643"><a id="__codelineno-0-643" name="__codelineno-0-643"></a>    <span class="n">FIVE_SECONDS</span> <span class="o">=</span> <span class="mi">5</span>
-</span><span id="__span-0-644"><a id="__codelineno-0-644" name="__codelineno-0-644"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 5 seconds.&quot;&quot;&quot;</span>
-</span><span id="__span-0-645"><a id="__codelineno-0-645" name="__codelineno-0-645"></a>
-</span><span id="__span-0-646"><a id="__codelineno-0-646" name="__codelineno-0-646"></a>    <span class="n">ONE_MINUTE</span> <span class="o">=</span> <span class="mi">60</span>
-</span><span id="__span-0-647"><a id="__codelineno-0-647" name="__codelineno-0-647"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 1 minute.&quot;&quot;&quot;</span>
-</span><span id="__span-0-648"><a id="__codelineno-0-648" name="__codelineno-0-648"></a>
-</span><span id="__span-0-649"><a id="__codelineno-0-649" name="__codelineno-0-649"></a>    <span class="n">FIVE_MINUTES</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">5</span>
-</span><span id="__span-0-650"><a id="__codelineno-0-650" name="__codelineno-0-650"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 5 minutes.&quot;&quot;&quot;</span>
-</span><span id="__span-0-651"><a id="__codelineno-0-651" name="__codelineno-0-651"></a>
-</span><span id="__span-0-652"><a id="__codelineno-0-652" name="__codelineno-0-652"></a>    <span class="n">FIFTEEN_MINUTES</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">15</span>
-</span><span id="__span-0-653"><a id="__codelineno-0-653" name="__codelineno-0-653"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 15 minutes.&quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-652">652</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-639"><a id="__codelineno-0-639" name="__codelineno-0-639"></a><span class="k">class</span><span class="w"> </span><span class="nc">Validity</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+</span><span id="__span-0-640"><a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The duration for which a given list of bounds will stay in effect.&quot;&quot;&quot;</span>
+</span><span id="__span-0-641"><a id="__codelineno-0-641" name="__codelineno-0-641"></a>
+</span><span id="__span-0-642"><a id="__codelineno-0-642" name="__codelineno-0-642"></a>    <span class="n">FIVE_SECONDS</span> <span class="o">=</span> <span class="mi">5</span>
+</span><span id="__span-0-643"><a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 5 seconds.&quot;&quot;&quot;</span>
+</span><span id="__span-0-644"><a id="__codelineno-0-644" name="__codelineno-0-644"></a>
+</span><span id="__span-0-645"><a id="__codelineno-0-645" name="__codelineno-0-645"></a>    <span class="n">ONE_MINUTE</span> <span class="o">=</span> <span class="mi">60</span>
+</span><span id="__span-0-646"><a id="__codelineno-0-646" name="__codelineno-0-646"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 1 minute.&quot;&quot;&quot;</span>
+</span><span id="__span-0-647"><a id="__codelineno-0-647" name="__codelineno-0-647"></a>
+</span><span id="__span-0-648"><a id="__codelineno-0-648" name="__codelineno-0-648"></a>    <span class="n">FIVE_MINUTES</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">5</span>
+</span><span id="__span-0-649"><a id="__codelineno-0-649" name="__codelineno-0-649"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 5 minutes.&quot;&quot;&quot;</span>
+</span><span id="__span-0-650"><a id="__codelineno-0-650" name="__codelineno-0-650"></a>
+</span><span id="__span-0-651"><a id="__codelineno-0-651" name="__codelineno-0-651"></a>    <span class="n">FIFTEEN_MINUTES</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">15</span>
+</span><span id="__span-0-652"><a id="__codelineno-0-652" name="__codelineno-0-652"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The bounds will stay in effect for 15 minutes.&quot;&quot;&quot;</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
 
