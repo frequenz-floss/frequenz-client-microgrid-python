@@ -44,8 +44,7 @@ def assert_stub_method_call(stub_method: Any) -> None:
                     metrics_pb2.Metric.METRIC_DC_CURRENT,
                 ]
             ),
-        ),
-        timeout=60.0,
+        )
     )
 
 
