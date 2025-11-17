@@ -199,7 +199,7 @@ def component_base_from_proto_with_issues(
     )
 
 
-# pylint: disable-next=too-many-locals
+# pylint: disable-next=too-many-locals, too-many-branches
 def component_from_proto_with_issues(
     message: electrical_components_pb2.ElectricalComponent,
     *,
