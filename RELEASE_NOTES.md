@@ -6,7 +6,12 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- `ComponentCategory` is now being imported from `frequenz-client-common` v0.3.3. This means:
+
+    * You need to add/update the minimum dependency to `frequenz-client-common`
+    * `ComponentCategory.NONE` is not named `ComponentCategory.UNSPECIFIED`
+    * `Component.category` has now the type `ComponentCategory | int`.
+    * Before if a category that had no corresponding value in `ComponentCategory` was received (the server is probably using a newer version with a new category), `ComponentCategory.NONE` was used. Now we keep the original `int` received from protobuf. This allows to use an old client version with a new server, as long as the user knows how to interpret the `int` value, so it provided more flexibility.
 
 ## New Features
 

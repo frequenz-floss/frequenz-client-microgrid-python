@@ -4,66 +4,9 @@
 """Tests for the microgrid component wrapper."""
 
 import pytest
-from frequenz.api.common import components_pb2
-from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 
-from frequenz.client.microgrid import (
-    Component,
-    ComponentCategory,
-)
-from frequenz.client.microgrid._component import component_category_from_protobuf
-
-
-def test_component_category_from_protobuf() -> None:
-    """Test the creating component category from protobuf."""
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_UNSPECIFIED
-        )
-        == ComponentCategory.NONE
-    )
-
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_GRID
-        )
-        == ComponentCategory.GRID
-    )
-
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_METER
-        )
-        == ComponentCategory.METER
-    )
-
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER
-        )
-        == ComponentCategory.INVERTER
-    )
-
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY
-        )
-        == ComponentCategory.BATTERY
-    )
-
-    assert (
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER
-        )
-        == ComponentCategory.EV_CHARGER
-    )
-
-    assert component_category_from_protobuf(666) == ComponentCategory.NONE  # type: ignore
-
-    with pytest.raises(ValueError):
-        component_category_from_protobuf(
-            components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR
-        )
+from frequenz.client.microgrid import Component
 
 
 # pylint: disable=invalid-name
@@ -91,8 +34,8 @@ def test_Component() -> None:
         # Should raise error with negative ID
         Component(ComponentId(-1), ComponentCategory.GRID)
 
-    invalid_type = Component(ComponentId(666), -1)  # type: ignore
+    invalid_type = Component(ComponentId(666), -1)
     assert not invalid_type.is_valid()
 
-    another_invalid_type = Component(ComponentId(666), 666)  # type: ignore
+    another_invalid_type = Component(ComponentId(666), 666)
     assert not another_invalid_type.is_valid()

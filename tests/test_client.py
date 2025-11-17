@@ -18,7 +18,7 @@ from frequenz.api.common import components_pb2, metrics_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2, microgrid_pb2, sensor_pb2
 from frequenz.client.base import conversion, retry
 from frequenz.client.common.microgrid import MicrogridId
-from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 from frequenz.client.common.microgrid.sensors import SensorId
 from google.protobuf.empty_pb2 import Empty
 
@@ -26,7 +26,6 @@ from frequenz.client.microgrid import (
     ApiClientError,
     BatteryData,
     Component,
-    ComponentCategory,
     ComponentData,
     Connection,
     EVChargerData,
@@ -191,7 +190,7 @@ async def test_components(client: _TestClient) -> None:
     grid_fuse = Fuse(123.0)
 
     assert set(await client.components()) == {
-        Component(ComponentId(100), ComponentCategory.NONE),
+        Component(ComponentId(100), ComponentCategory.UNSPECIFIED),
         Component(
             ComponentId(101),
             ComponentCategory.GRID,
@@ -657,7 +656,8 @@ async def test_data_bad_category(
 
     # It should raise a ValueError for a wrong component category
     with pytest.raises(
-        ValueError, match=f"{component_id} is a .*, not a {method[:-5]}"
+        ValueError,
+        match=rf"{component_id} has category .*, but {method[:-5].upper()} was expected",
     ):
         await getattr(client, method)(component_id)
 

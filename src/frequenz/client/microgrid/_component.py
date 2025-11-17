@@ -8,7 +8,7 @@ from enum import Enum
 
 from frequenz.api.common import components_pb2
 from frequenz.api.microgrid import grid_pb2, inverter_pb2
-from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.components import ComponentCategory, ComponentId
 
 
 class ComponentType(Enum):
@@ -59,58 +59,6 @@ def component_type_from_protobuf(
         return InverterType(component_metadata.type)
 
     return None
-
-
-class ComponentCategory(Enum):
-    """Possible types of microgrid component."""
-
-    NONE = components_pb2.ComponentCategory.COMPONENT_CATEGORY_UNSPECIFIED
-    """Unspecified component category."""
-
-    GRID = components_pb2.ComponentCategory.COMPONENT_CATEGORY_GRID
-    """Grid component."""
-
-    METER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_METER
-    """Meter component."""
-
-    INVERTER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_INVERTER
-    """Inverter component."""
-
-    BATTERY = components_pb2.ComponentCategory.COMPONENT_CATEGORY_BATTERY
-    """Battery component."""
-
-    EV_CHARGER = components_pb2.ComponentCategory.COMPONENT_CATEGORY_EV_CHARGER
-    """EV charger component."""
-
-    CHP = components_pb2.ComponentCategory.COMPONENT_CATEGORY_CHP
-    """CHP component."""
-
-
-def component_category_from_protobuf(
-    component_category: components_pb2.ComponentCategory.ValueType,
-) -> ComponentCategory:
-    """Convert a protobuf ComponentCategory message to ComponentCategory enum.
-
-    For internal-only use by the `microgrid` package.
-
-    Args:
-        component_category: protobuf enum to convert
-
-    Returns:
-        Enum value corresponding to the protobuf message.
-
-    Raises:
-        ValueError: if `component_category` is a sensor (this is not considered
-            a valid component category as it does not form part of the
-            microgrid itself)
-    """
-    if component_category == components_pb2.ComponentCategory.COMPONENT_CATEGORY_SENSOR:
-        raise ValueError("Cannot create a component from a sensor!")
-
-    if not any(t.value == component_category for t in ComponentCategory):
-        return ComponentCategory.NONE
-
-    return ComponentCategory(component_category)
 
 
 @dataclass(frozen=True)
@@ -164,7 +112,7 @@ class Component:
     component_id: ComponentId
     """The ID of this component."""
 
-    category: ComponentCategory
+    category: ComponentCategory | int
     """The category of this component."""
 
     type: ComponentType | None = None
