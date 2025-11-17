@@ -1,0 +1,1 @@
+../set_component_power_active/success_case.py

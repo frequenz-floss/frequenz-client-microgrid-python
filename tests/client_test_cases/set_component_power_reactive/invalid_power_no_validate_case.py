@@ -1,0 +1,1 @@
+../set_component_power_active/invalid_power_no_validate_case.py
