@@ -32,4 +32,3 @@ grpc_response = RESPONSE_CLASS()
 def assert_client_result(result: Any) -> None:  # noqa: D103
     """Assert that the client result is None when no lifetime is provided."""
     assert result is None
-    assert result is None
