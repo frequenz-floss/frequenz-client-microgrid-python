@@ -34,5 +34,3 @@ grpc_response = RESPONSE_CLASS(valid_until_time=conversion.to_timestamp(expiry_t
 def assert_client_result(result: datetime) -> None:
     """Assert that the client result matches the expected expiry time."""
     assert result == expiry_time
-    """Assert that the client result matches the expected expiry time."""
-    assert result == expiry_time
