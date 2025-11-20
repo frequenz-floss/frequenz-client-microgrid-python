@@ -6,7 +6,6 @@
 This package provides a low-level interface for interacting with the microgrid API.
 """
 
-
 from ._client import (
     DEFAULT_CHANNEL_OPTIONS,
     DEFAULT_GRPC_CALL_TIMEOUT,
