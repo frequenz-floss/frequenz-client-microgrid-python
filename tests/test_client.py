@@ -179,3 +179,16 @@ async def test_receive_component_data_samples_stream(
     await spec.test_unary_stream_call(
         client, "ReceiveElectricalComponentTelemetryStream"
     )
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "spec",
+    get_test_specs("list_sensors", tests_dir=TESTS_DIR),
+    ids=str,
+)
+async def test_list_sensors(
+    client: MicrogridApiClient, spec: ApiClientTestCaseSpec
+) -> None:
+    """Test list_sensors method."""
+    await spec.test_unary_unary_call(client, "ListSensors")

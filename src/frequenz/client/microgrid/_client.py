@@ -23,6 +23,7 @@ from frequenz.channels import Receiver
 from frequenz.client.base import channel, client, conversion, retry, streaming
 from frequenz.client.base.exception import ApiClientError
 from frequenz.client.common.microgrid.components import ComponentId
+from frequenz.client.common.microgrid.sensors import SensorId
 from google.protobuf.empty_pb2 import Empty
 from grpc.aio import AioRpcError
 from typing_extensions import override
@@ -40,6 +41,8 @@ from .component._data_samples_proto import component_data_samples_from_proto
 from .component._types import ComponentTypes
 from .metrics._bounds import Bounds
 from .metrics._metric import Metric
+from .sensor._sensor import Sensor
+from .sensor._sensor_proto import sensor_from_proto
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0
 """The default timeout for gRPC calls made by this client (in seconds)."""
@@ -295,6 +298,41 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             )
             if conn is not None
         )
+
+    async def list_sensors(  # noqa: DOC502 (raises ApiClientError indirectly)
+        self,
+        *,
+        sensors: Iterable[SensorId | Sensor] = (),
+    ) -> Iterable[Sensor]:
+        """Fetch all the sensors present in the local microgrid.
+
+        Sensors are devices that measure physical properties in the microgrid's
+        surroundings, such as temperature, humidity, and solar irradiance. Unlike
+        electrical components, sensors are not part of the electrical infrastructure.
+
+        Args:
+            sensors: The sensors to fetch. If empty, all sensors are fetched.
+
+        Returns:
+            Iterator whose elements are all the sensors in the local microgrid.
+
+        Raises:
+            ApiClientError: If there are any errors communicating with the Microgrid API,
+                most likely a subclass of
+                [GrpcError][frequenz.client.microgrid.GrpcError].
+        """
+        response = await client.call_stub_method(
+            self,
+            lambda: self.stub.ListSensors(
+                microgrid_pb2.ListSensorRequest(
+                    sensor_ids=map(_get_sensor_id, sensors),
+                ),
+                timeout=DEFAULT_GRPC_CALL_TIMEOUT,
+            ),
+            method_name="ListSensors",
+        )
+
+        return map(sensor_from_proto, response.sensors)
 
     # pylint: disable-next=fixme
     # TODO: Unifi set_component_power_active and set_component_power_reactive, or at
@@ -659,6 +697,17 @@ def _get_component_id(component: ComponentId | Component) -> int:
             return int(component)
         case Component():
             return int(component.id)
+        case unexpected:
+            assert_never(unexpected)
+
+
+def _get_sensor_id(sensor: SensorId | Sensor) -> int:
+    """Get the sensor ID from a sensor or sensor ID."""
+    match sensor:
+        case SensorId():
+            return int(sensor)
+        case Sensor():
+            return int(sensor.id)
         case unexpected:
             assert_never(unexpected)
 
