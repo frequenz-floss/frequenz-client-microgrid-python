@@ -12,7 +12,7 @@ import math
 from collections.abc import Iterable
 from dataclasses import replace
 from datetime import datetime, timedelta
-from typing import Any, assert_never
+from typing import Any, assert_never, cast
 
 from frequenz.api.common.v1alpha8.metrics import bounds_pb2, metrics_pb2
 from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
@@ -43,6 +43,8 @@ from .metrics._bounds import Bounds
 from .metrics._metric import Metric
 from .sensor._sensor import Sensor
 from .sensor._sensor_proto import sensor_from_proto
+from .sensor._telemetry import SensorTelemetry
+from .sensor._telemetry_proto import sensor_telemetry_from_proto
 
 DEFAULT_GRPC_CALL_TIMEOUT = 60.0
 """The default timeout for gRPC calls made by this client (in seconds)."""
@@ -103,7 +105,10 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         ] = {}
         self._sensor_data_broadcasters: dict[
             str,
-            streaming.GrpcStreamBroadcaster[Any, Any],
+            streaming.GrpcStreamBroadcaster[
+                microgrid_pb2.ReceiveSensorTelemetryStreamResponse,
+                SensorTelemetry,
+            ],
         ] = {}
         self._retry_strategy = retry_strategy
 
@@ -126,16 +131,19 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
         exc_tb: Any | None,
     ) -> bool | None:
         """Close the gRPC channel and stop all broadcasters."""
+        all_broadcasters = cast(
+            list[streaming.GrpcStreamBroadcaster[Any, Any]],
+            list(
+                itertools.chain(
+                    self._component_data_broadcasters.values(),
+                    self._sensor_data_broadcasters.values(),
+                )
+            ),
+        )
         exceptions = list(
             exc
             for exc in await asyncio.gather(
-                *(
-                    broadcaster.stop()
-                    for broadcaster in itertools.chain(
-                        self._component_data_broadcasters.values(),
-                        self._sensor_data_broadcasters.values(),
-                    )
-                ),
+                *(broadcaster.stop() for broadcaster in all_broadcasters),
                 return_exceptions=True,
             )
             if isinstance(exc, BaseException)
@@ -668,6 +676,68 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
                 retry_strategy=self._retry_strategy,
             )
             self._component_data_broadcasters[key] = broadcaster
+        return broadcaster.new_receiver(maxsize=buffer_size)
+
+    def receive_sensor_telemetry_stream(
+        self,
+        sensor: SensorId | Sensor,
+        metrics: Iterable[Metric | int],
+        *,
+        buffer_size: int = 50,
+    ) -> Receiver[SensorTelemetry]:
+        """Stream telemetry data from a sensor.
+
+        At least one metric must be specified. If no metric is specified, then the
+        stream will raise an error.
+
+        Warning:
+            Sensors may not support all metrics. If a sensor does not support
+            a given metric, then the returned data stream will not contain that metric.
+
+            There is no way to tell if a metric is not being received because the
+            sensor does not support it or because there is a transient issue when
+            retrieving the metric from the sensor.
+
+            The supported metrics by a sensor can even change with time, for example,
+            if a sensor is updated with new firmware.
+
+        Args:
+            sensor: The sensor to stream data from.
+            metrics: List of metrics to return. Only the specified metrics will be
+                returned.
+            buffer_size: The maximum number of messages to buffer in the returned
+                receiver. After this limit is reached, the oldest messages will be
+                dropped.
+
+        Returns:
+            The telemetry stream from the sensor.
+        """
+        sensor_id = _get_sensor_id(sensor)
+        metrics_set = frozenset([_get_metric_value(m) for m in metrics])
+        key = f"{sensor_id}-{hash(metrics_set)}"
+        broadcaster = self._sensor_data_broadcasters.get(key)
+        if broadcaster is None:
+            client_id = hex(id(self))[2:]
+            stream_name = f"microgrid-client-{client_id}-sensor-data-{key}"
+            # Alias to avoid too long lines linter errors
+            # pylint: disable-next=invalid-name
+            Request = microgrid_pb2.ReceiveSensorTelemetryStreamRequest
+            broadcaster = streaming.GrpcStreamBroadcaster(
+                stream_name,
+                lambda: aiter(
+                    self.stub.ReceiveSensorTelemetryStream(
+                        Request(
+                            sensor_id=sensor_id,
+                            filter=Request.SensorTelemetryStreamFilter(
+                                metrics=metrics_set
+                            ),
+                        ),
+                    )
+                ),
+                lambda msg: sensor_telemetry_from_proto(msg.telemetry),
+                retry_strategy=self._retry_strategy,
+            )
+            self._sensor_data_broadcasters[key] = broadcaster
         return broadcaster.new_receiver(maxsize=buffer_size)
 
 
