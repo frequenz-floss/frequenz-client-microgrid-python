@@ -15,6 +15,7 @@ from ._state import (
     SensorStateCode,
     SensorStateSnapshot,
 )
+from ._telemetry import SensorTelemetry
 
 __all__ = [
     "Sensor",
@@ -22,4 +23,5 @@ __all__ = [
     "SensorDiagnosticCode",
     "SensorStateCode",
     "SensorStateSnapshot",
+    "SensorTelemetry",
 ]
