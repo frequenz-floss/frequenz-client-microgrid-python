@@ -77,7 +77,7 @@ dev-mypy = [
   "mypy == 1.18.2",
   "grpc-stubs == 1.53.0.6",
   "types-Markdown == 3.9.0.20250906",
-  "types-protobuf == 6.32.1.20250918",
+  "types-protobuf == 6.32.1.20251105",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-client-microgrid[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
