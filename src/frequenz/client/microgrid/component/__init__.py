@@ -58,6 +58,7 @@ from ._types import (
     UnspecifiedComponentTypes,
 )
 from ._voltage_transformer import VoltageTransformer
+from ._wind_turbine import WindTurbine
 
 __all__ = [
     "AcEvCharger",
@@ -107,4 +108,5 @@ __all__ = [
     "UnspecifiedEvCharger",
     "UnspecifiedInverter",
     "VoltageTransformer",
+    "WindTurbine",
 ]

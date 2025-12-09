@@ -47,6 +47,7 @@ from frequenz.client.microgrid.component import (
     UnspecifiedEvCharger,
     UnspecifiedInverter,
     VoltageTransformer,
+    WindTurbine,
 )
 
 # No client_args or client_kwargs needed for this call
@@ -228,17 +229,21 @@ grpc_response = microgrid_pb2.ListElectricalComponentsResponse(
             id=25,
             category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER,
         ),
-        # Problematic components
         ec_pb2.ElectricalComponent(
             id=26,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE,
+        ),
+        # Problematic components
+        ec_pb2.ElectricalComponent(
+            id=27,
             category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED,
         ),
         ec_pb2.ElectricalComponent(
-            id=27,
+            id=28,
             category=999,  # type: ignore[arg-type]
         ),
         ec_pb2.ElectricalComponent(
-            id=28,
+            id=29,
             category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_BATTERY,
             category_specific_info=ec_pb2.ElectricalComponentCategorySpecificInfo(
                 # Mismatched: battery category with inverter metadata
@@ -292,13 +297,14 @@ def assert_client_result(result: Any) -> None:
             primary_voltage=0.0,
             secondary_voltage=0.0,
         ),
+        WindTurbine(id=ComponentId(26), microgrid_id=MicrogridId(0)),
         # Problematic components
-        UnspecifiedComponent(id=ComponentId(26), microgrid_id=MicrogridId(0)),
+        UnspecifiedComponent(id=ComponentId(27), microgrid_id=MicrogridId(0)),
         UnrecognizedComponent(
-            id=ComponentId(27), microgrid_id=MicrogridId(0), category=999
+            id=ComponentId(28), microgrid_id=MicrogridId(0), category=999
         ),
         MismatchedCategoryComponent(
-            id=ComponentId(28),
+            id=ComponentId(29),
             microgrid_id=MicrogridId(0),
             category=ComponentCategory.BATTERY,
             category_specific_metadata={

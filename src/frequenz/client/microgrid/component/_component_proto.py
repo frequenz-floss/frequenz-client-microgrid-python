@@ -60,6 +60,7 @@ from ._problematic import (
 from ._relay import Relay
 from ._types import ComponentTypes
 from ._voltage_transformer import VoltageTransformer
+from ._wind_turbine import WindTurbine
 
 _logger = logging.getLogger(__name__)
 
@@ -255,6 +256,7 @@ def component_from_proto_with_issues(
             | ComponentCategory.METER
             | ComponentCategory.PRECHARGER
             | ComponentCategory.RELAY
+            | ComponentCategory.WIND_TURBINE
         ):
             return _trivial_category_to_class(base_data.category)(
                 id=base_data.component_id,
@@ -449,6 +451,7 @@ def _trivial_category_to_class(
     | Meter
     | Precharger
     | Relay
+    | WindTurbine
 ]:
     """Return the class corresponding to a trivial component category."""
     return {
@@ -461,6 +464,7 @@ def _trivial_category_to_class(
         ComponentCategory.METER: Meter,
         ComponentCategory.PRECHARGER: Precharger,
         ComponentCategory.RELAY: Relay,
+        ComponentCategory.WIND_TURBINE: WindTurbine,
     }[category]
 
 

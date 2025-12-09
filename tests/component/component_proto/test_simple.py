@@ -28,6 +28,7 @@ from frequenz.client.microgrid.component import (
     UnrecognizedComponent,
     UnspecifiedComponent,
     VoltageTransformer,
+    WindTurbine,
 )
 from frequenz.client.microgrid.component._component_proto import (
     ComponentBaseData,
@@ -112,6 +113,7 @@ def test_category_mismatch(default_component_base_data: ComponentBaseData) -> No
         pytest.param(ComponentCategory.METER, Meter, id="Meter"),
         pytest.param(ComponentCategory.PRECHARGER, Precharger, id="Precharger"),
         pytest.param(ComponentCategory.RELAY, Relay, id="Relay"),
+        pytest.param(ComponentCategory.WIND_TURBINE, WindTurbine, id="WindTurbine"),
     ],
 )
 def test_trivial(
