@@ -23,6 +23,7 @@ from ._problematic import (
 )
 from ._relay import Relay
 from ._voltage_transformer import VoltageTransformer
+from ._wind_turbine import WindTurbine
 
 UnspecifiedComponentTypes: TypeAlias = (
     UnspecifiedBattery
@@ -59,5 +60,6 @@ ComponentTypes: TypeAlias = (
     | ProblematicComponentTypes
     | Relay
     | VoltageTransformer
+    | WindTurbine
 )
 """All possible component types."""

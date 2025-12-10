@@ -104,3 +104,6 @@ class ComponentCategory(enum.Enum):
 
     HVAC = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_HVAC
     """A Heating, Ventilation, and Air Conditioning (HVAC) system."""
+
+    WIND_TURBINE = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE
+    """A wind turbine."""

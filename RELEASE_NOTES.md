@@ -207,6 +207,7 @@ When migrating:
 - Add `get_microgrid_info()` returning a rich `MicrogridInfo` dataclass with ID, enterprise, location, delivery area, status, and timestamps.
 - Add a metrics model under `frequenz.client.microgrid.metrics` including the `Metric` enum, `Bounds`, and `MetricSample`/`AggregatedMetricValue`.
 - Add high-level methods on `MicrogridApiClient` for listing components and connections, adding component bounds, receiving component data samples streams, and controlling active/reactive power with lifetimes.
+- Add `WindTurbine` component type.
 
 ## Bug Fixes
 
