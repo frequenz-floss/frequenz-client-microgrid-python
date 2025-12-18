@@ -213,7 +213,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             Iterator whose elements are all the components in the local microgrid.
 
         Raises:
-            ApiClientError: If the are any errors communicating with the Microgrid API,
+            ApiClientError: If there are any errors communicating with the Microgrid API,
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
@@ -269,7 +269,7 @@ class MicrogridApiClient(client.BaseApiClient[microgrid_pb2_grpc.MicrogridStub])
             Iterator whose elements are all the connections in the local microgrid.
 
         Raises:
-            ApiClientError: If the are any errors communicating with the Microgrid API,
+            ApiClientError: If there are any errors communicating with the Microgrid API,
                 most likely a subclass of
                 [GrpcError][frequenz.client.microgrid.GrpcError].
         """
