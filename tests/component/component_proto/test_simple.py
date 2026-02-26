@@ -3,7 +3,6 @@
 
 """Tests for protobuf conversion of simple Component objects."""
 
-
 import logging
 from unittest.mock import Mock, patch
 

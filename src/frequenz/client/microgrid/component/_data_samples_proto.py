@@ -3,7 +3,6 @@
 
 """Loading of ComponentDataSamples objects from protobuf messages."""
 
-
 import logging
 from functools import partial
 

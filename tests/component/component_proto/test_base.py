@@ -3,7 +3,6 @@
 
 """Tests for protobuf conversion of the base/common part of Component objects."""
 
-
 from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
     electrical_components_pb2,
 )
