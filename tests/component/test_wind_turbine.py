@@ -3,7 +3,6 @@
 
 """Tests for WindTurbine component."""
 
-
 from frequenz.client.common.microgrid import MicrogridId
 from frequenz.client.common.microgrid.components import ComponentId
 

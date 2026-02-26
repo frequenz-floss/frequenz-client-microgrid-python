@@ -3,7 +3,6 @@
 
 """Supported metrics for microgrid components."""
 
-
 from frequenz.api.common.v1alpha8.metrics import metrics_pb2
 from frequenz.core import enum
 

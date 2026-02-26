@@ -3,7 +3,6 @@
 
 """Location information for a microgrid."""
 
-
 from dataclasses import dataclass
 
 

@@ -3,7 +3,6 @@
 
 """Tests for proto conversion of SensorTelemetry."""
 
-
 from frequenz.api.common.v1alpha8.microgrid.sensors import sensors_pb2
 from frequenz.client.common.microgrid.sensors import SensorId
 from google.protobuf.timestamp_pb2 import Timestamp

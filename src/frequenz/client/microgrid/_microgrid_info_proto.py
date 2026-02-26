@@ -3,7 +3,6 @@
 
 """Loading of MicrogridInfo objects from protobuf messages."""
 
-
 import logging
 
 from frequenz.api.common.v1alpha8.microgrid import microgrid_pb2
