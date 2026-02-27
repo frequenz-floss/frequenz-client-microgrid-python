@@ -47,6 +47,7 @@ jobs:
           token: ${{ steps.create-app-token.outputs.token }}
           migration-token: ${{ secrets.REPO_CONFIG_MIGRATION_TOKEN }}
           auto-merge-on-changes: "true"
+          sign-commits: "true"
           auto-merged-label: "tool:auto-merged"
           migrated-label: "tool:repo-config:migration:executed"
           intervention-pending-label: "tool:repo-config:migration:intervention-pending"
