@@ -31,7 +31,7 @@ jobs:
   repo-config-migration:
     name: Migrate Repo Config
     if: contains(github.event.pull_request.title, 'the repo-config group')
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-24.04
     steps:
       - name: Generate token
         id: create-app-token
