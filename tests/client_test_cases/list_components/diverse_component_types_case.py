@@ -38,6 +38,7 @@ from frequenz.client.microgrid.component import (
     Precharger,
     Relay,
     SolarInverter,
+    SteamBoiler,
     UnrecognizedBattery,
     UnrecognizedComponent,
     UnrecognizedEvCharger,
@@ -250,6 +251,10 @@ grpc_response = microgrid_pb2.ListElectricalComponentsResponse(
                 inverter=ec_pb2.Inverter(type=ec_pb2.InverterType.INVERTER_TYPE_PV)
             ),
         ),
+        ec_pb2.ElectricalComponent(
+            id=30,
+            category=ec_pb2.ELECTRICAL_COMPONENT_CATEGORY_STEAM_BOILER,
+        ),
     ]
 )
 
@@ -311,6 +316,7 @@ def assert_client_result(result: Any) -> None:
                 "type": "INVERTER_TYPE_PV",
             },
         ),
+        SteamBoiler(id=ComponentId(30), microgrid_id=MicrogridId(0)),
     ]
 
     # Make sure we are testing all known categories and types
