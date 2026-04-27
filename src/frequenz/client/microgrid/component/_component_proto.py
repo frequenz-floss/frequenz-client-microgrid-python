@@ -58,6 +58,7 @@ from ._problematic import (
     UnspecifiedComponent,
 )
 from ._relay import Relay
+from ._steam_boiler import SteamBoiler
 from ._types import ComponentTypes
 from ._voltage_transformer import VoltageTransformer
 from ._wind_turbine import WindTurbine
@@ -256,6 +257,7 @@ def component_from_proto_with_issues(
             | ComponentCategory.METER
             | ComponentCategory.PRECHARGER
             | ComponentCategory.RELAY
+            | ComponentCategory.STEAM_BOILER
             | ComponentCategory.WIND_TURBINE
         ):
             return _trivial_category_to_class(base_data.category)(
@@ -451,6 +453,7 @@ def _trivial_category_to_class(
     | Meter
     | Precharger
     | Relay
+    | SteamBoiler
     | WindTurbine
 ]:
     """Return the class corresponding to a trivial component category."""
@@ -464,6 +467,7 @@ def _trivial_category_to_class(
         ComponentCategory.METER: Meter,
         ComponentCategory.PRECHARGER: Precharger,
         ComponentCategory.RELAY: Relay,
+        ComponentCategory.STEAM_BOILER: SteamBoiler,
         ComponentCategory.WIND_TURBINE: WindTurbine,
     }[category]
 

@@ -22,6 +22,7 @@ from ._problematic import (
     UnspecifiedComponent,
 )
 from ._relay import Relay
+from ._steam_boiler import SteamBoiler
 from ._voltage_transformer import VoltageTransformer
 from ._wind_turbine import WindTurbine
 
@@ -59,6 +60,7 @@ ComponentTypes: TypeAlias = (
     | Precharger
     | ProblematicComponentTypes
     | Relay
+    | SteamBoiler
     | VoltageTransformer
     | WindTurbine
 )

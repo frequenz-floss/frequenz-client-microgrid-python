@@ -51,6 +51,7 @@ from ._problematic import (
 )
 from ._relay import Relay
 from ._state_sample import ComponentErrorCode, ComponentStateCode, ComponentStateSample
+from ._steam_boiler import SteamBoiler
 from ._types import (
     ComponentTypes,
     ProblematicComponentTypes,
@@ -97,6 +98,7 @@ __all__ = [
     "ProblematicComponentTypes",
     "Relay",
     "SolarInverter",
+    "SteamBoiler",
     "UnrecognizedBattery",
     "UnrecognizedComponent",
     "UnrecognizedComponentTypes",

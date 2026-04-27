@@ -107,3 +107,6 @@ class ComponentCategory(enum.Enum):
 
     WIND_TURBINE = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE
     """A wind turbine."""
+
+    STEAM_BOILER = electrical_components_pb2.ELECTRICAL_COMPONENT_CATEGORY_STEAM_BOILER
+    """A steam boiler."""
