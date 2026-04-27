@@ -43,7 +43,7 @@ dependencies = [
   "frequenz-client-common >= 0.3.6, < 0.4.0",
   "frequenz-core >= 1.3.0, < 2.0.0",
   "grpcio >= 1.72.1, < 2",
-  "protobuf >= 6.31.1, < 8",
+  "protobuf >= 6.32.1, < 8",
   "typing-extensions >= 4.13.0, < 5",
 ]
 dynamic = ["version"]
