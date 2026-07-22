@@ -59,6 +59,8 @@ def default_component_base_data(
         lifetime=DEFAULT_LIFETIME,
         rated_bounds={Metric.AC_ENERGY_ACTIVE: Bounds(lower=0, upper=100)},
         category_specific_info={},
+        provides_telemetry=True,
+        accepts_control=True,
         category_mismatched=False,
     )
 
@@ -74,6 +76,32 @@ def assert_base_data(base_data: ComponentBaseData, other: Component) -> None:
     assert base_data.lifetime == other.operational_lifetime
     assert base_data.rated_bounds == other.rated_bounds
     assert base_data.category_specific_info == other.category_specific_metadata
+    # pylint: disable=protected-access
+    assert base_data.provides_telemetry == other._provides_telemetry
+    assert base_data.accepts_control == other._accepts_control
+    # pylint: enable=protected-access
+
+
+_OPERATIONAL_MODE_BY_BOOLS: dict[
+    tuple[bool | None, bool | None],
+    electrical_components_pb2.ElectricalComponentOperationalMode.ValueType,
+] = {
+    (None, None): (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_UNSPECIFIED
+    ),
+    (False, False): (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_INACTIVE
+    ),
+    (True, False): (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY_ONLY
+    ),
+    (False, True): (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_ONLY
+    ),
+    (True, True): (
+        electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_AND_TELEMETRY
+    ),
+}
 
 
 def base_data_as_proto(
@@ -91,6 +119,9 @@ def base_data_as_proto(
             if isinstance(base_data.category, int)
             else int(base_data.category.value)  # type: ignore[arg-type]
         ),
+        operational_mode=_OPERATIONAL_MODE_BY_BOOLS[
+            (base_data.provides_telemetry, base_data.accepts_control)
+        ],
     )
     if base_data.lifetime:
         lifetime_dict: dict[str, Timestamp] = {}

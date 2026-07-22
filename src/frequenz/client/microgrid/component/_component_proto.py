@@ -71,6 +71,40 @@ _logger = logging.getLogger(__name__)
 # pylint: disable=too-many-arguments
 
 
+_BOOLS_BY_OPERATIONAL_MODE: dict[int, tuple[bool | None, bool | None]] = {
+    electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_INACTIVE: (
+        False,
+        False,
+    ),
+    electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY_ONLY: (
+        True,
+        False,
+    ),
+    electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_ONLY: (
+        False,
+        True,
+    ),
+    electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_AND_TELEMETRY: (
+        True,
+        True,
+    ),
+}
+
+
+def _operational_mode_to_bools(value: int) -> tuple[bool | None, bool | None]:
+    """Map a protobuf operational mode to telemetry/control booleans.
+
+    Args:
+        value: A protobuf operational-mode enum value (an
+            `ELECTRICAL_COMPONENT_OPERATIONAL_MODE_*` constant).
+
+    Returns:
+        A `(provides_telemetry, accepts_control)` tuple, with both elements `None`
+            when the operational mode is unspecified or unrecognized.
+    """
+    return _BOOLS_BY_OPERATIONAL_MODE.get(value, (None, None))
+
+
 def component_from_proto(
     message: electrical_components_pb2.ElectricalComponent,
 ) -> ComponentTypes:
@@ -117,6 +151,8 @@ class ComponentBaseData(NamedTuple):
     lifetime: Lifetime
     rated_bounds: dict[Metric | int, Bounds]
     category_specific_info: dict[str, Any]
+    provides_telemetry: bool | None
+    accepts_control: bool | None
     category_mismatched: bool = False
 
 
@@ -197,6 +233,7 @@ def component_base_from_proto_with_issues(
         lifetime,
         rated_bounds,
         category_specific_info,
+        *_operational_mode_to_bools(message.operational_mode),
         category_mismatched,
     )
 
@@ -231,6 +268,8 @@ def component_from_proto_with_issues(
             model_name=base_data.model_name,
             category=base_data.category,
             operational_lifetime=base_data.lifetime,
+            _provides_telemetry=base_data.provides_telemetry,
+            _accepts_control=base_data.accepts_control,
             category_specific_metadata=base_data.category_specific_info,
             rated_bounds=base_data.rated_bounds,
         )
@@ -245,6 +284,8 @@ def component_from_proto_with_issues(
                 model_name=base_data.model_name,
                 category=base_data.category,
                 operational_lifetime=base_data.lifetime,
+                _provides_telemetry=base_data.provides_telemetry,
+                _accepts_control=base_data.accepts_control,
                 rated_bounds=base_data.rated_bounds,
             )
         case (
@@ -267,6 +308,8 @@ def component_from_proto_with_issues(
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
                 operational_lifetime=base_data.lifetime,
+                _provides_telemetry=base_data.provides_telemetry,
+                _accepts_control=base_data.accepts_control,
                 rated_bounds=base_data.rated_bounds,
             )
         case ComponentCategory.BATTERY:
@@ -291,6 +334,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                     )
                 case int():
@@ -302,6 +347,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                         type=battery_type,
                     )
@@ -338,6 +385,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                     )
                 case int():
@@ -351,6 +400,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                         type=ev_charger_type,
                     )
@@ -368,6 +419,8 @@ def component_from_proto_with_issues(
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
                 operational_lifetime=base_data.lifetime,
+                _provides_telemetry=base_data.provides_telemetry,
+                _accepts_control=base_data.accepts_control,
                 rated_bounds=base_data.rated_bounds,
                 rated_fuse_current=rated_fuse_current,
             )
@@ -405,6 +458,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                     )
                 case int():
@@ -418,6 +473,8 @@ def component_from_proto_with_issues(
                         manufacturer=base_data.manufacturer,
                         model_name=base_data.model_name,
                         operational_lifetime=base_data.lifetime,
+                        _provides_telemetry=base_data.provides_telemetry,
+                        _accepts_control=base_data.accepts_control,
                         rated_bounds=base_data.rated_bounds,
                         type=inverter_type,
                     )
@@ -433,6 +490,8 @@ def component_from_proto_with_issues(
                 manufacturer=base_data.manufacturer,
                 model_name=base_data.model_name,
                 operational_lifetime=base_data.lifetime,
+                _provides_telemetry=base_data.provides_telemetry,
+                _accepts_control=base_data.accepts_control,
                 rated_bounds=base_data.rated_bounds,
                 primary_voltage=message.category_specific_info.power_transformer.primary,
                 secondary_voltage=message.category_specific_info.power_transformer.secondary,

@@ -74,6 +74,36 @@ def test_creation_full() -> None:
     assert component.category_specific_metadata == metadata
 
 
+def test_accessors_return_values_when_set() -> None:
+    """Test that telemetry/control accessors return the stored booleans."""
+    component = _TestComponent(
+        id=ComponentId(1),
+        microgrid_id=MicrogridId(2),
+        category=ComponentCategory.UNSPECIFIED,
+        _provides_telemetry=True,
+        _accepts_control=False,
+    )
+
+    assert component.provides_telemetry() is True
+    assert component.accepts_control() is False
+
+
+def test_accessors_raise_when_unspecified() -> None:
+    """Test that accessors raise ValueError when the value is unknown."""
+    component = _TestComponent(
+        id=ComponentId(1),
+        microgrid_id=MicrogridId(2),
+        category=ComponentCategory.UNSPECIFIED,
+        _provides_telemetry=None,
+        _accepts_control=None,
+    )
+
+    with pytest.raises(ValueError):
+        component.provides_telemetry()
+    with pytest.raises(ValueError):
+        component.accepts_control()
+
+
 @pytest.mark.parametrize(
     "name,expected_str",
     [

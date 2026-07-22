@@ -52,6 +52,12 @@ class Component:  # pylint: disable=too-many-instance-attributes
     operational_lifetime: Lifetime = dataclasses.field(default_factory=Lifetime)
     """The operational lifetime of this component."""
 
+    _provides_telemetry: bool | None = None
+    """Whether this component provides telemetry data, or `None` if unspecified."""
+
+    _accepts_control: bool | None = None
+    """Whether this component accepts control commands, or `None` if unspecified."""
+
     rated_bounds: Mapping[Metric | int, Bounds] = dataclasses.field(
         default_factory=dict,
         # dict is not hashable, so we don't use this field to calculate the hash. This
@@ -84,6 +90,40 @@ class Component:  # pylint: disable=too-many-instance-attributes
         if cls is Component:
             raise TypeError(f"Cannot instantiate {cls.__name__} directly")
         return super().__new__(cls)
+
+    def provides_telemetry(self) -> bool:
+        """Check whether this component provides telemetry data.
+
+        Returns:
+            Whether this component provides telemetry data.
+
+        Raises:
+            ValueError: If the operational mode is unspecified, so whether telemetry
+                is provided is unknown.
+        """
+        if self._provides_telemetry is None:
+            raise ValueError(
+                f"operational mode of {self} is unspecified; "
+                "telemetry availability is unknown"
+            )
+        return self._provides_telemetry
+
+    def accepts_control(self) -> bool:
+        """Check whether this component accepts control commands.
+
+        Returns:
+            Whether this component accepts control commands.
+
+        Raises:
+            ValueError: If the operational mode is unspecified, so whether control
+                commands are accepted is unknown.
+        """
+        if self._accepts_control is None:
+            raise ValueError(
+                f"operational mode of {self} is unspecified; "
+                "control availability is unknown"
+            )
+        return self._accepts_control
 
     def is_operational_at(self, timestamp: datetime) -> bool:
         """Check whether this component is operational at a specific timestamp.

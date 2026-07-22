@@ -3,6 +3,7 @@
 
 """Tests for protobuf conversion of the base/common part of Component objects."""
 
+import pytest
 from frequenz.api.common.v1alpha8.microgrid.electrical_components import (
     electrical_components_pb2,
 )
@@ -12,10 +13,52 @@ from frequenz.client.microgrid import Lifetime
 from frequenz.client.microgrid.component import ComponentCategory
 from frequenz.client.microgrid.component._component_proto import (
     ComponentBaseData,
+    _operational_mode_to_bools,
     component_base_from_proto_with_issues,
 )
 
 from .conftest import base_data_as_proto
+
+
+@pytest.mark.parametrize(
+    "proto_value, expected",
+    [
+        (
+            electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_UNSPECIFIED,
+            (None, None),
+        ),
+        (
+            electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_INACTIVE,
+            (False, False),
+        ),
+        (
+            electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY_ONLY,
+            (True, False),
+        ),
+        (
+            electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_ONLY,
+            (False, True),
+        ),
+        (
+            electrical_components_pb2.ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_AND_TELEMETRY,
+            (True, True),
+        ),
+        (999, (None, None)),
+    ],
+    ids=[
+        "unspecified",
+        "inactive",
+        "telemetry-only",
+        "control-only",
+        "control-and-telemetry",
+        "unknown-int",
+    ],
+)
+def test_operational_mode_to_bools(
+    proto_value: int, expected: tuple[bool | None, bool | None]
+) -> None:
+    """Test proto operational-mode maps to (provides_telemetry, accepts_control)."""
+    assert _operational_mode_to_bools(proto_value) == expected
 
 
 def test_complete(default_component_base_data: ComponentBaseData) -> None:
