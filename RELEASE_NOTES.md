@@ -1,8 +1,17 @@
 # Frequenz Microgrid API Client Release Notes
 
+## Summary
+
+<!-- Here goes a general summary of what this release is about -->
+
+## Upgrading
+
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+
 ## New Features
 
-* `Component` classes now expose two new functions to check the operational mode:
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
-    - `provides_telemetry()`: whether the component provides telemetry data
-    - `accepts_control()`: whether the component accepts control commands
+## Bug Fixes
+
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
