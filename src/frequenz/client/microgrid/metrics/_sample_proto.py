@@ -59,6 +59,8 @@ def metric_sample_from_proto_with_issues(
                 value = aggregated_metric_sample_from_proto(
                     message.value.aggregated_metric
                 )
+            case _:
+                pass
 
     metric = enum_from_proto(message.metric, Metric)
 
