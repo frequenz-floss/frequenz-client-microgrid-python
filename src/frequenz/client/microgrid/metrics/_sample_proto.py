@@ -4,6 +4,7 @@
 """Loading of MetricSample and AggregatedMetricValue objects from protobuf messages."""
 
 from collections.abc import Sequence
+from typing import assert_never
 
 from frequenz.api.common.v1alpha8.metrics import bounds_pb2, metrics_pb2
 from frequenz.client.base import conversion
@@ -59,6 +60,10 @@ def metric_sample_from_proto_with_issues(
                 value = aggregated_metric_sample_from_proto(
                     message.value.aggregated_metric
                 )
+            case None:
+                pass
+            case unexpected:
+                assert_never(unexpected)
 
     metric = enum_from_proto(message.metric, Metric)
 

@@ -449,3 +449,30 @@ def test_metric_sample_from_proto_with_issues(
     assert sample == case.expected_sample
     assert major_issues == case.expected_major_issues
     assert minor_issues == case.expected_minor_issues
+
+
+def test_metric_sample_from_proto_with_unknown_value_variant() -> None:
+    """Test that an unknown future oneof member is converted to no value."""
+    value = metrics_pb2.MetricValueVariant()
+    # Field 3 represents a hypothetical future oneof member.
+    value.ParseFromString(b"\x1a\x00")
+    message = metrics_pb2.MetricSample(
+        sample_time=TIMESTAMP,
+        metric=Metric.AC_POWER_ACTIVE.value,
+        value=value,
+        bounds=[bounds_pb2.Bounds(lower=-10.0, upper=10.0)],
+    )
+
+    major_issues: list[str] = []
+    minor_issues: list[str] = []
+
+    sample = metric_sample_from_proto_with_issues(
+        message,
+        major_issues=major_issues,
+        minor_issues=minor_issues,
+    )
+
+    assert sample.value is None
+    assert sample.bounds == [Bounds(lower=-10.0, upper=10.0)]
+    assert major_issues == []
+    assert minor_issues == []
