@@ -188,7 +188,8 @@ class ComponentErrorCode(enum.Enum):
     )
     """System shutdown due to undervoltage involving this component.
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use
         [`UNDERVOLTAGE`][frequenz.client.microgrid.component.ComponentErrorCode.UNDERVOLTAGE]
         instead.

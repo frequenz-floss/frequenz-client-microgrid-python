@@ -27,7 +27,8 @@ class ComponentCategory(enum.Enum):
     )
     """The point where the local microgrid is connected to the grid (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use
         [`GRID_CONNECTION_POINT`][frequenz.client.microgrid.component.ComponentCategory.GRID_CONNECTION_POINT]
         instead.
@@ -96,7 +97,8 @@ class ComponentCategory(enum.Enum):
     )
     """A voltage transformer (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use
         [`POWER_TRANSFORMER`][frequenz.client.microgrid.component.ComponentCategory.POWER_TRANSFORMER]
         instead.
