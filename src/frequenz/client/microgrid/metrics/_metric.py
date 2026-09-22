@@ -81,7 +81,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent power (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_APPARENT`][frequenz.client.microgrid.metrics.Metric.AC_POWER_APPARENT]
         instead.
     """
@@ -95,7 +96,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent power in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_APPARENT_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_POWER_APPARENT_PHASE_1]
         instead.
     """
@@ -109,7 +111,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent power in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_APPARENT_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_POWER_APPARENT_PHASE_2]
         instead.
     """
@@ -123,7 +126,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent power in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_APPARENT_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_POWER_APPARENT_PHASE_3]
         instead.
     """
@@ -137,7 +141,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active power (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_ACTIVE`][frequenz.client.microgrid.metrics.Metric.AC_POWER_ACTIVE]
         instead.
     """
@@ -151,7 +156,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active power in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_ACTIVE_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_POWER_ACTIVE_PHASE_1]
         instead.
     """
@@ -165,7 +171,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active power in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_ACTIVE_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_POWER_ACTIVE_PHASE_2]
         instead.
     """
@@ -179,7 +186,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active power in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_ACTIVE_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_POWER_ACTIVE_PHASE_3]
         instead.
     """
@@ -193,7 +201,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive power (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_REACTIVE`][frequenz.client.microgrid.metrics.Metric.AC_POWER_REACTIVE]
         instead.
     """
@@ -207,7 +216,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive power in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_REACTIVE_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_POWER_REACTIVE_PHASE_1]
         instead.
     """
@@ -221,7 +231,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive power in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_REACTIVE_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_POWER_REACTIVE_PHASE_2]
         instead.
     """
@@ -235,7 +246,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive power in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_POWER_REACTIVE_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_POWER_REACTIVE_PHASE_3]
         instead.
     """
@@ -261,7 +273,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent energy (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_APPARENT`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_APPARENT]
         instead.
     """
@@ -275,7 +288,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent energy in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_APPARENT_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_APPARENT_PHASE_1]
         instead.
     """
@@ -289,7 +303,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent energy in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_APPARENT_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_APPARENT_PHASE_2]
         instead.
     """
@@ -303,7 +318,8 @@ class Metric(enum.Enum):
     )
     """The alternating current apparent energy in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_APPARENT_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_APPARENT_PHASE_3]
         instead.
     """
@@ -317,7 +333,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE]
         instead.
     """
@@ -331,7 +348,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_PHASE_1]
         instead.
     """
@@ -345,7 +363,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_PHASE_2]
         instead.
     """
@@ -359,7 +378,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_PHASE_3]
         instead.
     """
@@ -373,7 +393,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy consumed (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_CONSUMED`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED]
         instead.
     """
@@ -389,7 +410,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy consumed in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_1]
         instead.
     """
@@ -405,7 +427,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy consumed in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_2]
         instead.
     """
@@ -421,7 +444,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy consumed in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_CONSUMED_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_CONSUMED_PHASE_3]
         instead.
     """
@@ -435,7 +459,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy delivered (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_DELIVERED`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED]
         instead.
     """
@@ -451,7 +476,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy delivered in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_1]
         instead.
     """
@@ -467,7 +493,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy delivered in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_2]
         instead.
     """
@@ -483,7 +510,8 @@ class Metric(enum.Enum):
     )
     """The alternating current active energy delivered in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_ACTIVE_DELIVERED_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_ACTIVE_DELIVERED_PHASE_3]
         instead.
     """
@@ -497,7 +525,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive energy (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_REACTIVE`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE]
         instead.
     """
@@ -511,7 +540,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive energy in phase 1 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_REACTIVE_PHASE_1`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_1]
         instead.
     """
@@ -525,7 +555,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive energy in phase 2 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_REACTIVE_PHASE_2`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_2]
         instead.
     """
@@ -539,7 +570,8 @@ class Metric(enum.Enum):
     )
     """The alternating current reactive energy in phase 3 (deprecated).
 
-    Deprecated: Deprecated in v0.18.0
+    Deprecated:
+        This member is deprecated since v0.18.0.
         Use [`AC_ENERGY_REACTIVE_PHASE_3`][frequenz.client.microgrid.metrics.Metric.AC_ENERGY_REACTIVE_PHASE_3]
         instead.
     """
