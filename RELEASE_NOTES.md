@@ -4,6 +4,8 @@
 
 <!-- Here goes a general summary of what this release is about -->
 
+This release supports `frequenz-channels >= 1.6.1, < 3`, including v2.0.0.
+
 ## Upgrading
 
 <!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->

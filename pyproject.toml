@@ -38,7 +38,7 @@ requires-python = ">= 3.11, < 4"
 dependencies = [
   "frequenz-api-common >= 0.8.4, < 1.0.0",
   "frequenz-api-microgrid >= 0.18.0, < 1",
-  "frequenz-channels >= 1.6.1, < 2.0.0",
+  "frequenz-channels >= 1.6.1, < 3",
   "frequenz-client-base >= 0.10.0, < 0.12.0",
   "frequenz-client-common >= 0.3.6, < 0.4.0",
   "frequenz-core >= 1.3.0, < 2.0.0",
